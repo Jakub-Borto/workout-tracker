@@ -709,6 +709,15 @@ is `'installing'`, then quietly fades a moment after it settles — no
 "you're up to date" message on the no-update path, since this is meant to
 be a low-key status, not a decision point.
 
+`registration.update()` is raced against a 10s timeout
+(`UPDATE_CHECK_TIMEOUT_MS`) rather than awaited directly — some mobile
+browsers (notably older iOS Safari) have a history of this call just
+hanging forever instead of resolving or rejecting. Without the race, a
+hang there means "Checking for updates…" stays stuck on screen
+permanently and the manual button looks dead (it's still "awaiting" the
+previous call) — confirmed via a real hang-simulation test, not just
+theoretical.
+
 **Popup queue** (`window.WorkoutDialogs.runExclusive`, defined in
 `workout.js` next to `showConfirm`): up to three different things can each
 want to show a blocking startup dialog — the draft-expiry check

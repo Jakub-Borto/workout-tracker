@@ -79,6 +79,13 @@ const CHANGELOG = [
     date: '2026-09-12',
     changes: ['Fixed the exercise list sitting too close to the search bar on "Add Exercise" screens'],
   },
+  {
+    version: 'workout-tracker-v53',
+    date: '2026-09-12',
+    changes: [
+      'Fixed "Checking for updates…" getting stuck forever (and the Check for Updates button appearing dead) if the update check hung',
+    ],
+  },
 ];
 
 /**

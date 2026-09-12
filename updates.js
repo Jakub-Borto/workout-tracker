@@ -86,6 +86,8 @@ function watchInstallingWorker(worker) {
   });
 }
 
+const UPDATE_CHECK_TIMEOUT_MS = 10000;
+
 /** Shared by the automatic on-load check and the manual "Check for
  * Updates" button — exactly the same code path either way. */
 async function checkForUpdate() {
@@ -93,7 +95,16 @@ async function checkForUpdate() {
   showStatus(t('updates.checking'));
 
   try {
-    await registration.update();
+    // registration.update() has a history of just hanging forever on some
+    // mobile browsers (notably older iOS Safari) instead of rejecting —
+    // without a timeout, a hang there means the "Checking for updates…"
+    // status is stuck on screen permanently and the manual button looks
+    // completely dead, since it's still "waiting" on the previous call.
+    // Race it against a timeout so the UI always recovers either way.
+    await Promise.race([
+      registration.update(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('update() timed out')), UPDATE_CHECK_TIMEOUT_MS)),
+    ]);
   } catch (err) {
     console.error('Update check failed', err);
   }
