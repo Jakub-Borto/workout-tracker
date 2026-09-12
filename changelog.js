@@ -149,6 +149,15 @@ const CHANGELOG = [
       'Minor reliability improvement to the update-changes check',
     ],
   },
+  {
+    version: 'workout-tracker-v63',
+    date: '2026-09-12',
+    changes: [
+      'This is a test entry',
+      'Just checking that the update popup shows real content',
+      'Another test bullet point',
+    ],
+  },
 ];
 
 /**

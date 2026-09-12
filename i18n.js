@@ -324,7 +324,7 @@ const TRANSLATIONS = {
     pl: 'Nie dokończyłeś treningu. Czy chcesz do niego wrócić?',
   },
 
-  'bodyweight.title': { en: 'Bodyweight', pl: 'Waga ciała' },
+  'bodyweight.title': { en: 'Body :) weight', pl: 'Waga :) ciała' },
   'bodyweight.emptyTitle': { en: 'Nothing logged yet', pl: 'Brak wpisów' },
   'bodyweight.emptySubtitle': {
     en: 'Your bodyweight history will show up here.',
