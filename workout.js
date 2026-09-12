@@ -203,6 +203,32 @@ function playBeep() {
   }
 }
 
+// -- Popup queue (prevents startup dialogs from overlapping) --------------
+//
+// Multiple things can each want to show a blocking dialog around app
+// startup: the draft-expiry check (this file), the backup reminder
+// (backup.js), and the "what's new" update popup (updates.js). The first
+// two are already sequential via app.js's own await chain, but the update
+// popup is fundamentally different — it's triggered by an async
+// service-worker message that can arrive at any time, completely
+// independent of that startup sequence. Without coordination, it could pop
+// up on top of (or underneath, invisibly) one of the other two.
+// runExclusive() chains every popup-showing call onto a single promise
+// tail so they always show one at a time, in the order requested, instead
+// of two ever being open simultaneously.
+let popupQueueTail = Promise.resolve();
+
+function runExclusive(fn) {
+  const result = popupQueueTail.then(() => fn());
+  // Swallow errors in the tail itself (not in what callers receive) so one
+  // popup throwing never wedges the queue for everything queued after it.
+  popupQueueTail = result.then(
+    () => {},
+    () => {}
+  );
+  return result;
+}
+
 // -- Generic confirm dialog ----------------------------------------------
 
 function showConfirm({ title, message, confirmText, cancelText }) {
@@ -238,6 +264,48 @@ function showConfirm({ title, message, confirmText, cancelText }) {
     }
     okBtn.addEventListener('click', onOk);
     cancelBtn.addEventListener('click', onCancel);
+  });
+}
+
+// -- Generic single-text-field name prompt ("Create Workout Plan", etc.) --
+
+/** Resolves with the trimmed text on OK (empty string if blank — caller
+ * decides whether that's acceptable), or null on Cancel. */
+function showTextPrompt({ title, initialValue = '', confirmText, cancelText }) {
+  const backdrop = document.getElementById('text-prompt-dialog');
+  const titleEl = document.getElementById('text-prompt-title');
+  const input = document.getElementById('text-prompt-input');
+  const confirmBtn = document.getElementById('text-prompt-confirm-btn');
+  const cancelBtn = document.getElementById('text-prompt-cancel-btn');
+
+  titleEl.textContent = title;
+  input.value = initialValue;
+  confirmBtn.textContent = confirmText ?? t('common.ok');
+  cancelBtn.textContent = cancelText ?? t('common.cancel');
+
+  backdrop.hidden = false;
+  input.focus();
+
+  return new Promise((resolve) => {
+    function cleanup(result) {
+      backdrop.hidden = true;
+      confirmBtn.removeEventListener('click', onConfirm);
+      cancelBtn.removeEventListener('click', onCancel);
+      input.removeEventListener('keydown', onKeydown);
+      resolve(result);
+    }
+    function onConfirm() {
+      cleanup(input.value.trim());
+    }
+    function onCancel() {
+      cleanup(null);
+    }
+    function onKeydown(e) {
+      if (e.key === 'Enter') onConfirm();
+    }
+    confirmBtn.addEventListener('click', onConfirm);
+    cancelBtn.addEventListener('click', onCancel);
+    input.addEventListener('keydown', onKeydown);
   });
 }
 
@@ -785,6 +853,57 @@ function buildBarChartSvg(bars, { formatValue } = {}) {
 }
 
 window.WorkoutCharts = { buildLineChartSvg, buildBarChartSvg };
+
+// -- Auto-fill new sets from previous workout -----------------------------
+//
+// Shared by the Active Workout screen's own "Add Set"/"Add Warmup" buttons
+// and (in a future segment) starting a workout from a Plan template — both
+// need the exact same "what should this brand-new set start out as" rule,
+// so it lives here as one pure function rather than being duplicated.
+
+/** Digit-only reps value + 1, e.g. "8" -> "9". Returns the value unchanged
+ * if it's empty/not a plain integer (defensive — should never see anything
+ * else for a 'natural'-formatted reps field, but never crash on odd data). */
+function incrementRepsValue(value) {
+  if (value == null || value === '') return value;
+  const n = parseInt(value, 10);
+  if (Number.isNaN(n)) return value;
+  return String(n + 1);
+}
+
+/**
+ * What a brand-new set's input_1/input_1_right/input_2 should start out as,
+ * given the exercise being logged and the previously-logged sets to match
+ * against (already resolved for the relevant gym filter by the caller, e.g.
+ * WorkoutRepo.getLastLoggedSetsForExercise). Matched by exercise + set
+ * number + warmup/working status (the caller passes sets already scoped to
+ * one exercise). Warm-up sets are copied exactly; working sets get +1 on
+ * input_1/input_1_right when the exercise's metric type is 'reps' or
+ * 'reps_per_side' (the only types where "one more rep than last time" makes
+ * sense), everything else copied unchanged. input_2 (the second metric,
+ * e.g. weight) is never incremented — progression there is a deliberate
+ * user decision, not an automatic guess. No match (e.g. first time ever
+ * doing this exercise, or a new set number never logged before) leaves
+ * every field empty, same as today's baseline behavior.
+ */
+function computeAutoFillValues(exercise, previousSets, setNumber, isWarmup) {
+  const match = (previousSets ?? []).find(
+    (s) => (s.is_warmup_set ?? false) === isWarmup && (s.set_number ?? null) === setNumber
+  );
+  if (!match) return { input_1: null, input_1_right: null, input_2: null };
+
+  const metricType = exercise?.metric?.type;
+  const isRepsMetric = metricType === 'reps' || metricType === 'reps_per_side';
+  const shouldIncrement = !isWarmup && isRepsMetric;
+
+  return {
+    input_1: shouldIncrement ? incrementRepsValue(match.input_1) : match.input_1 ?? null,
+    input_1_right: shouldIncrement ? incrementRepsValue(match.input_1_right) : match.input_1_right ?? null,
+    input_2: match.input_2 ?? null,
+  };
+}
+
+window.WorkoutAutoFill = { computeAutoFillValues };
 
 // -- Exercise History (read-only, shared by the Stats tab picker and the
 // Active Workout action row) -----------------------------------------------
@@ -1746,19 +1865,25 @@ class ActiveWorkoutController {
 
   async addSet(exerciseId, isWarmup) {
     const count = this.draft.sets.filter((s) => s.exercise_id === exerciseId && s.is_warmup_set === isWarmup).length;
+    const setNumber = count + 1;
+    const gymId = this.getExerciseGym(exerciseId);
+    const exercise = await this.loadExercise(exerciseId);
+    const previousSets = await this.loadPreviousSets(exerciseId, gymId);
+    const autoFill = window.WorkoutAutoFill.computeAutoFillValues(exercise, previousSets, setNumber, isWarmup);
+
     this.draft.sets.push({
       draft_set_id: window.WorkoutDB.generateId(),
       exercise_id: exerciseId,
-      set_number: count + 1,
+      set_number: setNumber,
       is_warmup_set: isWarmup,
-      input_1: null,
-      input_1_right: null,
-      input_2: null,
+      input_1: autoFill.input_1,
+      input_1_right: autoFill.input_1_right,
+      input_2: autoFill.input_2,
       rir: null,
       rpe: null,
       notes: '',
       done: false,
-      gym_id: this.getExerciseGym(exerciseId),
+      gym_id: gymId,
     });
     await this.persistDraft();
     await this.renderMain();
@@ -2033,12 +2158,18 @@ class ActiveWorkoutController {
     const age = Date.now() - new Date(draft.startedAt).getTime();
     if (age < DAY_MS) return;
 
-    const save = await showConfirm({
-      title: t('workout.expiredTitle'),
-      message: t('workout.expiredMessage'),
-      confirmText: t('common.yes'),
-      cancelText: t('common.no'),
-    });
+    // Queued (not just a bare showConfirm) so this can never overlap with
+    // the backup reminder or the update "what's new" popup — see
+    // runExclusive's comment above for why that matters even though this
+    // particular call is already the first thing app.js awaits.
+    const save = await runExclusive(() =>
+      showConfirm({
+        title: t('workout.expiredTitle'),
+        message: t('workout.expiredMessage'),
+        confirmText: t('common.yes'),
+        cancelText: t('common.no'),
+      })
+    );
 
     if (save) {
       // Take the user into the normal active-workout screen instead of
@@ -2086,7 +2217,17 @@ async function refreshResumeBar() {
   await controller.refreshResumeBar();
 }
 
-window.WorkoutActiveFeature = { init, startOrResume, refreshResumeBar };
+/** Opens the active-workout screen on whatever draft is currently saved in
+ * the repo — used by callers (e.g. plans.js starting a workout from a
+ * template) that have already built and saved a custom draft via
+ * WorkoutRepo.saveDraft and just need the normal screen to take over from
+ * there, same as reopening any other in-progress draft. */
+async function openExisting() {
+  if (!controller) return;
+  await controller.openExisting();
+}
+
+window.WorkoutActiveFeature = { init, startOrResume, refreshResumeBar, openExisting };
 
 // -- Workout Detail (view/edit/delete a finished workout from the calendar) --
 //
@@ -2885,6 +3026,18 @@ async function openWorkoutDetail(workoutId) {
 }
 
 window.WorkoutHistoryFeature = { init: initDetail, open: openWorkoutDetail };
-window.WorkoutDialogs = { showConfirm };
+window.WorkoutDialogs = { showConfirm, showTextPrompt, runExclusive };
+
+// Cross-file access to the shared singleton pickers (see the "Shared
+// singleton overlays" convention in ARCHITECTURE.md) — plans.js reuses
+// these exact instances rather than constructing its own, which would
+// double-bind their backing DOM elements' click handlers.
+window.WorkoutSharedPickers = {
+  exercisePicker: sharedExercisePicker,
+  rirPicker: sharedRirPicker,
+  rpePicker: sharedRpePicker,
+  RIR_COLORS,
+  RPE_COLORS,
+};
 
 })();

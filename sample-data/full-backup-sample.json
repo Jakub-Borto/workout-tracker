@@ -12656,5 +12656,99 @@
       ],
       "schemaVersion": 1
     }
+  ],
+  "plans": [
+    {
+      "id": "plan-push-pull-legs",
+      "name": "Push Pull Legs",
+      "workoutTemplateOrder": [
+        "template-push-day",
+        "template-pull-day"
+      ],
+      "schemaVersion": 1
+    }
+  ],
+  "workoutTemplates": [
+    {
+      "id": "template-push-day",
+      "plan_id": "plan-push-pull-legs",
+      "name": "Push Day",
+      "exercises": [
+        {
+          "exercise_id": "ex-bench-press",
+          "warmupSetCount": 1,
+          "workingSetCount": 3,
+          "workingSetTargets": [
+            "3",
+            "2",
+            "1"
+          ]
+        },
+        {
+          "exercise_id": "ex-incline-db-press",
+          "warmupSetCount": 0,
+          "workingSetCount": 3,
+          "workingSetTargets": [
+            "8",
+            "8",
+            "9"
+          ]
+        },
+        {
+          "exercise_id": "ex-calf-raise",
+          "warmupSetCount": 0,
+          "workingSetCount": 3,
+          "workingSetTargets": []
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "template-pull-day",
+      "plan_id": "plan-push-pull-legs",
+      "name": "Pull Day",
+      "exercises": [
+        {
+          "exercise_id": "ex-deadlift",
+          "warmupSetCount": 1,
+          "workingSetCount": 3,
+          "workingSetTargets": [
+            "3",
+            "2",
+            "1"
+          ]
+        },
+        {
+          "exercise_id": "ex-lat-pulldown",
+          "warmupSetCount": 0,
+          "workingSetCount": 3,
+          "workingSetTargets": [
+            "3",
+            "2",
+            "2"
+          ]
+        },
+        {
+          "exercise_id": "ex-barbell-row",
+          "warmupSetCount": 0,
+          "workingSetCount": 3,
+          "workingSetTargets": [
+            "2",
+            "2",
+            "1"
+          ]
+        },
+        {
+          "exercise_id": "ex-bicep-curl",
+          "warmupSetCount": 0,
+          "workingSetCount": 2,
+          "workingSetTargets": [
+            "2",
+            "1"
+          ]
+        }
+      ],
+      "schemaVersion": 1
+    }
   ]
 }

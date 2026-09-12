@@ -10,6 +10,8 @@
  *  - draftWorkout : single record keyed 'current' holding the in-progress workout (see workout.js); not permanent history
  *  - bodyweights  : { id, date, weight, schemaVersion }
  *  - settings     : single record keyed 'app' holding { schemaVersion, ... }
+ *  - plans        : { id, name, workoutTemplateOrder, schemaVersion }
+ *  - workoutTemplates : { id, plan_id, name, exercises, schemaVersion } — structure only, never becomes a Workout by itself
  *
  * Schema versioning: every record carries schemaVersion. Readers must never
  * assume a field exists beyond the stable core fields; use `?? default`.
@@ -20,7 +22,7 @@
 (function () {
 
 const DB_NAME = 'workout-tracker';
-const DB_VERSION = 5;
+const DB_VERSION = 6;
 const CURRENT_SCHEMA_VERSION = 1;
 
 const STORES = {
@@ -33,6 +35,8 @@ const STORES = {
   settings: 'settings',
   gyms: 'gyms',
   personalRecords: 'personalRecords',
+  plans: 'plans',
+  workoutTemplates: 'workoutTemplates',
 };
 
 const GENERAL_GYM_ID = 'general';
@@ -62,13 +66,16 @@ class Database {
           store.createIndex('date', 'date', { unique: false });
         }
 
-        // WorkoutSet's primary key/shape changed (id -> set_id) when this
-        // segment was added; drop and recreate rather than migrate values,
-        // since no released data depends on the old shape yet.
-        if (db.objectStoreNames.contains(STORES.sets)) {
-          db.deleteObjectStore(STORES.sets);
-        }
-        {
+        // WorkoutSet's primary key/shape changed (id -> set_id) a long time
+        // ago; every real install has been on the set_id shape for many
+        // versions now, so this is just a normal idempotent creation like
+        // every other store below. (This used to unconditionally
+        // delete-and-recreate the store on EVERY version bump, forever —
+        // not just the one time it was needed for — which silently wiped
+        // every logged set whenever DB_VERSION increased for any unrelated
+        // reason. Never do that: a one-time migration must be guarded so it
+        // runs exactly once, not left to re-fire on every future bump.)
+        if (!db.objectStoreNames.contains(STORES.sets)) {
           const store = db.createObjectStore(STORES.sets, { keyPath: 'set_id' });
           store.createIndex('workout_id', 'workout_id', { unique: false });
           store.createIndex('exercise_id', 'exercise_id', { unique: false });
@@ -102,6 +109,15 @@ class Database {
         // PersonalRecord in models.js), so no secondary index is needed.
         if (!db.objectStoreNames.contains(STORES.personalRecords)) {
           db.createObjectStore(STORES.personalRecords, { keyPath: 'id' });
+        }
+
+        if (!db.objectStoreNames.contains(STORES.plans)) {
+          db.createObjectStore(STORES.plans, { keyPath: 'id' });
+        }
+
+        if (!db.objectStoreNames.contains(STORES.workoutTemplates)) {
+          const store = db.createObjectStore(STORES.workoutTemplates, { keyPath: 'id' });
+          store.createIndex('plan_id', 'plan_id', { unique: false });
         }
       };
 

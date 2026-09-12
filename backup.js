@@ -128,12 +128,18 @@ class BackupController {
       if (age < REMINDER_INTERVAL_MS) return;
     }
 
-    const exportNow = await window.WorkoutDialogs.showConfirm({
-      title: t('account.backupReminderTitle'),
-      message: t('account.backupReminderMessage'),
-      confirmText: t('account.backupReminderExportNow'),
-      cancelText: t('account.backupReminderLater'),
-    });
+    // Queued so this can never show at the same moment as the draft-expiry
+    // popup or the update "what's new" popup (the latter especially, since
+    // it can fire at any time via an async service-worker message,
+    // independent of this startup sequence).
+    const exportNow = await window.WorkoutDialogs.runExclusive(() =>
+      window.WorkoutDialogs.showConfirm({
+        title: t('account.backupReminderTitle'),
+        message: t('account.backupReminderMessage'),
+        confirmText: t('account.backupReminderExportNow'),
+        cancelText: t('account.backupReminderLater'),
+      })
+    );
 
     if (exportNow) {
       await this.handleExport(); // marks lastBackupAt on success, resetting the clock

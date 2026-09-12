@@ -11,7 +11,8 @@
 (function () {
 
 const { db: repoDb, STORES: REPO_STORES } = window.WorkoutDB;
-const { Exercise, WorkoutSet, Workout, ExerciseNote, Gym, PersonalRecord, GENERAL_GYM_ID } = window.WorkoutModels;
+const { Exercise, WorkoutSet, Workout, ExerciseNote, Gym, PersonalRecord, Plan, WorkoutTemplate, GENERAL_GYM_ID } =
+  window.WorkoutModels;
 
 const DRAFT_ID = 'current';
 
@@ -534,6 +535,65 @@ async function finishDraftWorkout(draft) {
   return workout;
 }
 
+// -- Plan / WorkoutTemplate CRUD -----------------------------------------
+
+async function createPlan(data) {
+  const plan = new Plan(data);
+  await repoDb.put(REPO_STORES.plans, plan.toRecord());
+  return plan;
+}
+
+async function getPlan(id) {
+  const record = await repoDb.get(REPO_STORES.plans, id);
+  return record ? Plan.fromRecord(record) : null;
+}
+
+async function getAllPlans() {
+  const records = await repoDb.getAll(REPO_STORES.plans);
+  return records.map(Plan.fromRecord);
+}
+
+async function updatePlan(plan) {
+  const instance = plan instanceof Plan ? plan : new Plan(plan);
+  await repoDb.put(REPO_STORES.plans, instance.toRecord());
+  return instance;
+}
+
+/** Deletes a Plan and cascades to every WorkoutTemplate that belongs to it —
+ * same "delete the container, delete its children" convention as
+ * deleteWorkout cascading to its sets/notes. */
+async function deletePlan(id) {
+  const templates = await getWorkoutTemplatesForPlan(id);
+  for (const template of templates) await repoDb.delete(REPO_STORES.workoutTemplates, template.id);
+  await repoDb.delete(REPO_STORES.plans, id);
+}
+
+async function createWorkoutTemplate(data) {
+  const template = new WorkoutTemplate(data);
+  await repoDb.put(REPO_STORES.workoutTemplates, template.toRecord());
+  return template;
+}
+
+async function getWorkoutTemplate(id) {
+  const record = await repoDb.get(REPO_STORES.workoutTemplates, id);
+  return record ? WorkoutTemplate.fromRecord(record) : null;
+}
+
+async function getWorkoutTemplatesForPlan(planId) {
+  const records = await repoDb.getAllByIndex(REPO_STORES.workoutTemplates, 'plan_id', planId);
+  return records.map(WorkoutTemplate.fromRecord);
+}
+
+async function updateWorkoutTemplate(template) {
+  const instance = template instanceof WorkoutTemplate ? template : new WorkoutTemplate(template);
+  await repoDb.put(REPO_STORES.workoutTemplates, instance.toRecord());
+  return instance;
+}
+
+async function deleteWorkoutTemplate(id) {
+  return repoDb.delete(REPO_STORES.workoutTemplates, id);
+}
+
 /**
  * Manual smoke test for the data layer, runnable from the browser console:
  *   await WorkoutRepo.debugSelfTest()
@@ -631,6 +691,16 @@ window.WorkoutRepo = {
   getEarliestWorkoutDate,
   getRangeStatsData,
   getWeeklyStreaks,
+  createPlan,
+  getPlan,
+  getAllPlans,
+  updatePlan,
+  deletePlan,
+  createWorkoutTemplate,
+  getWorkoutTemplate,
+  getWorkoutTemplatesForPlan,
+  updateWorkoutTemplate,
+  deleteWorkoutTemplate,
   debugSelfTest,
 };
 

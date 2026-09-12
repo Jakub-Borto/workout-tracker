@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'workout-tracker-v47';
+const CACHE_NAME = 'workout-tracker-v51';
 const APP_SHELL = [
   './',
   './index.html',
@@ -15,6 +15,10 @@ const APP_SHELL = [
   './stats.js',
   './devtools.js',
   './backup.js',
+  './plans.js',
+  './calendar.js',
+  './changelog.js',
+  './updates.js',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -24,9 +28,12 @@ const APP_SHELL = [
 ];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)).then(() => self.skipWaiting())
-  );
+  // Deliberately no self.skipWaiting() here anymore — a freshly-installed
+  // worker now waits until the page explicitly tells it it's safe to take
+  // over (see the 'message' listener below), so it never interrupts an
+  // active draft workout mid-session. See updates.js for the page-side
+  // half of this handshake.
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
 });
 
 self.addEventListener('activate', (event) => {
@@ -35,7 +42,21 @@ self.addEventListener('activate', (event) => {
       .keys()
       .then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))))
       .then(() => self.clients.claim())
+      .then(() => self.clients.matchAll())
+      .then((clients) => {
+        // Tell every open tab which version just took over — updates.js
+        // uses this to detect a genuine version transition (vs. a fresh
+        // install) and show the "what's new" popup at most once per
+        // transition.
+        clients.forEach((client) => client.postMessage({ type: 'ACTIVATED', version: CACHE_NAME }));
+      })
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener('fetch', (event) => {

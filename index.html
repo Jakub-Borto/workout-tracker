@@ -17,6 +17,9 @@
 </head>
 <body>
   <div id="app">
+    <div id="update-status-indicator" class="update-status-indicator" hidden>
+      <span id="update-status-text"></span>
+    </div>
     <main id="screens">
       <!-- Home -->
       <section class="screen" id="screen-home" data-screen="home">
@@ -41,6 +44,10 @@
             </div>
             <div class="week-grid" id="week-grid"></div>
           </div>
+
+          <h2 class="plans-section-title" data-i18n="plans.sectionTitle">Workout Plans</h2>
+          <button class="btn-secondary-block" id="create-plan-btn" type="button" data-i18n="plans.createButton">Create Workout Plan</button>
+          <div class="plans-grid" id="plans-grid"></div>
         </div>
       </section>
 
@@ -187,6 +194,13 @@
             </button>
             <button type="button" class="settings-row settings-row-link" id="import-backup-btn">
               <span class="settings-row-label" data-i18n="account.importBackupButton">Import All Data</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="settings-card">
+            <button type="button" class="settings-row settings-row-link" id="check-for-updates-btn">
+              <span class="settings-row-label" data-i18n="updates.checkButton">Check for Updates</span>
               <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
@@ -563,6 +577,51 @@
     <div class="overlay-content workout-main" id="detail-main"></div>
   </div>
 
+  <!-- Plan Builder: list of workout templates within one plan -->
+  <div id="plan-builder-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="plan-builder-close-btn" type="button" data-i18n="common.close">Close</button>
+      <h2 data-i18n="plans.builderTitle">Plan</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <label class="field-label" for="plan-builder-name-input" data-i18n="plans.nameLabel">Name</label>
+      <input class="text-input" id="plan-builder-name-input" type="text" />
+
+      <div id="plan-builder-template-list" class="plan-template-list"></div>
+      <p class="empty-state-subtitle" id="plan-builder-empty" hidden data-i18n="plans.noTemplatesYet">No workout templates yet. Tap below to add one.</p>
+
+      <button class="btn-secondary-block" id="plan-builder-add-template-btn" type="button" data-i18n="plans.addTemplateButton">Add Workout Template</button>
+
+      <button class="btn-danger-text" id="plan-builder-delete-btn" type="button" data-i18n="plans.deletePlan">Delete Plan</button>
+    </div>
+  </div>
+
+  <!-- Workout Template editor: create/edit one template within a plan. Must
+       come BEFORE #exercise-picker/#rir-picker/#rpe-picker/#text-prompt-dialog
+       in the DOM (see "Shared singleton overlays" in ARCHITECTURE.md) — with
+       no explicit z-index management, a later sibling always paints on top,
+       and this screen needs those shared pickers to visually appear on top
+       of it when opened from within it. -->
+  <div id="template-editor-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="template-editor-cancel-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 id="template-editor-title" data-i18n="plans.templateEditor.titleNew">New Workout Template</h2>
+      <button class="btn-text btn-text-accent" id="template-editor-save-btn" type="button" data-i18n="exercise.editor.save">Save</button>
+    </header>
+    <div class="overlay-content">
+      <p class="field-error" id="template-editor-error" hidden></p>
+
+      <label class="field-label" for="template-editor-name-input" data-i18n="plans.templateEditor.nameLabel">Name</label>
+      <input class="text-input" id="template-editor-name-input" type="text" />
+
+      <div id="template-editor-exercise-list" class="template-exercise-list"></div>
+      <button class="btn-secondary" id="template-editor-add-exercise-btn" type="button" data-i18n="plans.templateEditor.addExercise">+ Add Exercise</button>
+
+      <button class="btn-danger-text" id="template-editor-delete-btn" type="button" hidden data-i18n="plans.templateEditor.delete">Delete Template</button>
+    </div>
+  </div>
+
   <!-- Exercise picker (reused for Add Exercise + Swap) -->
   <div id="exercise-picker" class="overlay" hidden>
     <header class="overlay-header">
@@ -613,6 +672,18 @@
     </div>
   </div>
 
+  <!-- Generic single-text-field name prompt (e.g. "Create Workout Plan") -->
+  <div id="text-prompt-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" id="text-prompt-title"></p>
+      <input type="text" class="text-input" id="text-prompt-input" />
+      <div class="modal-actions" style="margin-top: 18px;">
+        <button type="button" class="btn-secondary" id="text-prompt-cancel-btn" data-i18n="common.cancel">Cancel</button>
+        <button type="button" class="btn-primary modal-btn-primary" id="text-prompt-confirm-btn" data-i18n="common.ok">OK</button>
+      </div>
+    </div>
+  </div>
+
   <!-- RIR picker -->
   <div id="rir-picker" class="modal-backdrop" hidden>
     <div class="modal-card">
@@ -647,6 +718,62 @@
       <p class="modal-title" data-i18n="workout.gymPickerTitle">Gym</p>
       <div class="gym-picker-list" id="gym-picker-list"></div>
     </div>
+  </div>
+
+  <!-- Shared "can't start a new workout while one is active" conflict popup
+       (Plans' template-start flow, and Calendar's "Start the Same Workout") -->
+  <div id="active-draft-conflict-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" data-i18n="plans.conflictTitle">Workout in Progress</p>
+      <p class="modal-message" data-i18n="plans.conflictMessage">You can't start a new workout while another one is active.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn-primary modal-btn-primary" id="active-draft-conflict-ok-btn" data-i18n="plans.conflictGoHome">Go to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Home calendar: tapping a workout dot opens this 3-option choice popup -->
+  <div id="workout-dot-choice-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" data-i18n="calendar.choiceTitle">Workout Options</p>
+      <p class="modal-message" id="dot-choice-workout-name"></p>
+      <button type="button" class="btn-secondary-block" id="dot-choice-view-btn" data-i18n="calendar.viewWorkout">View Workout</button>
+      <button type="button" class="btn-secondary-block" id="dot-choice-start-btn" data-i18n="calendar.startSameWorkout">Start the Same Workout</button>
+      <button type="button" class="btn-secondary-block" id="dot-choice-add-btn" data-i18n="calendar.addToPlan">Add to Plan</button>
+      <button type="button" class="btn-text" id="dot-choice-cancel-btn" data-i18n="common.cancel" style="display:block;width:100%;text-align:center;">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Plan picker for "Add to Plan" -->
+  <div id="plan-picker-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" data-i18n="calendar.planPickerTitle">Add to Plan</p>
+      <div class="gym-picker-list" id="plan-picker-list"></div>
+      <p class="empty-state-subtitle" id="plan-picker-empty" hidden data-i18n="calendar.noPlansYet">You don't have any workout plans yet. Create one from the Home tab first.</p>
+      <button type="button" class="btn-secondary" id="plan-picker-cancel-btn" data-i18n="common.cancel" style="margin-top:12px;width:100%;">Cancel</button>
+    </div>
+  </div>
+
+  <!-- "Update installed" popup, shown once per genuine version transition -->
+  <div id="update-popup-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" data-i18n="updates.popupTitle">Update Installed</p>
+      <p class="modal-message" data-i18n="updates.popupMessage">An update has been installed. Your app is now on the latest version.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="update-popup-ok-btn" data-i18n="common.ok">OK</button>
+        <button type="button" class="btn-primary modal-btn-primary" id="update-popup-changes-btn" data-i18n="updates.seeChanges">See Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- "What's New" changelog screen -->
+  <div id="update-changes-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="update-changes-close-btn" type="button" data-i18n="common.close">Close</button>
+      <h2 data-i18n="updates.changesTitle">What's New</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content" id="update-changes-content"></div>
   </div>
 
   <!-- Dev Tools -->
@@ -704,6 +831,10 @@
   <script src="stats.js"></script>
   <script src="devtools.js"></script>
   <script src="backup.js"></script>
+  <script src="plans.js"></script>
+  <script src="calendar.js"></script>
+  <script src="changelog.js"></script>
+  <script src="updates.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

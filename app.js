@@ -124,7 +124,7 @@ class HomeController {
     if (!hasWorkout) return;
     const workouts = await window.WorkoutRepo.getAllWorkouts();
     const match = workouts.find((w) => w.date === dateKey);
-    if (match) await window.WorkoutHistoryFeature.open(match.id);
+    if (match) await window.WorkoutDotChoice.open(match.id);
   }
 
   async render() {
@@ -224,6 +224,8 @@ async function initApp() {
   window.WorkoutStatsExtras.init();
   window.WorkoutDevTools.init();
   window.WorkoutBackup.init();
+  window.WorkoutPlans.init();
+  window.WorkoutUpdates.init();
   window.WorkoutHistoryFeature.init({
     onChanged: () => homeControllerInstance.render(),
   });
@@ -243,12 +245,9 @@ if (document.readyState === 'loading') {
   initApp();
 }
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch((err) => {
-      console.error('Service worker registration failed', err);
-    });
-  });
-}
+// Service worker registration + the update-check/activation handshake now
+// live in updates.js (window.WorkoutUpdates.init(), called above) — it
+// owns registration itself since it needs to hold onto the ServiceWorkerRegistration
+// for registration.update() and the SKIP_WAITING handshake.
 
 })();

@@ -347,7 +347,13 @@ class DevToolsController {
     for (const storeName of Object.values(STORES)) {
       await db.clear(storeName);
     }
-    await this.render();
+    // Reload rather than just re-rendering — same as Load Sample Data and
+    // Import All Data. Without it the app keeps running against now-empty
+    // stores until the next reload happens to re-seed things like the
+    // General gym and settings defaults (runMigrations only runs at
+    // startup), which is a confusing gap the other two destructive-replace
+    // actions don't have.
+    window.location.reload();
   }
 
   /** One-tap load of a bundled example dataset for testing — fetches the

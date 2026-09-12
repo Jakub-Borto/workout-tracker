@@ -347,6 +347,79 @@ class BodyweightEntry {
   }
 }
 
+/**
+ * A named container of reusable workout structures (see WorkoutTemplate).
+ * Editing/deleting a Plan never retroactively touches any already-finished
+ * Workout/WorkoutSet or already-created draft — it only affects future
+ * workouts started from it, per explicit product decision.
+ */
+class Plan {
+  constructor({ id, name, workoutTemplateOrder = [], schemaVersion } = {}) {
+    this.id = id ?? window.WorkoutDB.generateId();
+    this.name = name ?? ''; // stable, user-entered
+    this.workoutTemplateOrder = Array.isArray(workoutTemplateOrder) ? [...workoutTemplateOrder] : []; // WorkoutTemplate.id[], display order
+    this.schemaVersion = schemaVersion ?? SCHEMA_VERSION;
+  }
+
+  static fromRecord(record) {
+    const r = window.WorkoutDB.migrateRecord(record);
+    return new Plan({
+      id: r.id,
+      name: r.name ?? '',
+      workoutTemplateOrder: r.workoutTemplateOrder ?? [],
+      schemaVersion: r.schemaVersion,
+    });
+  }
+
+  toRecord() {
+    return { ...this, workoutTemplateOrder: [...this.workoutTemplateOrder] };
+  }
+}
+
+/**
+ * One reusable workout structure within a Plan — exercises, set counts, and
+ * per-set RIR/RPE *targets* only. Deliberately no metric values (target
+ * reps/weight/time) — templates aren't history, only structure. Never
+ * becomes a Workout/WorkoutSet by itself; only used to populate a new draft
+ * when the user starts a workout from it (see WorkoutRepo/plans.js).
+ */
+class WorkoutTemplate {
+  constructor({ id, plan_id, name, exercises = [], schemaVersion } = {}) {
+    this.id = id ?? window.WorkoutDB.generateId();
+    this.plan_id = plan_id; // stable, references Plan.id
+    this.name = name ?? ''; // stable, user-entered
+    // Each entry: { exercise_id, warmupSetCount, workingSetCount, workingSetTargets }.
+    // workingSetTargets is an array of length workingSetCount, one RIR/RPE
+    // target per working set — only meaningful when the referenced
+    // exercise's effortTracking isn't 'none'; empty/unused otherwise.
+    // Warm-up sets never get a target regardless of effortTracking.
+    this.exercises = Array.isArray(exercises)
+      ? exercises.map((e) => ({
+          exercise_id: e.exercise_id,
+          warmupSetCount: e.warmupSetCount ?? 0,
+          workingSetCount: e.workingSetCount ?? 0,
+          workingSetTargets: Array.isArray(e.workingSetTargets) ? [...e.workingSetTargets] : [],
+        }))
+      : [];
+    this.schemaVersion = schemaVersion ?? SCHEMA_VERSION;
+  }
+
+  static fromRecord(record) {
+    const r = window.WorkoutDB.migrateRecord(record);
+    return new WorkoutTemplate({
+      id: r.id,
+      plan_id: r.plan_id,
+      name: r.name ?? '',
+      exercises: r.exercises ?? [],
+      schemaVersion: r.schemaVersion,
+    });
+  }
+
+  toRecord() {
+    return { ...this, exercises: this.exercises.map((e) => ({ ...e, workingSetTargets: [...e.workingSetTargets] })) };
+  }
+}
+
 window.WorkoutModels = {
   Exercise,
   WorkoutSet,
@@ -355,6 +428,8 @@ window.WorkoutModels = {
   BodyweightEntry,
   Gym,
   PersonalRecord,
+  Plan,
+  WorkoutTemplate,
   MetricType,
   Unit,
   MUSCLE_GROUPS,

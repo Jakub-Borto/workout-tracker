@@ -10,20 +10,24 @@ built and how each piece works, for picking the project back up later.
 ```
 python -m http.server 8149
 ```
-then open `http://localhost:8149`. The port in `.claude/launch.json` has
-been bumped repeatedly now (8080 → 8123 → 8137 → 8149) purely because of a
-caching quirk in one preview tool: after enough reuse — sometimes within the
-same session — it starts serving a stale `<script src>` load for a JS file
-even with Cache Storage cleared, the service worker unregistered, and a
-brand-new tab, while a runtime `fetch('/file.js', { cache: 'no-store' })`
-from the same page gets the current content. Nothing to do with the app
-itself; if a code change doesn't seem to take effect, verify with that
-fetch trick first, and if it confirms stale content, just bump the port
-again rather than debugging the app.
+then open `http://localhost:8149` (the actual port in `.claude/launch.json`
+has been bumped many times since, purely because of a caching quirk in one
+preview tool: after enough reuse — sometimes within the same session — it
+starts serving a stale `<script src>` load for a JS file even with Cache
+Storage cleared, the service worker unregistered, and a brand-new tab,
+while a runtime `fetch('/file.js', { cache: 'no-store' })` from the same
+page gets the current content. Nothing to do with the app itself; if a code
+change doesn't seem to take effect, verify with that fetch trick first, and
+if it confirms stale content, just bump the port again rather than
+debugging the app.
 
 Every time any `.js`/`.css`/`.html` file changes, **bump `CACHE_NAME` in
-`sw.js`** (e.g. `workout-tracker-v40` → `v41`). The service worker is
-cache-first; without a version bump it keeps serving stale files.
+`sw.js`** (e.g. `workout-tracker-v49` → `v50`) **and add a matching entry
+to `changelog.js`** with that exact same version string as its `version`
+field — the two are meant to be bumped together on every deploy (see
+"Service worker updates" below for why they need to match exactly). The
+service worker is cache-first; without a `CACHE_NAME` bump it keeps serving
+stale files.
 
 ## File map
 
@@ -32,7 +36,7 @@ cache-first; without a version bump it keeps serving stale files.
 | `index.html` | All markup: the 5 tab screens, every overlay/dialog, `<script>` load order |
 | `style.css` | All styling. Dark theme, CSS variables in `:root` |
 | `db.js` | IndexedDB wrapper (`Database` class), store names, schema version, migrations |
-| `models.js` | Plain data classes: `Exercise`, `WorkoutSet`, `Workout`, `ExerciseNote`, `BodyweightEntry`, `Gym`, `PersonalRecord` |
+| `models.js` | Plain data classes: `Exercise`, `WorkoutSet`, `Workout`, `ExerciseNote`, `BodyweightEntry`, `Gym`, `PersonalRecord`, `Plan`, `WorkoutTemplate` |
 | `repository.js` | `window.WorkoutRepo` — all CRUD + cross-store queries. The only thing that talks to `db.js` directly (besides Dev Tools) |
 | `i18n.js` | `window.I18n` — EN/PL string table + `t(key, lang, params)` with `{param}` interpolation |
 | `app.js` | Bootstraps the app: opens the DB, runs migrations, wires bottom nav, renders the Home tab's weekly calendar |
@@ -41,7 +45,11 @@ cache-first; without a version bump it keeps serving stale files.
 | `stats.js` | The Stats tab's shared date-range selector plus its four stats categories (Muscle Group / Workout / Exercise Rankings / Personal Records) — distinct from `exercises.js`'s "Exercise Stats" entry point above |
 | `devtools.js` | Dev Tools screen: raw view into every IndexedDB store, wipe/delete with type-to-confirm |
 | `backup.js` | Account tab: one-tap full-database Export/Import (all stores in one file) |
-| `sw.js` | Service worker: cache-first app shell, versioned by `CACHE_NAME` |
+| `plans.js` | Workout Plans: Plan/WorkoutTemplate CRUD UI (Home tab boxes, Plan Builder, template editor), starting a workout from a template, the shared one-active-draft conflict popup |
+| `calendar.js` | Home tab's workout-dot tap: the View/Start-Same/Add-to-Plan choice popup and the plan picker |
+| `changelog.js` | Hand-maintained release notes array (`version` must match `sw.js`'s `CACHE_NAME`), `getEntriesBetween` lookup |
+| `updates.js` | Service worker registration, the update-check/status-indicator flow, the safe-activation handshake, and the "what's new" popup |
+| `sw.js` | Service worker: cache-first app shell, versioned by `CACHE_NAME`, the install/activate/message handlers half of the safe-activation handshake (see `updates.js`) |
 | `manifest.json` | PWA manifest (icons, standalone display, portrait lock) |
 
 Every JS file wraps its body in `(function () { ... })();` — needed because
@@ -81,10 +89,15 @@ previous version of the app keep working after new fields are added.
   and, when given, excludes any PR dated on or after it.
 - **`BodyweightEntry`** — `{ id, date, weight, schemaVersion }` (tab exists,
   feature not built yet).
+- **`Plan`** — `{ id, name, workoutTemplateOrder: string[], schemaVersion }`.
+- **`WorkoutTemplate`** — a reusable workout *structure* (never becomes a
+  `Workout`/`WorkoutSet` by itself): `{ id, plan_id, name, exercises: [{ exercise_id, warmupSetCount, workingSetCount, workingSetTargets }], schemaVersion }`.
+  No metric values (target reps/weight/time) by design — only structure and
+  RIR/RPE targets. See "Workout Plans" under Screens & features below.
 
 ## IndexedDB (`db.js`)
 
-Database name `workout-tracker`, currently version 5. Stores:
+Database name `workout-tracker`, currently version 6. Stores:
 
 | Store | keyPath | Notes |
 |---|---|---|
@@ -97,6 +110,8 @@ Database name `workout-tracker`, currently version 5. Stores:
 | `gyms` | `id` | seeded with the General gym on first load |
 | `personalRecords` | `id` | random id per entry (append-only history, not upserted), no index needed |
 | `settings` | `key` | single record `'app'`, holds language + schema version |
+| `plans` | `id` | |
+| `workoutTemplates` | `id` | indexed by `plan_id` |
 
 `runMigrations()` runs on every app start: bumps the stored schema version
 if needed, and seeds the General gym if it's missing (covers both fresh
@@ -106,8 +121,135 @@ installs and upgrades from a version before gyms existed).
 
 ### Home tab
 Weekly calendar (Mon–Sun), dot under any day with a finished workout.
-Tapping a day with a dot opens that workout in the **Workout Detail**
-screen (see below). "Start Empty Workout" begins/resumes the draft.
+Tapping a day with a dot opens a 3-option choice popup (see "Calendar dot
+choice popup" below) instead of going straight to Workout Detail.
+"Start Empty Workout" begins/resumes the draft. Below the calendar: the
+Workout Plans section (see below).
+
+### Calendar dot choice popup — `calendar.js`
+Tapping a workout dot opens `#workout-dot-choice-dialog` (View Workout /
+Start the Same Workout / Add to Plan / Cancel) via `window.WorkoutDotChoice.open(workoutId)`,
+called from `HomeController.handleDayTap` in `app.js`. The dialog shows the
+workout's name and date (`showChoiceDialog(workout)`) so it's clear which
+workout you're about to act on before picking an option. The popup hides
+itself *before* resolving its promise (in `showChoiceDialog`'s `cleanup`),
+so whichever follow-up popup a choice triggers (the conflict dialog, the
+plan picker) never overlaps it — only one popup visible at a time, same
+rule as everywhere else in the app.
+
+- **View Workout** — unchanged, just `window.WorkoutHistoryFeature.open(workoutId)`.
+- **Start the Same Workout** / **Add to Plan** both start from
+  `deriveStructureFromWorkout(workout)`: the workout's actual exercises in
+  `exerciseOrder` (falling back to alphabetical for exercises not in it —
+  same convention Workout Detail uses for pre-`exerciseOrder` workouts) with
+  warm-up/working set *counts* re-derived by counting its real `WorkoutSet`
+  records (`getSetsForWorkout`, grouped by exercise + `is_warmup_set`) —
+  never anything from `Workout`/`WorkoutSet` beyond that, and an exercise
+  deleted since is silently absent from the result.
+  - **Start the Same Workout**: builds a draft with that exact structure;
+    `input_1`/`input_1_right`/`input_2` are auto-filled the same way the
+    live "Add Set" button and Plans' "start from template" both do
+    (`WorkoutAutoFill.computeAutoFillValues`, matched against whatever was
+    most recently logged — not necessarily `workout` itself). `rir`/`rpe`
+    stay `null` — unlike a Plan template there's no target value to seed
+    them with here. (Earlier revision left every field blank with no
+    auto-fill at all; changed after testing showed the auto-fill was
+    expected here too, matching the same "logic" used everywhere else new
+    sets get created.) Reuses the exact same one-active-draft conflict
+    popup as Plans (`window.WorkoutPlans.showActiveDraftConflict`) and the
+    same `WorkoutRepo.saveDraft` + `WorkoutActiveFeature.openExisting()` pattern.
+  - **Add to Plan**: a lightweight plan picker (`showPlanPicker`,
+    `#plan-picker-dialog`, list styling reused from the gym/exercise picker
+    patterns) — if no plans exist, shows a message pointing at the Home
+    tab's "Create Workout Plan" button instead of an empty list. Converts
+    the structure into a new `WorkoutTemplate` (named after the workout)
+    appended to the chosen plan's `workoutTemplateOrder`, with every
+    `workingSetTargets` entry left `null` for effort-tracked exercises — a
+    finished `WorkoutSet` only has what was actually logged, never an
+    intended target, so there's nothing to seed them with; the user fills
+    targets in afterward via the normal Plan Builder edit flow. Ends with a
+    plain confirm-style "Added to Plan" acknowledgement (`showConfirm` with
+    `cancelText: ''`), the same OK-only feedback pattern used elsewhere for
+    a completed save-type action.
+
+### Workout Plans (Templates) — `plans.js`
+A `Plan` (`plans` store) is a named container of `WorkoutTemplate`s
+(`workoutTemplates` store, indexed by `plan_id`) — reusable workout
+*structures* (exercises, set counts, per-working-set RIR/RPE targets), never
+actual logged values, since templates aren't history. Both stores follow
+the exact same id-keyed/schemaVersion-having pattern as every other store,
+so Dev Tools and Full Backup Export/Import/Restore pick them up completely
+for free — no plan-specific code exists in `devtools.js` or `backup.js`/`db.js`.
+
+```js
+// Plan
+{ id, name, workoutTemplateOrder: [templateId, ...], schemaVersion }
+
+// WorkoutTemplate
+{ id, plan_id, name, schemaVersion,
+  exercises: [{ exercise_id, warmupSetCount, workingSetCount,
+                workingSetTargets }] }  // one RIR/RPE target per working
+                                        // set, only used when the exercise's
+                                        // effortTracking isn't 'none'
+```
+
+**Home tab**: "Create Workout Plan" button (`PlansHomeSection`) prompts for
+a name via a new generic single-field dialog (`window.WorkoutDialogs.showTextPrompt`,
+`#text-prompt-dialog` — same modal-card pattern as the Finish Workout date
+dialog) and creates the `Plan`. Each plan renders as a tappable box in a
+2-column grid below the calendar; tapping one opens the Plan Builder.
+
+**Plan Builder** (`PlanBuilderController`, `#plan-builder-screen`): the
+plan's name is an inline-editable input that saves on `change` (same
+convention as Workout Detail's own name field) — this is how a plan gets
+renamed, no separate rename prompt. Lists its templates in
+`workoutTemplateOrder`, each with edit/move-up/move-down/delete icon
+buttons; a "Delete Plan" button at the bottom cascades to every template in
+it (`WorkoutRepo.deletePlan`, same "delete the container, delete its
+children" convention as `deleteWorkout`→sets/notes). `refresh()` is
+self-healing: it re-fetches this plan's templates and reconciles
+`workoutTemplateOrder` against what actually exists (drops stale ids,
+appends missing ones) every time, so neither the add-template nor
+delete-template path has to remember to touch the order array itself.
+
+**Template editor** (`TemplateEditorController`, `#template-editor-screen`):
+name field, per-exercise cards (warm-up count / working count / one
+RIR-or-RPE target button per working set, only shown when the exercise's
+`effortTracking` isn't `'none'`). "Add Exercise" reuses the shared
+`ExercisePickerController` instance directly — `sharedExercisePicker`,
+`sharedRirPicker`, `sharedRpePicker` (plus their `RIR_COLORS`/`RPE_COLORS`
+maps) are exposed cross-file via `window.WorkoutSharedPickers` specifically
+so `plans.js` can call the exact same singletons `workout.js` already binds
+to `#exercise-picker`/`#rir-picker`/`#rpe-picker`, rather than constructing
+second instances that would double-bind those shared overlays' click
+handlers (see "Shared singleton overlays" below). Changing a working-set
+count resizes `workingSetTargets` non-destructively — growing appends
+empty slots at the end, shrinking truncates from the end — so already-set
+earlier targets are never silently discarded.
+
+**Starting a workout from a template** (`startWorkoutFromTemplate`, called
+both from tapping a template row and — in a later segment — the Home
+calendar's "Start the Same Workout"): only proceeds if
+`WorkoutRepo.getDraft()` is empty; otherwise shows the shared **conflict
+popup** (`showActiveDraftConflict`, `#active-draft-conflict-dialog`, single
+"Go to Home" dismiss button — deliberately built as one reusable exported
+function rather than embedded inline, since it's needed from more than one
+file). Builds a full draft object matching the normal draft shape exactly
+(same fields `startOrResume` uses), then `WorkoutRepo.saveDraft` +
+`window.WorkoutActiveFeature.openExisting()` (a small new export that just
+opens the active-workout screen on whatever draft is currently saved —
+reused rather than duplicating screen-opening logic). Per exercise: skips
+it silently if it's been deleted since the template was made; new sets'
+`input_1`/`input_1_right`/`input_2` come from `WorkoutAutoFill.computeAutoFillValues`
+(see above) using the General/"any gym" scope, since there's no gym context
+yet at template-start time (same default a freshly-added exercise gets in
+any new draft); `rir`/`rpe` come from the template's own
+`workingSetTargets`, never from history. **Critical constraint, deliberately
+enforced by omission**: nothing about the resulting draft — and therefore
+nothing about the `Workout`/`WorkoutSet` records once it's finished — records
+which template/plan it came from. A workout started from a template is
+byte-for-byte indistinguishable from one started via "Start Empty Workout"
+once finished.
 
 ### Exercises tab
 Search + muscle-group filter over the exercise library. "+" opens the
@@ -146,6 +288,25 @@ active-workout screen on that draft (`openExisting`) rather than silently
 auto-finishing it behind the scenes, so incomplete sets and the finish date
 still go through the regular Finish Workout flow above. Choosing no deletes
 the draft.
+
+**Auto-fill new sets from previous workout** (`window.WorkoutAutoFill.computeAutoFillValues`
+in `workout.js`): whenever a brand-new set is added via the live "Add
+Set"/"Add Warmup" buttons, its `input_1`/`input_1_right`/`input_2` start
+out pre-filled rather than blank. Matched by exercise + set number +
+warmup/working status against `WorkoutRepo.getLastLoggedSetsForExercise`
+(gym-filtered the same way the "Previous" column already is). Warm-up sets
+are copied exactly; working sets get `input_1`/`input_1_right` +1 when the
+exercise's metric type is `'reps'`/`'reps_per_side'` (the only types where
+"one more rep than last time" makes sense) — `input_2` (e.g. weight) is
+never auto-incremented, only copied, since progression there is a
+deliberate user call. No match (first time ever, or a new set number never
+logged before) leaves every field empty, same as the old baseline
+behavior. This is a pure function taking the exercise + previous sets +
+set number/warmup flag — no DB access itself — so it's reused as-is by
+Workout Plans' "start from template" flow (see below) rather than being
+reimplemented there. Deliberately does **not** apply to Workout Detail's
+own "add set while editing a finished workout" (`newLocalSet`) — editing
+history stays manual/unchanged.
 
 Minimizing (chevron button) hides the screen without touching the draft —
 you can resume from the "Come back to workout" bar on Home.
@@ -462,7 +623,14 @@ same pattern — see `ExerciseHistoryController` for the template, and note
 that `exercises.js` reaches it via `window.WorkoutExerciseHistory.open(...)`
 since it's the only cross-file caller (the two `workout.js`-internal
 controllers just call `sharedExerciseHistory` directly, like the other
-shared pickers).
+shared pickers). `plans.js` is a second cross-file caller that needs
+`sharedExercisePicker`/`sharedRirPicker`/`sharedRpePicker` (for the
+template editor's "Add Exercise" and per-set RIR/RPE target buttons) — the
+same three instances get exposed via `window.WorkoutSharedPickers`
+(alongside their `RIR_COLORS`/`RPE_COLORS` maps, needed to color-code an
+already-picked target the same way the live workout screen does), rather
+than `plans.js` constructing its own instances and double-binding those
+overlays' handlers.
 
 Similarly, `#confirm-dialog` (the generic Yes/No confirm) is deliberately
 the *last* element in `index.html`'s body, after every other overlay. There
@@ -478,3 +646,82 @@ strings, `{paramName}` tokens get interpolated from `params`. Language is
 persisted in the `settings` store and applied via `data-i18n` /
 `data-i18n-placeholder` attributes plus an `app:languagechange` event that
 every controller listens for to re-render its currently-visible text.
+
+## Service worker updates — safe activation + changelog (`updates.js`, `changelog.js`)
+
+An update should never interrupt someone mid-workout, so a newly-installed
+service worker no longer activates itself automatically — `sw.js`'s
+`install` handler precaches the new app shell but deliberately does **not**
+call `self.skipWaiting()` anymore. It sits in the `waiting` state until the
+page (`updates.js`) explicitly posts it `{ type: 'SKIP_WAITING' }` — which
+only happens when `WorkoutRepo.getDraft()` comes back empty
+(`maybeActivateWaiting`). If a draft is active, the waiting worker just...
+waits; the next time this check runs (next app load, or the next update
+check) and finds no draft, it activates then. `sw.js`'s own `message`
+listener is the other half: `self.skipWaiting()` only ever runs in response
+to that message, never on its own.
+
+**Registration timing gotcha**: `updates.js` registers the service worker
+at *module-load time* (checking `document.readyState` directly, falling
+back to a `window 'load'` listener only if the page hasn't finished
+loading yet) — deliberately **not** inside its exported `init()`, which
+`app.js` only calls after several `await`s in its own bootstrap
+(`db.open()`, `runMigrations()`, `I18n.getLanguage()`). Gating registration
+behind those awaits was tried first and caused a real bug: on a fast page
+load, the browser's `load` event can fire *before* `initApp()`'s chain of
+awaits ever reaches the point of attaching a `window.addEventListener('load', ...)`
+listener — so the listener would simply never fire and the service worker
+would silently never register. Checking `readyState` synchronously at
+parse time (this script is the last thing in `<body>`, so all its
+dependencies already exist) avoids the race entirely.
+
+**Once a new worker actually activates** (`sw.js`'s `activate` handler,
+after `clients.claim()`), it posts `{ type: 'ACTIVATED', version: CACHE_NAME }`
+to every open client. `updates.js`'s `handleActivated(newVersion)` compares
+this against `settings.lastKnownAppVersion`:
+- No stored version yet (first-ever run) → just seed it, no popup — nothing
+  to announce yet.
+- Same version → no-op (already know about this one; also what makes the
+  popup naturally show at most once per transition, no extra bookkeeping
+  needed).
+- Different version → update `lastKnownAppVersion`, show the "Update
+  Installed" popup (`#update-popup-dialog`: OK / "See Changes").
+
+"See Changes" opens `#update-changes-screen`, listing
+`Changelog.getEntriesBetween(previousVersion, newVersion)` grouped under a
+per-version heading (falls back to a plain "no details available" message
+if the hand-maintained changelog has a gap for that range). `changelog.js`
+is a plain ordered array (`{ version, date, changes[] }`, oldest first) —
+`version` must be the *exact* `CACHE_NAME` string, matched by array
+position rather than parsed/compared numerically (see the reminder in
+"Running it" above: bump both together on every deploy). Deliberately a
+plain JS file, not an IndexedDB store — this is shipped app metadata, not
+user data, so it's correctly invisible to Dev Tools / Export / Import /
+Wipe All Data.
+
+**Status indicator** (`#update-status-indicator`, a small fixed pill, not a
+blocking modal): `checkForUpdate()` is the single function behind both the
+automatic on-load check and the Account tab's "Check for Updates" button
+(`registration.update()` plus whatever the `updatefound` listener — set up
+once at registration time — reports). Shows "Checking for updates…" while
+`update()` runs, "Downloading update…" while a newly-found worker's state
+is `'installing'`, then quietly fades a moment after it settles — no
+"you're up to date" message on the no-update path, since this is meant to
+be a low-key status, not a decision point.
+
+**Popup queue** (`window.WorkoutDialogs.runExclusive`, defined in
+`workout.js` next to `showConfirm`): up to three different things can each
+want to show a blocking startup dialog — the draft-expiry check
+(`checkExpiryOnLoad`), the backup reminder (`backup.js`), and this update
+popup. The first two are already sequential via `app.js`'s own `await`
+chain, but the update popup is fundamentally different: it's triggered by
+an async `ACTIVATED` service-worker message that can arrive at literally
+any time, completely independent of that startup sequence — without
+coordination it could show on top of (or get buried invisibly behind) one
+of the other two. `runExclusive(fn)` chains every popup-showing call onto
+one shared promise tail, so whichever was queued first fully resolves
+(user dismisses it) before the next one shows — never two open at once.
+All three call sites wrap only the dialog-showing call itself, not
+whatever happens after (e.g. `checkExpiryOnLoad` wraps just its
+`showConfirm`, not the subsequent `openExisting()` screen — a queued
+popup shouldn't have to wait for an entire workout session to finish).
