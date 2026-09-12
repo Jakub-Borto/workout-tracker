@@ -142,6 +142,13 @@ const CHANGELOG = [
       'Fixed "See Changes" showing no changes for a real update — it was comparing against the changelog still loaded from before the update instead of the new one',
     ],
   },
+  {
+    version: 'workout-tracker-v62',
+    date: '2026-09-12',
+    changes: [
+      'Minor reliability improvement to the update-changes check',
+    ],
+  },
 ];
 
 /**

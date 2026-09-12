@@ -140,7 +140,7 @@ function recordUpdateDebug(settings, { previousVersion, newVersion, entryCount, 
  * in place. */
 async function refreshChangelogModule() {
   try {
-    const res = await fetch('./changelog.js');
+    const res = await fetch('./changelog.js', { cache: 'reload' });
     const code = await res.text();
     // eslint-disable-next-line no-eval
     (0, eval)(code);
