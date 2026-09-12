@@ -1,0 +1,49 @@
+{
+  "store": "draftWorkout",
+  "exportedAt": "2026-09-12T12:00:00.000Z",
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "current",
+      "name": "Push Day",
+      "date": "2026-09-10",
+      "startedAt": "2026-09-10T14:00:00.000Z",
+      "exercises": ["ex-bench-press"],
+      "activeExerciseId": "ex-bench-press",
+      "sets": [
+        {
+          "draft_set_id": "draft-set-1",
+          "exercise_id": "ex-bench-press",
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "80",
+          "input_1_right": null,
+          "input_2": "8",
+          "rir": "2",
+          "rpe": null,
+          "notes": "",
+          "done": true,
+          "gym_id": "gym-powerhouse"
+        },
+        {
+          "draft_set_id": "draft-set-2",
+          "exercise_id": "ex-bench-press",
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "80",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null,
+          "notes": "",
+          "done": false,
+          "gym_id": "gym-powerhouse"
+        }
+      ],
+      "exerciseNotes": {},
+      "gymByExercise": { "ex-bench-press": "gym-powerhouse" },
+      "countdown": { "remainingSeconds": 0, "running": false, "targetEndAt": null },
+      "schemaVersion": 1
+    }
+  ]
+}

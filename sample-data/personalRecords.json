@@ -1,0 +1,4363 @@
+{
+  "store": "personalRecords",
+  "exportedAt": "2026-09-12T12:00:00.000Z",
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "pr-wk-00-0-ex-bench-press",
+      "exercise_id": "ex-bench-press",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-13",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-0-ex-bench-press",
+      "exercise_id": "ex-bench-press",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-20",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "62.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "62.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-0-ex-incline-db-press",
+      "exercise_id": "ex-incline-db-press",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-13",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "22.5",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "22.5",
+          "rir": null,
+          "rpe": "8"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "22.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-0-ex-overhead-press",
+      "exercise_id": "ex-overhead-press",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-13",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "35",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "35",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "35",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-0-ex-overhead-press",
+      "exercise_id": "ex-overhead-press",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-27",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "37.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "35",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "35",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-0-ex-pushup",
+      "exercise_id": "ex-pushup",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-13",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-0-ex-pushup",
+      "exercise_id": "ex-pushup",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-20",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "16",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-0-ex-pushup",
+      "exercise_id": "ex-pushup",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-27",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "17",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "16",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-0-ex-tricep-pushdown",
+      "exercise_id": "ex-tricep-pushdown",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-13",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "25",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "25",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "25",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-0-ex-tricep-pushdown",
+      "exercise_id": "ex-tricep-pushdown",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-27",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "27.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "27.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "25",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-0-ex-lateral-raise",
+      "exercise_id": "ex-lateral-raise",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-13",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "8",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "8",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "7.5",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-0-ex-lateral-raise",
+      "exercise_id": "ex-lateral-raise",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-20",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "8.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "8",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "8",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-1-ex-deadlift",
+      "exercise_id": "ex-deadlift",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-15",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "100",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "97.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "97.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-1-ex-deadlift",
+      "exercise_id": "ex-deadlift",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-22",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "102.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "100",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "100",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-1-ex-deadlift",
+      "exercise_id": "ex-deadlift",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-29",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "105",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "105",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "102.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-1-ex-barbell-row",
+      "exercise_id": "ex-barbell-row",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-15",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-1-ex-barbell-row",
+      "exercise_id": "ex-barbell-row",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-29",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-1-ex-pullup",
+      "exercise_id": "ex-pullup",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-15",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-1-ex-pullup",
+      "exercise_id": "ex-pullup",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-22",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-1-ex-lat-pulldown",
+      "exercise_id": "ex-lat-pulldown",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-15",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "50",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "50",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "50",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-1-ex-lat-pulldown",
+      "exercise_id": "ex-lat-pulldown",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-22",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "52.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "50",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "50",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-1-ex-seated-cable-row",
+      "exercise_id": "ex-seated-cable-row",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-15",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": null,
+          "rpe": "9"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-1-ex-seated-cable-row",
+      "exercise_id": "ex-seated-cable-row",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-29",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-1-ex-bicep-curl",
+      "exercise_id": "ex-bicep-curl",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-15",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "12",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "11.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "11.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-1-ex-bicep-curl",
+      "exercise_id": "ex-bicep-curl",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-22",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "12.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "12",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "12",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-1-ex-bicep-curl",
+      "exercise_id": "ex-bicep-curl",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-29",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "13",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "12.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "12.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-1-ex-hammer-curl",
+      "exercise_id": "ex-hammer-curl",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-15",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "10",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "10",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "9.5",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-1-ex-hammer-curl",
+      "exercise_id": "ex-hammer-curl",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-22",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "10.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "10",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "10",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-1-ex-hammer-curl",
+      "exercise_id": "ex-hammer-curl",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-29",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "11",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "10.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "10.5",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-2-ex-squat",
+      "exercise_id": "ex-squat",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "80",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "77.5",
+          "rir": null,
+          "rpe": "8"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "77.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-2-ex-squat",
+      "exercise_id": "ex-squat",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-24",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "82.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "80",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "80",
+          "rir": null,
+          "rpe": "9"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-2-ex-squat",
+      "exercise_id": "ex-squat",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-31",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "85",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "82.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "82.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-2-ex-rdl",
+      "exercise_id": "ex-rdl",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "70",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "70",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "67.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-2-ex-rdl",
+      "exercise_id": "ex-rdl",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-31",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "72.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "72.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "70",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-2-ex-leg-press",
+      "exercise_id": "ex-leg-press",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "120",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "120",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "117.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-2-ex-leg-press",
+      "exercise_id": "ex-leg-press",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-24",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "122.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "122.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "120",
+          "rir": null,
+          "rpe": "9"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-2-ex-leg-press",
+      "exercise_id": "ex-leg-press",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-31",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "127.5",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "125",
+          "rir": null,
+          "rpe": "8"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "122.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-2-ex-walking-lunge",
+      "exercise_id": "ex-walking-lunge",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": "11",
+          "input_2": "12",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "12",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "12",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-2-ex-walking-lunge",
+      "exercise_id": "ex-walking-lunge",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-24",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": "10",
+          "input_2": "12.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "12.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "12",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-2-ex-calf-raise",
+      "exercise_id": "ex-calf-raise",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-2-ex-calf-raise",
+      "exercise_id": "ex-calf-raise",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-24",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "62.5",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-2-ex-calf-raise",
+      "exercise_id": "ex-calf-raise",
+      "gym_id": "gym-powerhouse",
+      "date": "2026-07-31",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "65",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "62.5",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "62.5",
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-3-ex-plank",
+      "exercise_id": "ex-plank",
+      "gym_id": "general",
+      "date": "2026-07-18",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "59",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "64",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-3-ex-plank",
+      "exercise_id": "ex-plank",
+      "gym_id": "general",
+      "date": "2026-07-25",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "64",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "69",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-3-ex-plank",
+      "exercise_id": "ex-plank",
+      "gym_id": "general",
+      "date": "2026-08-01",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "69",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "74",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-3-ex-plank",
+      "exercise_id": "ex-plank",
+      "gym_id": "general",
+      "date": "2026-08-08",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "74",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "79",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-3-ex-plank",
+      "exercise_id": "ex-plank",
+      "gym_id": "general",
+      "date": "2026-08-15",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "80",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "85",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-3-ex-plank",
+      "exercise_id": "ex-plank",
+      "gym_id": "general",
+      "date": "2026-08-22",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "87",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "92",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-3-ex-plank",
+      "exercise_id": "ex-plank",
+      "gym_id": "general",
+      "date": "2026-08-29",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "89",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "94",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-07-3-ex-plank",
+      "exercise_id": "ex-plank",
+      "gym_id": "general",
+      "date": "2026-09-05",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "94",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "99",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-00-3-ex-treadmill-run",
+      "exercise_id": "ex-treadmill-run",
+      "gym_id": "general",
+      "date": "2026-07-18",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "2940",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-01-3-ex-treadmill-run",
+      "exercise_id": "ex-treadmill-run",
+      "gym_id": "general",
+      "date": "2026-07-25",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "3520",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-02-3-ex-treadmill-run",
+      "exercise_id": "ex-treadmill-run",
+      "gym_id": "general",
+      "date": "2026-08-01",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "4400",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-3-ex-treadmill-run",
+      "exercise_id": "ex-treadmill-run",
+      "gym_id": "general",
+      "date": "2026-08-08",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "5180",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-3-ex-treadmill-run",
+      "exercise_id": "ex-treadmill-run",
+      "gym_id": "general",
+      "date": "2026-08-15",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "5860",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-3-ex-treadmill-run",
+      "exercise_id": "ex-treadmill-run",
+      "gym_id": "general",
+      "date": "2026-08-22",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "6610",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-3-ex-treadmill-run",
+      "exercise_id": "ex-treadmill-run",
+      "gym_id": "general",
+      "date": "2026-08-29",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "7680",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-07-3-ex-treadmill-run",
+      "exercise_id": "ex-treadmill-run",
+      "gym_id": "general",
+      "date": "2026-09-05",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8340",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-0-ex-bench-press",
+      "exercise_id": "ex-bench-press",
+      "gym_id": "gym-home",
+      "date": "2026-08-03",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "65",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "65",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "62.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-0-ex-incline-db-press",
+      "exercise_id": "ex-incline-db-press",
+      "gym_id": "gym-home",
+      "date": "2026-08-03",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "22.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "22.5",
+          "rir": null,
+          "rpe": "8"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "22.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-0-ex-incline-db-press",
+      "exercise_id": "ex-incline-db-press",
+      "gym_id": "gym-home",
+      "date": "2026-08-10",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "25",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "22.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "22.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-0-ex-overhead-press",
+      "exercise_id": "ex-overhead-press",
+      "gym_id": "gym-home",
+      "date": "2026-08-03",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "37.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "37.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "37.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-0-ex-pushup",
+      "exercise_id": "ex-pushup",
+      "gym_id": "gym-home",
+      "date": "2026-08-03",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "18",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "17",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "16",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-0-ex-pushup",
+      "exercise_id": "ex-pushup",
+      "gym_id": "gym-home",
+      "date": "2026-08-10",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "19",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "18",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "17",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-0-ex-tricep-pushdown",
+      "exercise_id": "ex-tricep-pushdown",
+      "gym_id": "gym-home",
+      "date": "2026-08-03",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "27.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "27.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "27.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-0-ex-lateral-raise",
+      "exercise_id": "ex-lateral-raise",
+      "gym_id": "gym-home",
+      "date": "2026-08-03",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "9",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "9",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "8.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-0-ex-lateral-raise",
+      "exercise_id": "ex-lateral-raise",
+      "gym_id": "gym-home",
+      "date": "2026-08-10",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "9.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "9",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "9",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-1-ex-deadlift",
+      "exercise_id": "ex-deadlift",
+      "gym_id": "gym-home",
+      "date": "2026-08-05",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "107.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "105",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "105",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-1-ex-deadlift",
+      "exercise_id": "ex-deadlift",
+      "gym_id": "gym-home",
+      "date": "2026-08-12",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "110",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "110",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "107.5",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-1-ex-barbell-row",
+      "exercise_id": "ex-barbell-row",
+      "gym_id": "gym-home",
+      "date": "2026-08-05",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-1-ex-barbell-row",
+      "exercise_id": "ex-barbell-row",
+      "gym_id": "gym-home",
+      "date": "2026-08-12",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-1-ex-pullup",
+      "exercise_id": "ex-pullup",
+      "gym_id": "gym-home",
+      "date": "2026-08-05",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-1-ex-pullup",
+      "exercise_id": "ex-pullup",
+      "gym_id": "gym-home",
+      "date": "2026-08-12",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-1-ex-lat-pulldown",
+      "exercise_id": "ex-lat-pulldown",
+      "gym_id": "gym-home",
+      "date": "2026-08-05",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "52.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "52.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "52.5",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-1-ex-lat-pulldown",
+      "exercise_id": "ex-lat-pulldown",
+      "gym_id": "gym-home",
+      "date": "2026-08-12",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "52.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-1-ex-seated-cable-row",
+      "exercise_id": "ex-seated-cable-row",
+      "gym_id": "gym-home",
+      "date": "2026-08-05",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": null,
+          "rpe": "8"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-1-ex-seated-cable-row",
+      "exercise_id": "ex-seated-cable-row",
+      "gym_id": "gym-home",
+      "date": "2026-08-12",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-1-ex-bicep-curl",
+      "exercise_id": "ex-bicep-curl",
+      "gym_id": "gym-home",
+      "date": "2026-08-05",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "13.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "13",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "13",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-1-ex-hammer-curl",
+      "exercise_id": "ex-hammer-curl",
+      "gym_id": "gym-home",
+      "date": "2026-08-05",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "11",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "11",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "11",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-1-ex-hammer-curl",
+      "exercise_id": "ex-hammer-curl",
+      "gym_id": "gym-home",
+      "date": "2026-08-12",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "12",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "11.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "11.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-2-ex-squat",
+      "exercise_id": "ex-squat",
+      "gym_id": "gym-home",
+      "date": "2026-08-07",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "85",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "85",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "82.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-2-ex-squat",
+      "exercise_id": "ex-squat",
+      "gym_id": "gym-home",
+      "date": "2026-08-14",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "87.5",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "87.5",
+          "rir": null,
+          "rpe": "8"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "85",
+          "rir": null,
+          "rpe": "9"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-2-ex-rdl",
+      "exercise_id": "ex-rdl",
+      "gym_id": "gym-home",
+      "date": "2026-08-07",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "75",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "75",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "72.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-2-ex-leg-press",
+      "exercise_id": "ex-leg-press",
+      "gym_id": "gym-home",
+      "date": "2026-08-07",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "130",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "127.5",
+          "rir": null,
+          "rpe": "8"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "125",
+          "rir": null,
+          "rpe": "9"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-2-ex-leg-press",
+      "exercise_id": "ex-leg-press",
+      "gym_id": "gym-home",
+      "date": "2026-08-14",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "132.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "130",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "130",
+          "rir": null,
+          "rpe": "9"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-2-ex-walking-lunge",
+      "exercise_id": "ex-walking-lunge",
+      "gym_id": "gym-home",
+      "date": "2026-08-07",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": "11",
+          "input_2": "13.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "13",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "13",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-03-2-ex-calf-raise",
+      "exercise_id": "ex-calf-raise",
+      "gym_id": "gym-home",
+      "date": "2026-08-07",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "65",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "65",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "62.5",
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-04-2-ex-calf-raise",
+      "exercise_id": "ex-calf-raise",
+      "gym_id": "gym-home",
+      "date": "2026-08-14",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "67.5",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "65",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "65",
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-0-ex-bench-press",
+      "exercise_id": "ex-bench-press",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "67.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "67.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "65",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-07-0-ex-bench-press",
+      "exercise_id": "ex-bench-press",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-31",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "70",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "70",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "70",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-0-ex-incline-db-press",
+      "exercise_id": "ex-incline-db-press",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "25",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "25",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "25",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-0-ex-overhead-press",
+      "exercise_id": "ex-overhead-press",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "40",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "37.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "37.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-0-ex-pushup",
+      "exercise_id": "ex-pushup",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "20",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "19",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "18",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-0-ex-pushup",
+      "exercise_id": "ex-pushup",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-24",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "21",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "20",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "19",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-07-0-ex-pushup",
+      "exercise_id": "ex-pushup",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-31",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "22",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "21",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "20",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-0-ex-tricep-pushdown",
+      "exercise_id": "ex-tricep-pushdown",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "27.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "27.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "27.5",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-0-ex-tricep-pushdown",
+      "exercise_id": "ex-tricep-pushdown",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-24",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "30",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "30",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "27.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-0-ex-lateral-raise",
+      "exercise_id": "ex-lateral-raise",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-17",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "9.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "9.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "9",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-0-ex-lateral-raise",
+      "exercise_id": "ex-lateral-raise",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-24",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "10",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "9.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "9.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-1-ex-deadlift",
+      "exercise_id": "ex-deadlift",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-19",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "112.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "112.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "110",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-1-ex-deadlift",
+      "exercise_id": "ex-deadlift",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-26",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "115",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "112.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "112.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-07-1-ex-deadlift",
+      "exercise_id": "ex-deadlift",
+      "gym_id": "gym-anytime",
+      "date": "2026-09-02",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "117.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "115",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "5",
+          "input_1_right": null,
+          "input_2": "115",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-1-ex-barbell-row",
+      "exercise_id": "ex-barbell-row",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-19",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-1-ex-barbell-row",
+      "exercise_id": "ex-barbell-row",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-26",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "62.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-1-ex-pullup",
+      "exercise_id": "ex-pullup",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-19",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-1-ex-pullup",
+      "exercise_id": "ex-pullup",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-26",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": null,
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-1-ex-lat-pulldown",
+      "exercise_id": "ex-lat-pulldown",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-19",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-07-1-ex-lat-pulldown",
+      "exercise_id": "ex-lat-pulldown",
+      "gym_id": "gym-anytime",
+      "date": "2026-09-02",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "57.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "55",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-1-ex-seated-cable-row",
+      "exercise_id": "ex-seated-cable-row",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-19",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-07-1-ex-seated-cable-row",
+      "exercise_id": "ex-seated-cable-row",
+      "gym_id": "gym-anytime",
+      "date": "2026-09-02",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "62.5",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "62.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "60",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-1-ex-bicep-curl",
+      "exercise_id": "ex-bicep-curl",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-19",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "14",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "14",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "13.5",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-1-ex-bicep-curl",
+      "exercise_id": "ex-bicep-curl",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-26",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "14.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "14.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "14",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-1-ex-hammer-curl",
+      "exercise_id": "ex-hammer-curl",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-19",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "12",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "11.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "11.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-1-ex-hammer-curl",
+      "exercise_id": "ex-hammer-curl",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-26",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "12.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "12.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "12",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-2-ex-squat",
+      "exercise_id": "ex-squat",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-21",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "90",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "90",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "87.5",
+          "rir": null,
+          "rpe": "9"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-2-ex-squat",
+      "exercise_id": "ex-squat",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-28",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "92.5",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "7",
+          "input_1_right": null,
+          "input_2": "90",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "6",
+          "input_1_right": null,
+          "input_2": "90",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-2-ex-rdl",
+      "exercise_id": "ex-rdl",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-21",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "77.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "77.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "77.5",
+          "rir": "2",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-2-ex-rdl",
+      "exercise_id": "ex-rdl",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-28",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "80",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "9",
+          "input_1_right": null,
+          "input_2": "77.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "8",
+          "input_1_right": null,
+          "input_2": "77.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-2-ex-leg-press",
+      "exercise_id": "ex-leg-press",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-21",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "135",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "135",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "132.5",
+          "rir": null,
+          "rpe": "9"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-2-ex-leg-press",
+      "exercise_id": "ex-leg-press",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-28",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "137.5",
+          "rir": null,
+          "rpe": "6"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "137.5",
+          "rir": null,
+          "rpe": "8"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "135",
+          "rir": null,
+          "rpe": "9"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-07-2-ex-leg-press",
+      "exercise_id": "ex-leg-press",
+      "gym_id": "gym-anytime",
+      "date": "2026-09-04",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "12",
+          "input_1_right": null,
+          "input_2": "142.5",
+          "rir": null,
+          "rpe": "7"
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": null,
+          "input_2": "140",
+          "rir": null,
+          "rpe": "8"
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": null,
+          "input_2": "137.5",
+          "rir": null,
+          "rpe": "8"
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-2-ex-walking-lunge",
+      "exercise_id": "ex-walking-lunge",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-21",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": "11",
+          "input_2": "14",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "13.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "13.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-2-ex-walking-lunge",
+      "exercise_id": "ex-walking-lunge",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-28",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": "10",
+          "input_2": "14.5",
+          "rir": "4",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "14.5",
+          "rir": "2",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "9",
+          "input_2": "14",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-07-2-ex-walking-lunge",
+      "exercise_id": "ex-walking-lunge",
+      "gym_id": "gym-anytime",
+      "date": "2026-09-04",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "11",
+          "input_1_right": "10",
+          "input_2": "15",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "14.5",
+          "rir": "3",
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "10",
+          "input_1_right": "10",
+          "input_2": "14.5",
+          "rir": "1",
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-05-2-ex-calf-raise",
+      "exercise_id": "ex-calf-raise",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-21",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "67.5",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "67.5",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "67.5",
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-06-2-ex-calf-raise",
+      "exercise_id": "ex-calf-raise",
+      "gym_id": "gym-anytime",
+      "date": "2026-08-28",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "70",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "70",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "67.5",
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "pr-wk-07-2-ex-calf-raise",
+      "exercise_id": "ex-calf-raise",
+      "gym_id": "gym-anytime",
+      "date": "2026-09-04",
+      "sets": [
+        {
+          "set_number": 1,
+          "is_warmup_set": false,
+          "input_1": "15",
+          "input_1_right": null,
+          "input_2": "72.5",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 2,
+          "is_warmup_set": false,
+          "input_1": "14",
+          "input_1_right": null,
+          "input_2": "70",
+          "rir": null,
+          "rpe": null
+        },
+        {
+          "set_number": 3,
+          "is_warmup_set": false,
+          "input_1": "13",
+          "input_1_right": null,
+          "input_2": "70",
+          "rir": null,
+          "rpe": null
+        }
+      ],
+      "schemaVersion": 1
+    }
+  ]
+}

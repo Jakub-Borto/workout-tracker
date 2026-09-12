@@ -1,0 +1,112 @@
+{
+  "store": "exerciseNotes",
+  "exportedAt": "2026-09-12T12:00:00.000Z",
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "note-wk-00-0-ex-bench-press",
+      "exercise_id": "ex-bench-press",
+      "workout_id": "wk-00-0",
+      "text": "Left shoulder felt tight on the last set. Stretch more before next time.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-01-0-ex-bench-press",
+      "exercise_id": "ex-bench-press",
+      "workout_id": "wk-01-0",
+      "text": "Much better after stretching. Grip width felt right.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-00-2-ex-squat",
+      "exercise_id": "ex-squat",
+      "workout_id": "wk-00-2",
+      "text": "Depth was inconsistent on set 3 -- filmed it, need to slow the descent.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-02-2-ex-squat",
+      "exercise_id": "ex-squat",
+      "workout_id": "wk-02-2",
+      "text": "Depth fixed. Knees still caving slightly under the heavier sets.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-01-1-ex-deadlift",
+      "exercise_id": "ex-deadlift",
+      "workout_id": "wk-01-1",
+      "text": "Bar drifted forward off the floor. Focus on pulling the slack out first.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-03-1-ex-deadlift",
+      "exercise_id": "ex-deadlift",
+      "workout_id": "wk-03-1",
+      "text": "Straps for the last set -- grip gave out before legs did.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-02-1-ex-pullup",
+      "exercise_id": "ex-pullup",
+      "workout_id": "wk-02-1",
+      "text": "Added a slow 3-count negative on the last set, brutal but worth it.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-04-3-ex-treadmill-run",
+      "exercise_id": "ex-treadmill-run",
+      "workout_id": "wk-04-3",
+      "text": "Legs were heavy from leg day the day before. Consider swapping the order.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-03-2-ex-walking-lunge",
+      "exercise_id": "ex-walking-lunge",
+      "workout_id": "wk-03-2",
+      "text": "Home gym ceiling is too low to press the dumbbells overhead first -- just curl them up instead.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-05-0-ex-overhead-press",
+      "exercise_id": "ex-overhead-press",
+      "workout_id": "wk-05-0",
+      "text": "New gym's bar is thicker, harder to grip. Chalk next time.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-04-0-ex-incline-db-press",
+      "exercise_id": "ex-incline-db-press",
+      "workout_id": "wk-04-0",
+      "text": "Bench angle at this gym is steeper than PowerHouse -- felt more front delt, less upper chest.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-06-2-ex-rdl",
+      "exercise_id": "ex-rdl",
+      "workout_id": "wk-06-2",
+      "text": "Really felt the stretch in the hamstrings this time, good mind-muscle connection.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-07-1-ex-barbell-row",
+      "exercise_id": "ex-barbell-row",
+      "workout_id": "wk-07-1",
+      "text": "Elbows flaring out again on the last set. Cue: elbows in toward the hips.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-06-3-ex-plank",
+      "exercise_id": "ex-plank",
+      "workout_id": "wk-06-3",
+      "text": "Held a clean 90s with no hip sag. Ready to start adding weight.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "note-wk-07-0-ex-bench-press",
+      "exercise_id": "ex-bench-press",
+      "workout_id": "wk-07-0",
+      "text": "New PR pace -- if next session goes well, try for a true 1RM test.",
+      "schemaVersion": 1
+    }
+  ]
+}

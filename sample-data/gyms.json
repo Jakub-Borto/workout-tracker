@@ -1,0 +1,22 @@
+{
+  "store": "gyms",
+  "exportedAt": "2026-09-12T12:00:00.000Z",
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "gym-powerhouse",
+      "name": "PowerHouse Fitness",
+      "schemaVersion": 1
+    },
+    {
+      "id": "gym-home",
+      "name": "Home Gym",
+      "schemaVersion": 1
+    },
+    {
+      "id": "gym-anytime",
+      "name": "Anytime Fitness",
+      "schemaVersion": 1
+    }
+  ]
+}

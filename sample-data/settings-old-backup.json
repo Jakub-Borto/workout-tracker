@@ -1,0 +1,13 @@
+{
+  "store": "settings",
+  "exportedAt": "2026-09-12T12:00:00.000Z",
+  "schemaVersion": 1,
+  "records": [
+    {
+      "key": "app",
+      "schemaVersion": 1,
+      "language": "en",
+      "lastBackupAt": "2026-08-20T12:00:00.000Z"
+    }
+  ]
+}

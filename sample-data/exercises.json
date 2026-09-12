@@ -1,0 +1,305 @@
+{
+  "store": "exercises",
+  "exportedAt": "2026-09-12T12:00:00.000Z",
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "ex-bench-press",
+      "name": "Bench Press",
+      "muscleGroups": [
+        "chest",
+        "tricep",
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "rir",
+      "notes": "Keep shoulder blades pinned back. Grip slightly narrower than last cycle.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-incline-db-press",
+      "name": "Incline Dumbbell Press",
+      "muscleGroups": [
+        "chest",
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "rpe",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-overhead-press",
+      "name": "Overhead Press",
+      "muscleGroups": [
+        "shoulders",
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "rir",
+      "notes": "Warm up shoulders thoroughly -- old impingement flares up if rushed.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-pushup",
+      "name": "Push-up",
+      "muscleGroups": [
+        "chest",
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "none"
+      },
+      "effortTracking": "rir",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-tricep-pushdown",
+      "name": "Tricep Pushdown",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "rir",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-lateral-raise",
+      "name": "Lateral Raise",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "rir",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-deadlift",
+      "name": "Deadlift",
+      "muscleGroups": [
+        "back",
+        "lower_back",
+        "hamstring",
+        "glutes"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "rir",
+      "notes": "Mixed grip on top set only. Reset breath/brace between every rep.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-barbell-row",
+      "name": "Barbell Row",
+      "muscleGroups": [
+        "back",
+        "lats"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "rir",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-pullup",
+      "name": "Pull-up",
+      "muscleGroups": [
+        "lats",
+        "back",
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "none"
+      },
+      "effortTracking": "rir",
+      "notes": "Full dead hang at the bottom, no kipping.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-lat-pulldown",
+      "name": "Lat Pulldown",
+      "muscleGroups": [
+        "lats",
+        "back"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "rir",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-seated-cable-row",
+      "name": "Seated Cable Row",
+      "muscleGroups": [
+        "back",
+        "lats"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "rpe",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-bicep-curl",
+      "name": "Bicep Curl",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "rir",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-hammer-curl",
+      "name": "Hammer Curl",
+      "muscleGroups": [
+        "bicep",
+        "forearm"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "rir",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-squat",
+      "name": "Squat",
+      "muscleGroups": [
+        "quads",
+        "glutes"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "rpe",
+      "notes": "Low-bar position. Knees out, chase depth before adding weight.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-rdl",
+      "name": "Romanian Deadlift",
+      "muscleGroups": [
+        "hamstring",
+        "glutes"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "rir",
+      "notes": "Soft knees, push hips back, stop at mid-shin. Don't round the lower back.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-leg-press",
+      "name": "Leg Press",
+      "muscleGroups": [
+        "quads",
+        "glutes"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "rpe",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-walking-lunge",
+      "name": "Walking Lunge",
+      "muscleGroups": [
+        "quads",
+        "glutes"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "rir",
+      "notes": "Use the 12kg dumbbells max in the home gym -- ceiling height limits anything heavier overhead-adjacent.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-calf-raise",
+      "name": "Calf Raise",
+      "muscleGroups": [
+        "calves"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-plank",
+      "name": "Plank",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "seconds",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "Squeeze glutes, neutral neck. Quality over duration.",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ex-treadmill-run",
+      "name": "Treadmill Run",
+      "muscleGroups": [
+        "cardio"
+      ],
+      "metric": {
+        "type": "meters",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    }
+  ]
+}

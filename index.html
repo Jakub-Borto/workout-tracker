@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <title>Workout Tracker</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Workouts" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" href="icons/icon-192.png" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <main id="screens">
+      <!-- Home -->
+      <section class="screen" id="screen-home" data-screen="home">
+        <header class="screen-header">
+          <h1 data-i18n="home.title">Home</h1>
+        </header>
+
+        <div class="screen-content">
+          <button class="btn-primary" id="start-workout-btn" type="button">
+            <span class="btn-plus">+</span> <span data-i18n="home.startWorkout">Start Empty Workout</span>
+          </button>
+
+          <div class="week-card">
+            <div class="week-nav">
+              <button class="week-nav-btn" id="week-prev-btn" type="button" aria-label="Previous week">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="week-label" id="week-label">This Week</div>
+              <button class="week-nav-btn" id="week-next-btn" type="button" aria-label="Next week">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="week-grid" id="week-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Exercises -->
+      <section class="screen" id="screen-exercises" data-screen="exercises" hidden>
+        <header class="screen-header">
+          <h1 data-i18n="exercises.title">Exercises</h1>
+          <div class="screen-header-actions">
+            <button class="btn-pill" id="open-gyms-btn" type="button">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 21s7-6.1 7-11.5A7 7 0 005 9.5C5 14.9 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span data-i18n="gyms.title">Gyms</span>
+            </button>
+            <button class="btn-icon" id="add-exercise-btn" type="button" aria-label="Add exercise">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </header>
+        <div class="screen-content">
+          <div class="exercise-search-row">
+            <div class="search-input-wrap">
+              <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <input type="search" id="exercise-search-input" data-i18n-placeholder="exercises.searchPlaceholder" placeholder="Search exercises" />
+            </div>
+            <button class="btn-icon filter-btn" id="muscle-filter-open-btn" type="button" aria-label="Filter">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 6h16M7 12h10M10 18h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="filter-badge" id="muscle-filter-badge" hidden>0</span>
+            </button>
+          </div>
+
+          <div id="exercise-list" class="exercise-list"></div>
+
+          <div class="empty-state" id="exercises-empty-state" hidden>
+            <div class="empty-state-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32"><path d="M6.5 6.5l11 11M4 9l2-2 2 2-2 2-2-2zm12 12l2-2 2 2-2 2-2-2zM2 15l4-4M18 6l4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="empty-state-title" data-i18n="exercises.emptyTitle">No exercises yet</p>
+            <p class="empty-state-subtitle" data-i18n="exercises.emptySubtitle">Add your first exercise to start building your library.</p>
+            <button class="btn-secondary" id="add-exercise-btn-2" type="button" data-i18n="exercises.addButton">Add Exercise</button>
+          </div>
+
+          <div class="empty-state" id="exercises-no-results-state" hidden>
+            <div class="empty-state-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <p class="empty-state-title" data-i18n="exercises.noResultsTitle">No matching exercises</p>
+            <p class="empty-state-subtitle" data-i18n="exercises.noResultsSubtitle">Try a different search or clear the muscle group filter.</p>
+            <button class="btn-secondary" id="clear-filters-btn" type="button" data-i18n="exercises.clearFilters">Clear filters</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bodyweight -->
+      <section class="screen" id="screen-bodyweight" data-screen="bodyweight" hidden>
+        <header class="screen-header">
+          <h1 data-i18n="bodyweight.title">Bodyweight</h1>
+        </header>
+        <div class="screen-content">
+          <div class="empty-state">
+            <div class="empty-state-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32"><path d="M12 3a3 3 0 100 6 3 3 0 000-6zM5 21c0-3.9 3.1-7 7-7s7 3.1 7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="empty-state-title" data-i18n="bodyweight.emptyTitle">Nothing logged yet</p>
+            <p class="empty-state-subtitle" data-i18n="bodyweight.emptySubtitle">Your bodyweight history will show up here.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <section class="screen" id="screen-stats" data-screen="stats" hidden>
+        <header class="screen-header">
+          <h1 data-i18n="stats.title">Stats</h1>
+        </header>
+        <div class="screen-content">
+          <div class="settings-card">
+            <button type="button" class="settings-row settings-row-link" id="open-exercise-stats-btn">
+              <span class="settings-row-label" data-i18n="stats.exerciseStatsButton">Exercise Stats</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="settings-card">
+            <button type="button" class="settings-row settings-row-link" id="open-stats-range-btn">
+              <span class="settings-row-label" data-i18n="stats.dateRangeLabel">Date Range</span>
+              <span class="stats-range-value" id="stats-range-value">This Month</span>
+            </button>
+          </div>
+
+          <h2 class="stats-section-title" data-i18n="stats.muscleGroupSectionTitle">Muscle Group Stats</h2>
+          <div class="settings-card">
+            <button type="button" class="settings-row settings-row-link" id="open-stats-muscle-sets-btn">
+              <span class="settings-row-label" data-i18n="stats.setsPerMuscleGroupTitle">Sets per Muscle Group</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="settings-row settings-row-link" id="open-stats-muscle-avg-btn">
+              <span class="settings-row-label" data-i18n="stats.avgSetsPerWorkoutTitle">Avg Sets per Workout (where trained)</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="settings-row settings-row-link" id="open-stats-muscle-frequency-btn">
+              <span class="settings-row-label" data-i18n="stats.muscleFrequencyTitle">Muscle Group Frequency</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="settings-card">
+            <button type="button" class="settings-row settings-row-link" id="open-stats-workout-btn">
+              <span class="settings-row-label" data-i18n="stats.workoutSectionTitle">Workout Stats</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="settings-card">
+            <button type="button" class="settings-row settings-row-link" id="open-stats-rankings-btn">
+              <span class="settings-row-label" data-i18n="stats.rankingsSectionTitle">Exercise Rankings</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Account -->
+      <section class="screen" id="screen-account" data-screen="account" hidden>
+        <header class="screen-header">
+          <h1 data-i18n="account.title">Account</h1>
+        </header>
+        <div class="screen-content">
+          <div class="settings-card">
+            <div class="settings-row">
+              <span class="settings-row-label" data-i18n="account.languageSectionTitle">Language</span>
+              <div class="segmented-control" id="language-switch" role="group">
+                <button class="segmented-option is-active" type="button" data-lang="en">
+                  <span data-i18n="account.languageEnglish">English</span>
+                </button>
+                <button class="segmented-option" type="button" data-lang="pl">
+                  <span data-i18n="account.languagePolish">Polish</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <button type="button" class="settings-row settings-row-link" id="export-backup-btn">
+              <span class="settings-row-label" data-i18n="account.exportBackupButton">Export All Data</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="settings-row settings-row-link" id="import-backup-btn">
+              <span class="settings-row-label" data-i18n="account.importBackupButton">Import All Data</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="settings-card">
+            <button type="button" class="settings-row settings-row-link" id="open-dev-tools-btn">
+              <span class="settings-row-label" data-i18n="account.devToolsButton">Dev Tools</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button type="button" id="resume-workout-bar" class="resume-bar" hidden>
+      <span class="resume-bar-dot"></span>
+      <span class="resume-bar-text" data-i18n="workout.resumeBar">Come back to workout</span>
+      <span class="resume-bar-elapsed" id="resume-bar-elapsed"></span>
+    </button>
+
+    <nav id="bottom-nav">
+      <button class="nav-item is-active" data-target="home" type="button">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M4 11.5L12 4l8 7.5M6 10v9a1 1 0 001 1h4v-6h2v6h4a1 1 0 001-1v-9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="nav.home">Home</span>
+      </button>
+      <button class="nav-item" data-target="exercises" type="button">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M6.5 6.5l11 11M4 9l2-2 2 2-2 2-2-2zm12 12l2-2 2 2-2 2-2-2zM2 15l4-4M18 6l4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="nav.exercises">Exercises</span>
+      </button>
+      <button class="nav-item" data-target="bodyweight" type="button">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 3a3 3 0 100 6 3 3 0 000-6zM5 21c0-3.9 3.1-7 7-7s7 3.1 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="nav.bodyweight">Bodyweight</span>
+      </button>
+      <button class="nav-item" data-target="stats" type="button">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M4 20V10M12 20V4M20 20v-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="nav.stats">Stats</span>
+      </button>
+      <button class="nav-item" data-target="account" type="button">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="nav.account">Account</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Create/Edit Exercise overlay -->
+  <div id="exercise-editor" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="editor-cancel-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 id="editor-title" data-i18n="exercise.editor.titleNew">New Exercise</h2>
+      <button class="btn-text btn-text-accent" id="editor-save-btn" type="button" data-i18n="exercise.editor.save">Save</button>
+    </header>
+    <div class="overlay-content">
+      <p class="field-error" id="editor-error" hidden></p>
+
+      <label class="field-label" for="editor-name-input" data-i18n="exercise.editor.nameLabel">Name</label>
+      <input class="text-input" id="editor-name-input" type="text" data-i18n-placeholder="exercise.editor.namePlaceholder" placeholder="e.g. Bench Press" />
+
+      <label class="field-label" data-i18n="exercise.editor.muscleGroupsLabel">Muscle Groups</label>
+      <div class="chip-grid" id="editor-muscle-groups"></div>
+
+      <label class="field-label" data-i18n="exercise.editor.metricLabel">Metric</label>
+      <div class="metric-row">
+        <select class="select-input" id="editor-metric-type"></select>
+        <select class="select-input" id="editor-metric-unit"></select>
+      </div>
+
+      <label class="field-label" data-i18n="exercise.editor.effortTrackingLabel">Effort Tracking</label>
+      <div class="segmented-control segmented-control-wide" id="editor-effort-tracking" role="group">
+        <button class="segmented-option is-active" type="button" data-value="none"><span data-i18n="effortTracking.none">None</span></button>
+        <button class="segmented-option" type="button" data-value="rir"><span data-i18n="effortTracking.rir">RIR</span></button>
+        <button class="segmented-option" type="button" data-value="rpe"><span data-i18n="effortTracking.rpe">RPE</span></button>
+      </div>
+
+      <label class="field-label" for="editor-notes-input" data-i18n="exercise.editor.notesLabel">Notes</label>
+      <textarea class="textarea-input" id="editor-notes-input" rows="3" data-i18n-placeholder="exercise.editor.notesPlaceholder" placeholder="Optional notes"></textarea>
+
+      <button class="btn-danger-text" id="editor-delete-btn" type="button" hidden data-i18n="exercise.editor.delete">Delete Exercise</button>
+    </div>
+  </div>
+
+  <!-- Gyms management -->
+  <div id="gyms-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="gyms-close-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 data-i18n="gyms.title">Gyms</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <div id="gyms-list" class="gyms-list"></div>
+      <div class="gym-add-row">
+        <input type="text" class="text-input" id="gym-add-input" data-i18n-placeholder="gyms.addPlaceholder" placeholder="Gym name" />
+        <button type="button" class="btn-secondary" id="gym-add-btn" data-i18n="gyms.addButton">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Muscle group filter sheet -->
+  <div id="muscle-filter-sheet" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="filter-cancel-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 data-i18n="exercises.filterButton">Filter</h2>
+      <button class="btn-text btn-text-accent" id="filter-apply-btn" type="button" data-i18n="exercise.editor.save">Save</button>
+    </header>
+    <div class="overlay-content">
+      <div class="chip-grid" id="filter-muscle-groups"></div>
+      <button class="btn-secondary" id="filter-clear-btn" type="button" data-i18n="exercises.clearFilters">Clear filters</button>
+    </div>
+  </div>
+
+  <!-- Exercise Stats picker (Stats tab entry point): same search + muscle
+       filter pattern as the Exercises tab, reused via a second instance of
+       ExercisesListController/MuscleFilterSheetController pointed at this
+       markup instead of reimplementing the list/filter logic. -->
+  <div id="exercise-history-picker" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="history-picker-cancel-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 data-i18n="stats.exerciseStatsButton">Exercise Stats</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <div class="exercise-search-row">
+        <div class="search-input-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="search" id="history-picker-search-input" data-i18n-placeholder="exercises.searchPlaceholder" placeholder="Search exercises" />
+        </div>
+        <button class="btn-icon filter-btn" id="history-picker-filter-open-btn" type="button" aria-label="Filter">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 6h16M7 12h10M10 18h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="filter-badge" id="history-picker-filter-badge" hidden>0</span>
+        </button>
+      </div>
+
+      <div id="history-picker-list" class="exercise-list"></div>
+
+      <div class="empty-state" id="history-picker-empty-state" hidden>
+        <p class="empty-state-title" data-i18n="exercises.emptyTitle">No exercises yet</p>
+      </div>
+
+      <div class="empty-state" id="history-picker-no-results-state" hidden>
+        <p class="empty-state-title" data-i18n="exercises.noResultsTitle">No matching exercises</p>
+        <button class="btn-secondary" id="history-picker-clear-filters-btn" type="button" data-i18n="exercises.clearFilters">Clear filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Muscle group filter sheet for the Exercise Stats picker above -->
+  <div id="history-muscle-filter-sheet" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="history-filter-cancel-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 data-i18n="exercises.filterButton">Filter</h2>
+      <button class="btn-text btn-text-accent" id="history-filter-apply-btn" type="button" data-i18n="exercise.editor.save">Save</button>
+    </header>
+    <div class="overlay-content">
+      <div class="chip-grid" id="history-filter-muscle-groups"></div>
+      <button class="btn-secondary" id="history-filter-clear-btn" type="button" data-i18n="exercises.clearFilters">Clear filters</button>
+    </div>
+  </div>
+
+  <!-- Stats tab: shared date-range picker -->
+  <div id="stats-range-picker" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="stats-range-cancel-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 data-i18n="stats.dateRangeLabel">Date Range</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <div id="stats-range-options"></div>
+
+      <label class="field-label" data-i18n="stats.lastXDaysLabel">Last X Days</label>
+      <div class="chip-grid" id="stats-range-days-chips"></div>
+      <div class="stats-range-days-row">
+        <input type="number" class="text-input" id="stats-range-custom-input" min="1" data-i18n-placeholder="stats.customDaysPlaceholder" placeholder="Custom days" />
+        <button type="button" class="btn-secondary" id="stats-range-custom-apply-btn" data-i18n="stats.applyButton">Apply</button>
+      </div>
+
+      <label class="field-label" data-i18n="stats.rangeCustom">Custom Range</label>
+      <p class="field-hint" data-i18n="stats.customRangeInclusiveNote">Both dates are inclusive — the start and end day themselves are both counted.</p>
+      <div class="stats-range-custom-dates-row">
+        <div>
+          <label class="field-label stats-range-date-label" for="stats-range-start-input" data-i18n="stats.startDateLabel">Start Date</label>
+          <input type="date" class="text-input" id="stats-range-start-input" />
+        </div>
+        <div>
+          <label class="field-label stats-range-date-label" for="stats-range-end-input" data-i18n="stats.endDateLabel">End Date</label>
+          <input type="date" class="text-input" id="stats-range-end-input" />
+        </div>
+      </div>
+      <button type="button" class="btn-secondary stats-range-custom-dates-apply" id="stats-range-custom-dates-apply-btn" data-i18n="stats.applyButton">Apply</button>
+    </div>
+  </div>
+
+  <!-- Stats: Sets per Muscle Group -->
+  <div id="stats-muscle-sets-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="stats-muscle-sets-close-btn" type="button" data-i18n="common.close">Close</button>
+      <h2 data-i18n="stats.setsPerMuscleGroupTitle">Sets per Muscle Group</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <div id="stats-muscle-sets-chart"></div>
+      <p class="stats-empty-inline" id="stats-muscle-sets-empty" hidden data-i18n="stats.noSetsInRange">No sets logged in this range.</p>
+    </div>
+  </div>
+
+  <!-- Stats: Avg Sets per Workout (where trained) -->
+  <div id="stats-muscle-avg-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="stats-muscle-avg-close-btn" type="button" data-i18n="common.close">Close</button>
+      <h2 data-i18n="stats.avgSetsPerWorkoutTitle">Avg Sets per Workout (where trained)</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <div class="stats-list" id="stats-muscle-avg-list"></div>
+    </div>
+  </div>
+
+  <!-- Stats: Muscle Group Frequency -->
+  <div id="stats-muscle-frequency-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="stats-muscle-frequency-close-btn" type="button" data-i18n="common.close">Close</button>
+      <h2 data-i18n="stats.muscleFrequencyTitle">Muscle Group Frequency</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <div class="stats-list" id="stats-muscle-frequency-list"></div>
+    </div>
+  </div>
+
+  <!-- Stats: Workout Stats -->
+  <div id="stats-workout-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="stats-workout-close-btn" type="button" data-i18n="common.close">Close</button>
+      <h2 data-i18n="stats.workoutSectionTitle">Workout Stats</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <div class="stats-card">
+        <p class="stats-stat-title" data-i18n="stats.trainingFrequencyTitle">Training Frequency</p>
+        <p class="stats-list-row-value" id="stats-training-frequency"></p>
+      </div>
+
+      <div class="stats-card">
+        <span class="stats-all-time-tag" data-i18n="stats.allTimeTag">All-time</span>
+        <p class="stats-stat-title" data-i18n="stats.streakTitle">Streaks (consecutive trained weeks)</p>
+        <div class="stats-big-number-row">
+          <div class="stats-big-number">
+            <div class="stats-big-number-value" id="stats-current-streak">0</div>
+            <div class="stats-big-number-label" data-i18n="stats.currentStreakLabel">Current</div>
+          </div>
+          <div class="stats-big-number">
+            <div class="stats-big-number-value" id="stats-longest-streak">0</div>
+            <div class="stats-big-number-label" data-i18n="stats.longestStreakLabel">Longest</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-card">
+        <p class="stats-stat-title" data-i18n="stats.trainingDayRatioTitle">Training / Rest Days</p>
+        <p class="stats-list-row-value" id="stats-training-day-ratio"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats: Exercise Rankings -->
+  <div id="stats-rankings-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="stats-rankings-close-btn" type="button" data-i18n="common.close">Close</button>
+      <h2 data-i18n="stats.rankingsSectionTitle">Exercise Rankings</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <div class="segmented-control segmented-control-wide stats-ranking-tabs" id="stats-ranking-tabs" role="group">
+        <button class="segmented-option is-active" type="button" data-mode="most" data-i18n="stats.mostTrained">Most Trained</button>
+        <button class="segmented-option" type="button" data-mode="least" data-i18n="stats.leastTrained">Least Trained</button>
+      </div>
+      <div class="stats-list" id="stats-ranking-list"></div>
+      <p class="stats-empty-inline" id="stats-ranking-empty" hidden data-i18n="stats.noSetsInRange">No sets logged in this range.</p>
+    </div>
+  </div>
+
+  <!-- Exercise History (shared: Stats tab entry + Active Workout entry).
+       Read-only: gym filter chips, then every logged set grouped by
+       workout date, newest first. -->
+  <div id="exercise-history-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="exercise-history-close-btn" type="button" data-i18n="common.close">Close</button>
+      <h2 id="exercise-history-title"></h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <div class="segmented-control segmented-control-wide" id="exercise-history-view-tabs" role="group">
+        <button class="segmented-option is-active" type="button" data-view="history" data-i18n="workout.historyViewHistory">History</button>
+        <button class="segmented-option" type="button" data-view="pr" data-i18n="workout.historyViewPr">PR</button>
+        <button class="segmented-option" type="button" data-view="chart" data-i18n="workout.historyViewChart">Chart</button>
+      </div>
+
+      <div class="chip-grid" id="exercise-history-filter-row"></div>
+
+      <div id="exercise-history-list" class="exercise-history-list"></div>
+      <div id="exercise-history-pr-list" class="exercise-history-list" hidden></div>
+      <div id="exercise-history-chart" class="exercise-history-chart" hidden></div>
+
+      <div class="empty-state" id="exercise-history-empty-state" hidden>
+        <p class="empty-state-title" id="exercise-history-empty-title"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Workout screen -->
+  <div id="workout-screen" class="overlay workout-overlay" hidden>
+    <header class="workout-topbar">
+      <div class="workout-topbar-left">
+        <button type="button" id="workout-minimize-btn" class="btn-icon workout-minimize-btn" aria-label="Minimize">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="workout-elapsed" id="workout-elapsed">0:00:00</span>
+      </div>
+      <div class="workout-topbar-right">
+        <button type="button" id="workout-timer-btn" class="timer-pill">
+          <svg viewBox="0 0 24 24" width="15" height="15"><circle cx="12" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 9v4l3 2M9 2h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span id="workout-timer-display">--:--</span>
+        </button>
+        <button type="button" id="workout-discard-btn" class="btn-icon workout-discard-btn" aria-label="Discard workout">
+          <svg viewBox="0 0 24 24" width="17" height="17"><path d="M4 7h16M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m-9 0l1 13a1 1 0 001 1h8a1 1 0 001-1l1-13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div id="timer-panel" class="timer-panel" hidden>
+      <div class="timer-presets">
+        <button type="button" data-seconds="30">+30s</button>
+        <button type="button" data-seconds="60">+1m</button>
+        <button type="button" data-seconds="120">+2m</button>
+        <button type="button" data-seconds="180">+3m</button>
+      </div>
+      <div class="timer-controls">
+        <button type="button" class="btn-secondary" id="timer-start-btn" data-i18n="workout.timerStart">Start</button>
+        <button type="button" class="btn-secondary" id="timer-pause-btn" hidden data-i18n="workout.timerPause">Pause</button>
+        <button type="button" class="btn-secondary" id="timer-reset-btn" data-i18n="workout.timerReset">Reset</button>
+      </div>
+    </div>
+
+    <div class="exercise-row-wrap">
+      <div class="exercise-row" id="workout-exercise-row"></div>
+    </div>
+
+    <div class="overlay-content workout-main" id="workout-main"></div>
+  </div>
+
+  <!-- Workout Detail (view/edit/delete a finished workout from the calendar) -->
+  <div id="workout-detail-screen" class="overlay workout-overlay" hidden>
+    <header class="workout-topbar">
+      <div class="workout-topbar-left">
+        <button type="button" id="detail-close-btn" class="btn-icon workout-minimize-btn" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="workout-topbar-right">
+        <button type="button" id="detail-save-btn" class="btn-text detail-save-btn" data-i18n="common.save">Save</button>
+        <button type="button" id="detail-delete-btn" class="btn-icon workout-discard-btn" aria-label="Delete workout">
+          <svg viewBox="0 0 24 24" width="17" height="17"><path d="M4 7h16M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m-9 0l1 13a1 1 0 001 1h8a1 1 0 001-1l1-13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="workout-detail-meta">
+      <input type="text" class="text-input" id="detail-name-input" data-i18n-placeholder="workout.detailNamePlaceholder" placeholder="Workout name" />
+      <input type="date" class="text-input detail-date-input" id="detail-date-input" />
+    </div>
+
+    <div class="exercise-row-wrap">
+      <div class="exercise-row" id="detail-exercise-row"></div>
+    </div>
+
+    <div class="overlay-content workout-main" id="detail-main"></div>
+  </div>
+
+  <!-- Exercise picker (reused for Add Exercise + Swap) -->
+  <div id="exercise-picker" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="picker-cancel-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 id="picker-title" data-i18n="workout.pickExerciseTitleAdd">Add Exercise</h2>
+      <span class="overlay-header-spacer"></span>
+    </header>
+    <div class="overlay-content">
+      <div class="search-input-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="search" id="picker-search-input" data-i18n-placeholder="exercises.searchPlaceholder" placeholder="Search exercises" />
+      </div>
+      <div id="picker-list" class="exercise-list"></div>
+    </div>
+  </div>
+
+  <!-- Exercise note editor -->
+  <div id="note-editor" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="note-cancel-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 data-i18n="workout.noteTitle">Exercise Note</h2>
+      <button class="btn-text btn-text-accent" id="note-save-btn" type="button" data-i18n="exercise.editor.save">Save</button>
+    </header>
+    <div class="overlay-content">
+      <div class="note-editor-section" id="note-editor-global-section" hidden>
+        <p class="note-editor-section-label" data-i18n="workout.noteGlobalLabel">Exercise Note</p>
+        <p class="note-editor-section-text" id="note-editor-global-text"></p>
+      </div>
+      <div class="note-editor-section" id="note-editor-previous-section" hidden>
+        <p class="note-editor-section-label" data-i18n="workout.notePreviousLabel">Last Time</p>
+        <p class="note-editor-section-text" id="note-editor-previous-text"></p>
+      </div>
+      <label class="field-label" for="note-textarea" data-i18n="workout.noteNewLabel">New Note</label>
+      <textarea class="textarea-input" id="note-textarea" rows="6" data-i18n-placeholder="workout.notePlaceholder" placeholder="Note for next time you do this exercise…"></textarea>
+    </div>
+  </div>
+
+  <!-- Finish Workout date dialog -->
+  <div id="finish-workout-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" data-i18n="workout.finishDialogTitle">Finish Workout</p>
+      <label class="field-label" for="finish-date-input" data-i18n="workout.finishDialogDateLabel">Date</label>
+      <input type="date" class="text-input" id="finish-date-input" />
+      <div class="modal-actions" style="margin-top: 18px;">
+        <button type="button" class="btn-secondary" id="finish-dialog-cancel-btn" data-i18n="common.cancel">Cancel</button>
+        <button type="button" class="btn-primary modal-btn-primary" id="finish-dialog-confirm-btn" data-i18n="workout.finishButton">Finish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIR picker -->
+  <div id="rir-picker" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" data-i18n="workout.rirPickerTitle">RIR</p>
+      <div class="rir-picker-grid" id="rir-picker-grid"></div>
+      <button type="button" class="btn-secondary rir-picker-clear-btn" id="rir-picker-clear-btn" data-i18n="workout.rirClear">Clear</button>
+    </div>
+  </div>
+
+  <!-- RPE picker -->
+  <div id="rpe-picker" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" data-i18n="workout.rpePickerTitle">RPE</p>
+      <div class="rir-picker-grid rpe-picker-grid" id="rpe-picker-grid"></div>
+      <button type="button" class="btn-secondary rir-picker-clear-btn" id="rpe-picker-clear-btn" data-i18n="workout.rirClear">Clear</button>
+    </div>
+  </div>
+
+  <!-- Personal Record dialog -->
+  <div id="pr-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" data-i18n="workout.prTitle">Personal Record</p>
+      <div id="pr-current-best" class="pr-current-best"></div>
+      <button type="button" class="btn-primary pr-mark-btn" id="pr-mark-btn" data-i18n="workout.prMarkButton">Mark as PR</button>
+      <button type="button" class="btn-secondary pr-close-btn" id="pr-close-btn" data-i18n="common.cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Gym picker (which gym this exercise's sets are logged at, this workout) -->
+  <div id="gym-picker" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" data-i18n="workout.gymPickerTitle">Gym</p>
+      <div class="gym-picker-list" id="gym-picker-list"></div>
+    </div>
+  </div>
+
+  <!-- Dev Tools -->
+  <div id="dev-tools-screen" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="dev-tools-close-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 data-i18n="devtools.title">Dev Tools</h2>
+      <button class="btn-text btn-text-accent" id="dev-tools-refresh-btn" type="button" data-i18n="devtools.refresh">Refresh</button>
+    </header>
+    <div class="overlay-content">
+      <button type="button" class="btn-danger-block" id="devtools-wipe-all-btn" data-i18n="devtools.wipeAll">Wipe All Data</button>
+      <div id="dev-tools-content"></div>
+    </div>
+  </div>
+
+  <!-- Danger confirm (type-to-confirm) dialog, used by Dev Tools deletes -->
+  <div id="danger-confirm-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" id="danger-confirm-title"></p>
+      <p class="modal-message" id="danger-confirm-message"></p>
+      <p class="danger-confirm-code-label" data-i18n="devtools.typeToConfirm">Type this code to confirm:</p>
+      <p class="danger-confirm-code" id="danger-confirm-code"></p>
+      <input type="text" class="text-input danger-confirm-input" id="danger-confirm-input" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+      <p class="field-error" id="danger-confirm-error" hidden></p>
+      <div class="modal-actions" style="margin-top: 14px;">
+        <button type="button" class="btn-secondary" id="danger-confirm-cancel-btn" data-i18n="common.cancel">Cancel</button>
+        <button type="button" class="btn-primary modal-btn-primary danger-confirm-ok-btn" id="danger-confirm-ok-btn" data-i18n="devtools.deleteButton">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Generic confirm dialog. Kept last in the DOM (not with the other
+       dialogs above) on purpose: showConfirm() can be triggered from inside
+       another already-open dialog (e.g. Mark as PR, Discard workout), and
+       with no z-index management here, later siblings paint on top — this
+       one needs to win every time. -->
+  <div id="confirm-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" id="confirm-title"></p>
+      <p class="modal-message" id="confirm-message"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="confirm-cancel-btn"></button>
+        <button type="button" class="btn-primary modal-btn-primary" id="confirm-ok-btn"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="models.js"></script>
+  <script src="repository.js"></script>
+  <script src="i18n.js"></script>
+  <script src="exercises.js"></script>
+  <script src="workout.js"></script>
+  <script src="stats.js"></script>
+  <script src="devtools.js"></script>
+  <script src="backup.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
