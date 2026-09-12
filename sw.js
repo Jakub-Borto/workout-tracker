@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'workout-tracker-v59';
+const CACHE_NAME = 'workout-tracker-v60';
 const APP_SHELL = [
   './',
   './index.html',
@@ -34,19 +34,34 @@ self.addEventListener('install', (event) => {
   // active draft workout mid-session. See updates.js for the page-side
   // half of this handshake.
   //
-  // Deliberately NOT cache.addAll(APP_SHELL) — that fetches each URL with
-  // normal HTTP caching rules, which means it can silently pull a STALE
-  // copy straight from the browser's own HTTP cache instead of the real
-  // current file, even on a genuinely new install. (sw.js itself is exempt
-  // from this — browsers always re-fetch the worker script itself bypassing
-  // cache — which is exactly how this bug hid: CACHE_NAME correctly read
-  // as the new version while other precached files were silently stale.)
-  // `cache: 'reload'` forces every one of these fetches to hit the network
-  // for real, matching what the browser already guarantees for sw.js
-  // itself.
+  // Deliberately NOT cache.addAll(APP_SHELL), and not even a plain
+  // fetch(url, { cache: 'reload' }) — both were tried and both still let
+  // stale content through in practice. `cache: 'reload'` only bypasses the
+  // *browser's own* local HTTP cache; it does nothing to a CDN edge cache
+  // in between (GitHub Pages' Fastly CDN can still serve its own cached
+  // response regardless of what cache directive the request carries), and
+  // sw.js itself is the only file browsers unconditionally re-fetch past
+  // every cache layer when checking for updates — which is exactly how
+  // this hid twice: CACHE_NAME correctly read as the new version while
+  // some other precached file (exercises.js, then updates.js) was still
+  // silently serving old content underneath.
+  //
+  // The fix that actually defeats every caching layer at once: a
+  // cache-busting query string derived from CACHE_NAME itself. Since the
+  // full URL (path + query) changes every time CACHE_NAME changes, no
+  // cache anywhere has ever seen this exact URL before, so there is
+  // nothing to serve except a genuine fresh fetch from the origin. Fetched
+  // under the busted URL, but stored in Cache Storage under the plain
+  // path — the 'fetch' handler below matches incoming requests by their
+  // plain (non-busted) URL, so this is invisible to every other caller.
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) =>
-      Promise.all(APP_SHELL.map((url) => fetch(url, { cache: 'reload' }).then((response) => cache.put(url, response))))
+      Promise.all(
+        APP_SHELL.map((url) => {
+          const bustedUrl = `${url}${url.includes('?') ? '&' : '?'}swv=${encodeURIComponent(CACHE_NAME)}`;
+          return fetch(bustedUrl, { cache: 'reload' }).then((response) => cache.put(url, response));
+        })
+      )
     )
   );
 });

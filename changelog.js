@@ -128,6 +128,13 @@ const CHANGELOG = [
       'Added a hidden diagnostic record (Dev Tools → settings) of exactly what the last update check compared, to help track down an update-popup issue without needing console access',
     ],
   },
+  {
+    version: 'workout-tracker-v60',
+    date: '2026-09-12',
+    changes: [
+      'Fixed a deeper caching issue (the CDN, not just the browser) that could still let an old file slip through even after an update reported the correct new version',
+    ],
+  },
 ];
 
 /**

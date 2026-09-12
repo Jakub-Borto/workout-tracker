@@ -688,22 +688,32 @@ check) and finds no draft, it activates then. `sw.js`'s own `message`
 listener is the other half: `self.skipWaiting()` only ever runs in response
 to that message, never on its own.
 
-**Precaching gotcha, found the hard way**: the `install` handler fetches
-every `APP_SHELL` file with `{ cache: 'reload' }` explicitly, **not**
-`cache.addAll(APP_SHELL)`. The difference matters a lot: `cache.addAll`
-fetches each URL under normal HTTP caching rules, so it can silently pull
-a *stale* copy straight from the browser's own HTTP cache instead of the
-real current file — even during a genuinely new install. `sw.js` itself is
-exempt from this (browsers always re-fetch the worker script bypassing
-cache when checking for updates, per spec), which is exactly how this bug
-hid in production: `CACHE_NAME` correctly read as the new version (so the
-update popup, the version tracker, everything *looked* right) while one or
-more of the other precached files — `exercises.js`, `changelog.js` — were
-silently serving old content underneath. Symptom in practice: "the app
-says it updated to v56, but the muscle-group picker still looks old and
-'See Changes' says there's nothing new." `{ cache: 'reload' }` forces every
-one of these fetches to hit the network for real, matching the guarantee
-the browser already gives `sw.js` itself.
+**Precaching gotcha, found the hard way (twice)**: the `install` handler
+fetches every `APP_SHELL` file through a cache-busting query string
+(`?swv=<CACHE_NAME>`) appended to each URL, fetched with `{ cache: 'reload' }`
+and then stored in Cache Storage under the *plain* URL (no query string) —
+not `cache.addAll(APP_SHELL)`, and a first attempt at `fetch(url, { cache: 'reload' })`
+*without* the busted URL also turned out insufficient in production.
+
+Why each attempt failed in turn: `cache.addAll` fetches each URL under
+normal HTTP caching rules, so it can silently pull a stale copy straight
+from the *browser's own* HTTP cache instead of the real current file, even
+during a genuinely new install. Switching to `{ cache: 'reload' }` alone
+still wasn't enough, because that only bypasses the browser's local
+cache — it does nothing about a CDN edge cache in between (GitHub Pages'
+Fastly CDN can still serve its own cached response regardless of what
+cache directive the request carries). `sw.js` itself is exempt from both
+problems (browsers always re-fetch the worker script bypassing every cache
+layer when checking for updates, per spec) — which is exactly how this bug
+hid in production, twice: `CACHE_NAME` correctly read as the new version
+(so the update popup, the version tracker, everything *looked* right)
+while some other precached file was silently serving old content
+underneath — first `exercises.js`/`changelog.js` (fixed by `{ cache: 'reload' }`),
+then `updates.js` itself (the CDN-cache case `{ cache: 'reload' }` didn't
+cover). The query-string approach defeats every layer at once: since the
+full URL changes every time `CACHE_NAME` does, no cache anywhere — browser
+or CDN — has ever seen that exact URL before, so there's nothing to serve
+except a genuine fresh fetch from the origin.
 
 **Registration timing gotcha**: `updates.js` registers the service worker
 at *module-load time* (checking `document.readyState` directly, falling
