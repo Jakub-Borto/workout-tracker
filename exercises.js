@@ -36,18 +36,54 @@ function toggleMuscleGroup(selectedSet, id, exclusiveNone) {
   }
 }
 
+/** Fixed visual grouping for the muscle-group chip picker — related groups
+ * sit on the same row so the picker reads as organized categories rather
+ * than one flat alphabet-soup list. Purely a display concern (not part of
+ * MUSCLE_GROUPS' own order, which is the data vocabulary); any id not
+ * covered here still renders, just appended as a trailing row, so a future
+ * new muscle group is never silently dropped for lack of a row assignment. */
+const MUSCLE_GROUP_ROWS = [
+  ['chest', 'upper_chest', 'shoulders'],
+  ['traps', 'teres', 'lats', 'lower_back'],
+  ['bicep', 'tricep'],
+  ['abs_core', 'neck', 'forearm'],
+  ['quads', 'hamstring', 'glutes', 'abductor', 'adductor', 'calves'],
+  ['cardio', 'none'],
+];
+
 function renderChipGrid(container, ids, selectedSet, exclusiveNone, onToggle) {
   const lang = getLang();
+  const idSet = new Set(ids);
   container.innerHTML = '';
-  ids.forEach((id) => {
+  container.classList.add('chip-grid-rows');
+
+  function buildChip(id) {
     const chip = document.createElement('button');
     chip.type = 'button';
     chip.className = 'chip';
     if (selectedSet.has(id)) chip.classList.add('is-selected');
     chip.textContent = window.I18n.t(`muscleGroup.${id}`, lang);
     chip.addEventListener('click', () => onToggle(id));
-    container.appendChild(chip);
+    return chip;
+  }
+
+  function buildRow(rowIds) {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'chip-row';
+    rowIds.forEach((id) => rowEl.appendChild(buildChip(id)));
+    container.appendChild(rowEl);
+  }
+
+  const covered = new Set();
+  MUSCLE_GROUP_ROWS.forEach((rowIds) => {
+    const row = rowIds.filter((id) => idSet.has(id));
+    row.forEach((id) => covered.add(id));
+    if (row.length > 0) buildRow(row);
   });
+
+  const leftover = ids.filter((id) => !covered.has(id));
+  if (leftover.length > 0) buildRow(leftover);
+
   // exclusiveNone param kept for callers' clarity at the call site only.
   void exclusiveNone;
 }

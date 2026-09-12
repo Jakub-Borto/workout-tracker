@@ -474,6 +474,23 @@ body {
   margin: 8px 0 20px;
 }
 
+/* Muscle-group picker: fixed row groupings (see MUSCLE_GROUP_ROWS in
+   exercises.js) instead of one flat wrapping list — .chip-grid-rows
+   switches the outer container to a vertical stack of .chip-row groups,
+   each of which still wraps internally on narrow screens (some rows have
+   more chips than fit on one line on a phone). */
+.chip-grid.chip-grid-rows {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .chip {
   background: var(--surface-2);
   color: var(--text-dim);

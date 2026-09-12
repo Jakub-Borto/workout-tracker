@@ -102,6 +102,11 @@ const CHANGELOG = [
       'Fixed several cases where restoring a backup, wiping data, or Dev Tools actions could silently reset your update history, hiding the "What’s New" popup',
     ],
   },
+  {
+    version: 'workout-tracker-v56',
+    date: '2026-09-12',
+    changes: ['Muscle group picker is now organized into logical rows instead of one flat list'],
+  },
 ];
 
 /**
