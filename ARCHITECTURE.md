@@ -288,6 +288,16 @@ Accepts either a raw JSON array of records or a full export file (reads its
 `records` array); an invalid/unparseable file shows an OK-only dialog
 (`showConfirm` with `cancelText: ''`) rather than a native `alert()`.
 
+**Load Sample Data** button (`devtools-load-sample-data-btn`,
+`handleLoadSampleData`) fetches `sample-data/full-backup-sample.json` — a
+full-backup-shaped file bundled with the app (same shape as `backup.js`'s
+Export All Data output; listed in `sw.js`'s precache list so it works
+offline too) — and restores it via `db.restoreAll()`, the same full-replace
+path Import All Data uses. Same missing-store validity check as a real
+backup restore (rejects if any known store isn't present as an array in the
+file, listing which ones). A one-tap way to get the app into a known,
+repeatable state for testing without needing to export/import manually.
+
 ### Full Backup (Account tab, `backup.js`)
 Two buttons — **Export All Data** / **Import All Data** — for a normal user
 to back up or restore everything with one tap, without ever opening Dev

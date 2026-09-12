@@ -594,6 +594,23 @@ body {
   background: rgba(255, 107, 107, 0.2);
 }
 
+.btn-secondary-block {
+  display: block;
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 0;
+  margin-bottom: 12px;
+}
+
+.btn-secondary-block:active {
+  background: var(--border);
+}
+
 .segmented-control-wide {
   width: 100%;
 }

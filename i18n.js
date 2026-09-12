@@ -328,6 +328,21 @@ const TRANSLATIONS = {
   'devtools.title': { en: 'Dev Tools', pl: 'Narzędzia deweloperskie' },
   'devtools.refresh': { en: 'Refresh', pl: 'Odśwież' },
   'devtools.wipeAll': { en: 'Wipe All Data', pl: 'Wyczyść wszystkie dane' },
+  'devtools.loadSampleData': { en: 'Load Sample Data', pl: 'Wczytaj przykładowe dane' },
+  'devtools.confirmLoadSampleDataTitle': { en: 'Load sample data?', pl: 'Wczytać przykładowe dane?' },
+  'devtools.confirmLoadSampleDataMessage': {
+    en: 'This will replace ALL current data with the bundled example dataset. Anything you’ve added will be permanently deleted. This cannot be undone.',
+    pl: 'Spowoduje to zastąpienie WSZYSTKICH bieżących danych dołączonym przykładowym zbiorem danych. Wszystko, co dodałeś, zostanie trwale usunięte. Tej operacji nie można cofnąć.',
+  },
+  'devtools.loadSampleDataErrorTitle': { en: 'Load Failed', pl: 'Wczytywanie nie powiodło się' },
+  'devtools.loadSampleDataFetchError': {
+    en: 'Could not load the bundled sample data file.',
+    pl: 'Nie udało się wczytać dołączonego pliku z przykładowymi danymi.',
+  },
+  'devtools.loadSampleDataInvalidFile': {
+    en: 'The bundled sample data file is incomplete (missing: {stores}). Nothing was changed.',
+    pl: 'Dołączony plik z przykładowymi danymi jest niekompletny (brakuje: {stores}). Nic nie zostało zmienione.',
+  },
   'devtools.deleteStore': { en: 'Delete this data', pl: 'Usuń te dane' },
   'devtools.deleteButton': { en: 'Delete', pl: 'Usuń' },
   'devtools.typeToConfirm': { en: 'Type this code to confirm:', pl: 'Wpisz ten kod, aby potwierdzić:' },

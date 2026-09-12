@@ -4,8 +4,8 @@
     {
       "name": "workout-tracker",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8151"],
-      "port": 8151
+      "runtimeArgs": ["-m", "http.server", "8152"],
+      "port": 8152
     }
   ]
 }

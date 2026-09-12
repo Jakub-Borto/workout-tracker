@@ -90,6 +90,7 @@ class DevToolsController {
     this.expanded = new Set();
 
     this.wipeAllBtn = document.getElementById('devtools-wipe-all-btn');
+    this.loadSampleDataBtn = document.getElementById('devtools-load-sample-data-btn');
 
     // One hidden file input, reused for every store's Import button — which
     // store a picked file goes into is tracked in this.importTarget between
@@ -106,6 +107,7 @@ class DevToolsController {
     this.closeBtn.addEventListener('click', () => this.close());
     this.refreshBtn.addEventListener('click', () => this.render());
     this.wipeAllBtn.addEventListener('click', () => this.handleWipeAll());
+    this.loadSampleDataBtn.addEventListener('click', () => this.handleLoadSampleData());
 
     window.addEventListener('app:languagechange', () => {
       if (!this.overlay.hidden) this.render();
@@ -346,6 +348,53 @@ class DevToolsController {
       await db.clear(storeName);
     }
     await this.render();
+  }
+
+  /** One-tap load of a bundled example dataset for testing — fetches the
+   * full-backup-shaped JSON shipped with the app (same shape as backup.js's
+   * Export All Data output) and restores it via the same full-replace path
+   * used by Import All Data (`db.restoreAll`), so the result is a known,
+   * repeatable state rather than layered on top of whatever's already
+   * there. Requires every store to be present, same validity rule as a
+   * real backup restore — a half file would otherwise silently wipe stores
+   * it doesn't account for. */
+  async handleLoadSampleData() {
+    let parsed;
+    try {
+      const response = await fetch('sample-data/full-backup-sample.json');
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      parsed = await response.json();
+    } catch (err) {
+      await window.WorkoutDialogs.showConfirm({
+        title: t('devtools.loadSampleDataErrorTitle'),
+        message: t('devtools.loadSampleDataFetchError'),
+        confirmText: t('common.ok'),
+        cancelText: '',
+      });
+      return;
+    }
+
+    const { STORES } = window.WorkoutDB;
+    const missingStores = Object.values(STORES).filter((storeName) => !Array.isArray(parsed?.[storeName]));
+    if (missingStores.length > 0) {
+      await window.WorkoutDialogs.showConfirm({
+        title: t('devtools.loadSampleDataErrorTitle'),
+        message: t('devtools.loadSampleDataInvalidFile', { stores: missingStores.join(', ') }),
+        confirmText: t('common.ok'),
+        cancelText: '',
+      });
+      return;
+    }
+
+    const confirmed = await window.WorkoutDialogs.showConfirm({
+      title: t('devtools.confirmLoadSampleDataTitle'),
+      message: t('devtools.confirmLoadSampleDataMessage'),
+      confirmText: t('devtools.loadSampleData'),
+    });
+    if (!confirmed) return;
+
+    await window.WorkoutDB.db.restoreAll(parsed);
+    window.location.reload();
   }
 }
 
