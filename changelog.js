@@ -74,6 +74,11 @@ const CHANGELOG = [
       'Startup popups (draft expiry, backup reminder, update notice) now queue instead of ever overlapping',
     ],
   },
+  {
+    version: 'workout-tracker-v52',
+    date: '2026-09-12',
+    changes: ['Fixed the exercise list sitting too close to the search bar on "Add Exercise" screens'],
+  },
 ];
 
 /**
