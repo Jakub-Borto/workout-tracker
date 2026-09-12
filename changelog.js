@@ -114,6 +114,13 @@ const CHANGELOG = [
       'Fixed a bug where an update could report a new version number while still silently running some old files underneath, making it look like the update didn’t actually apply',
     ],
   },
+  {
+    version: 'workout-tracker-v58',
+    date: '2026-09-12',
+    changes: [
+      '"See Changes" on the update popup will now always show at least something for a real update, instead of occasionally saying there were no changes',
+    ],
+  },
 ];
 
 /**
@@ -129,7 +136,16 @@ function getEntriesBetween(previousVersion, newVersion) {
   if (newIndex === -1) return [];
 
   const previousIndex = CHANGELOG.findIndex((entry) => entry.version === previousVersion);
-  const startIndex = previousIndex === -1 ? 0 : previousIndex + 1;
+  let startIndex = previousIndex === -1 ? 0 : previousIndex + 1;
+
+  // Defensive: if previousVersion resolves to the same or a later array
+  // position than newVersion (stale/bad tracking data, or the two version
+  // strings just don't order the way the caller assumed), never fall
+  // through to a blank slice — this function is only ever called after a
+  // genuine version transition was already detected, so "nothing to show"
+  // is never actually true here. Fall back to at least the new version's
+  // own entry rather than an empty result.
+  if (startIndex > newIndex) startIndex = newIndex;
 
   return CHANGELOG.slice(startIndex, newIndex + 1);
 }

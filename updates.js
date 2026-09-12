@@ -143,6 +143,10 @@ async function handleActivated(newVersion) {
   // behind) one of those. window.WorkoutDialogs.runExclusive (workout.js)
   // is the shared queue all three use.
   const entries = window.Changelog.getEntriesBetween(previousVersion, newVersion);
+  // Cheap diagnostic trail — this exact popup has been hard to debug after
+  // the fact (by the time anything looks wrong, lastKnownAppVersion has
+  // already moved on), so log what was actually used to compute it.
+  console.log('[updates] version transition', { previousVersion, newVersion, entryCount: entries.length });
   await window.WorkoutDialogs.runExclusive(() => showUpdatePopup(entries));
 
   // The page that's been running this whole time was loaded under the OLD
