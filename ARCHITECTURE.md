@@ -710,10 +710,33 @@ hid in production, twice: `CACHE_NAME` correctly read as the new version
 while some other precached file was silently serving old content
 underneath — first `exercises.js`/`changelog.js` (fixed by `{ cache: 'reload' }`),
 then `updates.js` itself (the CDN-cache case `{ cache: 'reload' }` didn't
-cover). The query-string approach defeats every layer at once: since the
-full URL changes every time `CACHE_NAME` does, no cache anywhere — browser
-or CDN — has ever seen that exact URL before, so there's nothing to serve
-except a genuine fresh fetch from the origin.
+cover). The query-string approach still defeats the *browser's* own cache the same
+way `{ cache: 'reload' }` alone was supposed to. It turned out **not** to
+defeat the CDN, though — see the correction below.
+
+**Correction, found even harder the fifth time**: the query-string buster
+does not actually work against GitHub Pages' CDN (Fastly). Confirmed with
+`curl`: requesting the same file with and without a novel `?swv=...` query
+returns `X-Cache: MISS` and `X-Cache: HIT` respectively for the *same*
+cached object — Fastly computes its cache key from the path only and
+strips the query string, so a "never-seen-before" busted URL is not
+actually never-seen-before as far as the edge cache is concerned. Every
+response also carries `Cache-Control: max-age=600` (10 minutes), which
+GitHub Pages does not expose any way to configure per-file. So for up to
+10 minutes after any push, a fresh `install` fetch — busted URL or not —
+can still be answered by a stale edge node.
+
+There is no client-side request trick that forces a CDN to skip its own
+cache; the only real robust fix would be content-addressed filenames
+(rename the file itself per release, not just its query string), which
+isn't worth the build-process overhead for this project. The practical
+mitigation: **wait roughly 10 minutes after pushing before testing an
+update on a real device.** This was never a problem for an actual end
+user (updates land weeks apart, long past any 10-minute window) — it only
+ever bit our own push-then-immediately-test-on-phone workflow while
+developing. The query-string buster stays in the code since it's still a
+real (if partial) improvement for the browser's own cache layer, but don't
+mistake it for a CDN fix.
 
 **A fourth, different-shaped bug in the same area**: once every file was
 reliably fresh in Cache Storage, "See Changes" *still* reported no changes

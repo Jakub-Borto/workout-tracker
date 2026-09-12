@@ -46,14 +46,19 @@ self.addEventListener('install', (event) => {
   // some other precached file (exercises.js, then updates.js) was still
   // silently serving old content underneath.
   //
-  // The fix that actually defeats every caching layer at once: a
-  // cache-busting query string derived from CACHE_NAME itself. Since the
-  // full URL (path + query) changes every time CACHE_NAME changes, no
-  // cache anywhere has ever seen this exact URL before, so there is
-  // nothing to serve except a genuine fresh fetch from the origin. Fetched
-  // under the busted URL, but stored in Cache Storage under the plain
-  // path — the 'fetch' handler below matches incoming requests by their
-  // plain (non-busted) URL, so this is invisible to every other caller.
+  // NOTE: this query-string buster defeats the *browser's* own HTTP cache,
+  // but NOT GitHub Pages' CDN (Fastly) — confirmed via curl that Fastly
+  // computes its cache key from the path only and ignores the query
+  // string, and every response also carries a flat 10-minute
+  // (max-age=600) edge TTL we can't configure away. So for up to ~10
+  // minutes after a push, this fetch can still return a stale CDN
+  // response no matter what query string is attached. See
+  // ARCHITECTURE.md's "Precaching gotcha" section for the full story —
+  // kept here anyway because it's still a real (partial) improvement, just
+  // not the CDN fix it looks like. Fetched under the busted URL, but
+  // stored in Cache Storage under the plain path — the 'fetch' handler
+  // below matches incoming requests by their plain (non-busted) URL, so
+  // this is invisible to every other caller.
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) =>
       Promise.all(
