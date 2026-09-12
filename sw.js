@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'workout-tracker-v56';
+const CACHE_NAME = 'workout-tracker-v57';
 const APP_SHELL = [
   './',
   './index.html',
@@ -33,7 +33,22 @@ self.addEventListener('install', (event) => {
   // over (see the 'message' listener below), so it never interrupts an
   // active draft workout mid-session. See updates.js for the page-side
   // half of this handshake.
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
+  //
+  // Deliberately NOT cache.addAll(APP_SHELL) — that fetches each URL with
+  // normal HTTP caching rules, which means it can silently pull a STALE
+  // copy straight from the browser's own HTTP cache instead of the real
+  // current file, even on a genuinely new install. (sw.js itself is exempt
+  // from this — browsers always re-fetch the worker script itself bypassing
+  // cache — which is exactly how this bug hid: CACHE_NAME correctly read
+  // as the new version while other precached files were silently stale.)
+  // `cache: 'reload'` forces every one of these fetches to hit the network
+  // for real, matching what the browser already guarantees for sw.js
+  // itself.
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) =>
+      Promise.all(APP_SHELL.map((url) => fetch(url, { cache: 'reload' }).then((response) => cache.put(url, response))))
+    )
+  );
 });
 
 self.addEventListener('activate', (event) => {

@@ -107,6 +107,13 @@ const CHANGELOG = [
     date: '2026-09-12',
     changes: ['Muscle group picker is now organized into logical rows instead of one flat list'],
   },
+  {
+    version: 'workout-tracker-v57',
+    date: '2026-09-12',
+    changes: [
+      'Fixed a bug where an update could report a new version number while still silently running some old files underneath, making it look like the update didn’t actually apply',
+    ],
+  },
 ];
 
 /**

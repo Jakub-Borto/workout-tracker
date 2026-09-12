@@ -688,6 +688,23 @@ check) and finds no draft, it activates then. `sw.js`'s own `message`
 listener is the other half: `self.skipWaiting()` only ever runs in response
 to that message, never on its own.
 
+**Precaching gotcha, found the hard way**: the `install` handler fetches
+every `APP_SHELL` file with `{ cache: 'reload' }` explicitly, **not**
+`cache.addAll(APP_SHELL)`. The difference matters a lot: `cache.addAll`
+fetches each URL under normal HTTP caching rules, so it can silently pull
+a *stale* copy straight from the browser's own HTTP cache instead of the
+real current file — even during a genuinely new install. `sw.js` itself is
+exempt from this (browsers always re-fetch the worker script bypassing
+cache when checking for updates, per spec), which is exactly how this bug
+hid in production: `CACHE_NAME` correctly read as the new version (so the
+update popup, the version tracker, everything *looked* right) while one or
+more of the other precached files — `exercises.js`, `changelog.js` — were
+silently serving old content underneath. Symptom in practice: "the app
+says it updated to v56, but the muscle-group picker still looks old and
+'See Changes' says there's nothing new." `{ cache: 'reload' }` forces every
+one of these fetches to hit the network for real, matching the guarantee
+the browser already gives `sw.js` itself.
+
 **Registration timing gotcha**: `updates.js` registers the service worker
 at *module-load time* (checking `document.readyState` directly, falling
 back to a `window 'load'` listener only if the page hasn't finished
