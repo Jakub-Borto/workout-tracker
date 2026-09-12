@@ -93,6 +93,15 @@ const CHANGELOG = [
       'Muscle groups: removed the generic "Back" option, added "Upper Chest" and "Teres"',
     ],
   },
+  {
+    version: 'workout-tracker-v55',
+    date: '2026-09-12',
+    changes: [
+      'The app now restarts automatically after installing an update, so the new version is actually running right away',
+      'Added a "Release Notes" button in Account to see what changed at any time',
+      'Fixed several cases where restoring a backup, wiping data, or Dev Tools actions could silently reset your update history, hiding the "What’s New" popup',
+    ],
+  },
 ];
 
 /**

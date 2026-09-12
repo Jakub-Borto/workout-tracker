@@ -714,6 +714,32 @@ this against `settings.lastKnownAppVersion`:
 - Different version → update `lastKnownAppVersion`, show the "Update
   Installed" popup (`#update-popup-dialog`: OK / "See Changes").
 
+After the popup (and the "See Changes" screen, if opened) is dismissed,
+the page does a full `location.reload()`. Activation only changes which
+files the service worker hands out for *future* requests — the
+already-running page was loaded under the old code and doesn't retroactively
+become the new code without a reload. Safe unconditionally here since
+activation itself only ever happens with no draft active.
+
+**`lastKnownAppVersion` is install/device state, not user data** — it's
+deliberately preserved across every destructive-replace action, even when
+the incoming data doesn't have one of its own: `Database.restoreAll()`
+(Import All Data, Load Sample Data), Dev Tools' "Wipe All Data", and Dev
+Tools' generic per-store Import/Delete when specifically targeting the
+`settings` store (the one raw/manual path where you could otherwise
+directly overwrite or clear that single record). Every one of these only
+*fills the gap* if the resulting record is missing the field — a backup
+that legitimately carries its own `lastKnownAppVersion` (e.g. one taken
+after this feature existed) is still respected as-is, never clobbered.
+Losing this value doesn't corrupt anything, but it does look like a fresh
+install with nothing to compare against, silently skipping the "what's
+new" popup for whatever version transition happens next — which is
+exactly what happened once in practice (recovering data via Load Sample
+Data before this protection existed ate several versions' worth of
+changelog). The Account tab's **"Release Notes"** button is the reliable
+fallback regardless of this tracking's state — it just shows the entire
+`changelog.js` array, unconditionally.
+
 "See Changes" opens `#update-changes-screen`, listing
 `Changelog.getEntriesBetween(previousVersion, newVersion)` grouped under a
 per-version heading (falls back to a plain "no details available" message

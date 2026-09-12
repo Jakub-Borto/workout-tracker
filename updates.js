@@ -142,14 +142,24 @@ async function handleActivated(newVersion) {
   // app.js, so without this it could pop up on top of (or invisibly
   // behind) one of those. window.WorkoutDialogs.runExclusive (workout.js)
   // is the shared queue all three use.
-  await window.WorkoutDialogs.runExclusive(() => showUpdatePopup(previousVersion, newVersion));
+  const entries = window.Changelog.getEntriesBetween(previousVersion, newVersion);
+  await window.WorkoutDialogs.runExclusive(() => showUpdatePopup(entries));
+
+  // The page that's been running this whole time was loaded under the OLD
+  // code — activation only swaps which files the service worker hands out
+  // for *future* requests, it doesn't retroactively change what's already
+  // executing. Reload now so the new code is actually the thing running,
+  // not just installed. Safe to do unconditionally here: activation itself
+  // only ever happens when no draft is active (see sw.js/maybeActivateWaiting),
+  // so there's nothing in-progress to lose.
+  window.location.reload();
 }
 
 /** Resolves once the user is fully done with the update popup — including
  * the "See Changes" screen, if they opened it — so the popup queue holds
  * the next queued popup back for the whole interaction, not just the
  * first tap. */
-function showUpdatePopup(previousVersion, newVersion) {
+function showUpdatePopup(entries) {
   return new Promise((resolve) => {
     const backdrop = document.getElementById('update-popup-dialog');
     const okBtn = document.getElementById('update-popup-ok-btn');
@@ -168,7 +178,7 @@ function showUpdatePopup(previousVersion, newVersion) {
     }
     async function onChanges() {
       cleanup();
-      await showChangesScreen(previousVersion, newVersion);
+      await showChangesScreen(entries);
       resolve();
     }
     okBtn.addEventListener('click', onOk);
@@ -176,12 +186,16 @@ function showUpdatePopup(previousVersion, newVersion) {
   });
 }
 
-function showChangesScreen(previousVersion, newVersion) {
+/** Renders `entries` (oldest first, same shape as changelog.js) into the
+ * "What's New" screen — reused both for the post-update popup's "See
+ * Changes" (a specific version range) and the Account tab's always-available
+ * "Release Notes" button (the full changelog), so there's one rendering
+ * path for both. */
+function showChangesScreen(entries) {
   const overlay = document.getElementById('update-changes-screen');
   const contentEl = document.getElementById('update-changes-content');
   const closeBtn = document.getElementById('update-changes-close-btn');
 
-  const entries = window.Changelog.getEntriesBetween(previousVersion, newVersion);
   contentEl.innerHTML = '';
 
   if (entries.length === 0) {
@@ -265,6 +279,14 @@ if ('serviceWorker' in navigator) {
 function init() {
   const checkBtn = document.getElementById('check-for-updates-btn');
   if (checkBtn) checkBtn.addEventListener('click', () => checkForUpdate());
+
+  // Always available regardless of update-transition state — the "what's
+  // new" popup only ever fires around an actual detected version change,
+  // which can be silently skipped (e.g. a full data restore from a backup
+  // that predates lastKnownAppVersion resets that tracking). This is the
+  // reliable fallback: shows the whole changelog, oldest first, any time.
+  const releaseNotesBtn = document.getElementById('view-release-notes-btn');
+  if (releaseNotesBtn) releaseNotesBtn.addEventListener('click', () => showChangesScreen(window.Changelog.entries));
 }
 
 window.WorkoutUpdates = { init, checkForUpdate };

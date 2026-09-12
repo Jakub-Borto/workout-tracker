@@ -224,7 +224,21 @@ class DevToolsController {
     });
     if (!confirmed) return;
 
-    await window.WorkoutDB.db.clear(storeName);
+    const { db, STORES } = window.WorkoutDB;
+
+    // Deleting the settings store specifically would otherwise silently
+    // wipe lastKnownAppVersion (install/device state, not user data) —
+    // same reasoning as restoreAll/handleWipeAll. Every other store is
+    // untouched by this.
+    const preservedAppVersion =
+      storeName === STORES.settings ? (await db.get(STORES.settings, 'app'))?.lastKnownAppVersion ?? null : null;
+
+    await db.clear(storeName);
+
+    if (preservedAppVersion != null) {
+      await db.put(STORES.settings, { key: 'app', schemaVersion: window.WorkoutDB.CURRENT_SCHEMA_VERSION, lastKnownAppVersion: preservedAppVersion });
+    }
+
     await this.render();
   }
 
@@ -330,8 +344,25 @@ class DevToolsController {
     });
     if (!confirmed) return;
 
+    const { db, STORES } = window.WorkoutDB;
+
+    // Importing into the settings store is a `put` per record, which fully
+    // replaces the existing 'app' record rather than merging fields — an
+    // older settings.json without lastKnownAppVersion (install/device
+    // state, not really "data") would otherwise silently wipe it, same as
+    // handleDeleteStore/restoreAll/handleWipeAll. Only fills the gap if the
+    // incoming record doesn't already carry its own value.
+    let preservedAppVersion = null;
+    if (target.storeName === STORES.settings) {
+      preservedAppVersion = (await db.get(STORES.settings, 'app'))?.lastKnownAppVersion ?? null;
+    }
+
     for (const record of records) {
-      await window.WorkoutDB.db.put(target.storeName, window.WorkoutDB.migrateRecord(record));
+      const migrated = window.WorkoutDB.migrateRecord(record);
+      if (target.storeName === STORES.settings && migrated.key === 'app' && migrated.lastKnownAppVersion == null && preservedAppVersion != null) {
+        migrated.lastKnownAppVersion = preservedAppVersion;
+      }
+      await db.put(target.storeName, migrated);
     }
     await this.render();
   }
@@ -344,9 +375,27 @@ class DevToolsController {
     if (!confirmed) return;
 
     const { db, STORES } = window.WorkoutDB;
+
+    // Preserve lastKnownAppVersion across the wipe, same reasoning as
+    // restoreAll in db.js: it's install/device state (what version this
+    // browser is actually running), not user data, so losing it makes the
+    // next real update look like a fresh install with nothing to compare
+    // against — silently breaking the "what's new" popup for that update.
+    const previousSettings = await db.get(STORES.settings, 'app');
+    const preservedAppVersion = previousSettings?.lastKnownAppVersion ?? null;
+
     for (const storeName of Object.values(STORES)) {
       await db.clear(storeName);
     }
+
+    if (preservedAppVersion != null) {
+      await db.put(STORES.settings, {
+        key: 'app',
+        schemaVersion: window.WorkoutDB.CURRENT_SCHEMA_VERSION,
+        lastKnownAppVersion: preservedAppVersion,
+      });
+    }
+
     // Reload rather than just re-rendering — same as Load Sample Data and
     // Import All Data. Without it the app keeps running against now-empty
     // stores until the next reload happens to re-seed things like the

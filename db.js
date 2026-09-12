@@ -207,12 +207,33 @@ class Database {
   /** Full restore: clears every store first, then loads `data` (as produced
    * by exportAll) in. Unlike importAll (an upsert that leaves anything not
    * in `data` untouched), this makes the database an exact match for the
-   * backup — anything created/changed since the backup was taken is gone. */
+   * backup — anything created/changed since the backup was taken is gone.
+   *
+   * Exception: `settings.lastKnownAppVersion` is preserved across the
+   * restore if the incoming backup doesn't have one of its own (e.g. an
+   * older backup taken before that field existed). It's install/device
+   * state, not really "your data" — losing it silently breaks the "what's
+   * new" update popup (it looks like a fresh install with nothing to
+   * compare against, so the next update has nothing to announce even
+   * though several versions' worth of changes were never shown). If the
+   * backup *does* carry its own value, that's respected instead — this
+   * only fills a gap, never overwrites real backed-up state. */
   async restoreAll(data) {
+    const previousSettings = await this.get(STORES.settings, 'app');
+    const preservedAppVersion = previousSettings?.lastKnownAppVersion ?? null;
+
     for (const storeName of Object.values(STORES)) {
       await this.clear(storeName);
     }
     await this.importAll(data);
+
+    if (preservedAppVersion != null) {
+      const restoredSettings = (await this.get(STORES.settings, 'app')) ?? { key: 'app', schemaVersion: CURRENT_SCHEMA_VERSION };
+      if (restoredSettings.lastKnownAppVersion == null) {
+        restoredSettings.lastKnownAppVersion = preservedAppVersion;
+        await this.put(STORES.settings, restoredSettings);
+      }
+    }
   }
 }
 

@@ -210,6 +210,7 @@ const TRANSLATIONS = {
     pl: 'Brak szczegółów zmian dla tej aktualizacji.',
   },
   'updates.checkButton': { en: 'Check for Updates', pl: 'Sprawdź aktualizacje' },
+  'updates.releaseNotesButton': { en: 'Release Notes', pl: 'Informacje o wersji' },
 
   'workout.defaultName': { en: 'Workout', pl: 'Trening' },
   'workout.resumeBar': { en: 'Come back to workout', pl: 'Wróć do treningu' },
