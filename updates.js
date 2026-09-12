@@ -118,6 +118,21 @@ async function checkForUpdate() {
   await maybeActivateWaiting();
 }
 
+/** Persists what the most recent activation actually computed, directly
+ * onto the settings object the caller is about to save — viewable via Dev
+ * Tools → settings on any device (including an installed PWA with no
+ * console access) without needing anything else added to the UI. */
+function recordUpdateDebug(settings, { previousVersion, newVersion, entryCount, skipped }) {
+  settings.lastUpdateDebug = {
+    at: new Date().toISOString(),
+    previousVersion,
+    newVersion,
+    entryCount,
+    skipped, // true = the "nothing to announce" branch was taken, popup never shown
+    changelogLength: window.Changelog ? window.Changelog.entries.length : null,
+  };
+}
+
 // -- "What's new" popup, shown once per genuine version transition --------
 
 async function handleActivated(newVersion) {
@@ -129,12 +144,12 @@ async function handleActivated(newVersion) {
     // recorded (fresh install — nothing to compare against) or this
     // message is reporting the version we already know about.
     settings.lastKnownAppVersion = newVersion;
+    recordUpdateDebug(settings, { previousVersion, newVersion, entryCount: null, skipped: true });
     await putSettings(settings);
     return;
   }
 
   settings.lastKnownAppVersion = newVersion;
-  await putSettings(settings);
 
   // Queued rather than shown directly — this fires from an async
   // service-worker message that can land at any moment, completely
@@ -143,10 +158,16 @@ async function handleActivated(newVersion) {
   // behind) one of those. window.WorkoutDialogs.runExclusive (workout.js)
   // is the shared queue all three use.
   const entries = window.Changelog.getEntriesBetween(previousVersion, newVersion);
-  // Cheap diagnostic trail — this exact popup has been hard to debug after
-  // the fact (by the time anything looks wrong, lastKnownAppVersion has
-  // already moved on), so log what was actually used to compute it.
-  console.log('[updates] version transition', { previousVersion, newVersion, entryCount: entries.length });
+
+  // Diagnostic trail, persisted (not just console.log'd) — this popup has
+  // been hard to debug after the fact, and on an installed/homescreen PWA
+  // there's often no way to reach a console at all. Written into the same
+  // 'app' settings record Dev Tools already dumps raw, so checking Dev
+  // Tools → settings on any device, phone included, shows exactly what the
+  // last transition actually computed.
+  recordUpdateDebug(settings, { previousVersion, newVersion, entryCount: entries.length, skipped: false });
+  await putSettings(settings);
+
   await window.WorkoutDialogs.runExclusive(() => showUpdatePopup(entries));
 
   // The page that's been running this whole time was loaded under the OLD

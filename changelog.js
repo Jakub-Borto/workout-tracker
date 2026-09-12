@@ -121,6 +121,13 @@ const CHANGELOG = [
       '"See Changes" on the update popup will now always show at least something for a real update, instead of occasionally saying there were no changes',
     ],
   },
+  {
+    version: 'workout-tracker-v59',
+    date: '2026-09-12',
+    changes: [
+      'Added a hidden diagnostic record (Dev Tools → settings) of exactly what the last update check compared, to help track down an update-popup issue without needing console access',
+    ],
+  },
 ];
 
 /**
