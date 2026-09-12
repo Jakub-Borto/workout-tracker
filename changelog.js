@@ -86,6 +86,13 @@ const CHANGELOG = [
       'Fixed "Checking for updates…" getting stuck forever (and the Check for Updates button appearing dead) if the update check hung',
     ],
   },
+  {
+    version: 'workout-tracker-v54',
+    date: '2026-09-12',
+    changes: [
+      'Muscle groups: removed the generic "Back" option, added "Upper Chest" and "Teres"',
+    ],
+  },
 ];
 
 /**

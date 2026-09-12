@@ -5,7 +5,42 @@ workouts. No frameworks, no build step — plain HTML/CSS/ES6, data lives in
 IndexedDB, installable via "Add to Home Screen". This file explains what's
 built and how each piece works, for picking the project back up later.
 
-## Running it
+## How to ship an update
+
+This is the checklist for **every** change that goes out, no matter how
+small (a one-line CSS tweak counts) — skipping any of these steps either
+means users never see the update, or they update silently with no record
+of what changed.
+
+1. **Make the code change(s).**
+2. **Bump `CACHE_NAME` in `sw.js`** (e.g. `workout-tracker-v52` → `v53`).
+   This is the one thing that actually makes the app update at all — the
+   service worker is cache-first, so without a version bump here it just
+   keeps serving the old files forever, indefinitely, to every user,
+   regardless of what changed in the actual source files. If a new file
+   was added, also add it to the `APP_SHELL` array in `sw.js` so it gets
+   precached (see "Service worker updates" below for the full mechanism —
+   updates install safely in the background and never interrupt an active
+   workout).
+3. **Add a matching entry to `changelog.js`** — same exact version string
+   as the `CACHE_NAME` you just set, as the `version` field, plus a `date`
+   and a `changes` array of short, plain, user-facing bullet points (what
+   changed from the user's point of view, not implementation detail). This
+   is what powers the in-app "What's New" popup — an update with no
+   changelog entry still installs fine, but the popup will just show
+   nothing useful for that version. **Do this for every change, including
+   pure bug fixes — not just new features.**
+4. **Commit and push to `main`.** GitHub Pages serves directly from the
+   repo, so pushing *is* the deploy step — there's no separate build/deploy
+   pipeline. Only commit/push when the user actually asks for it.
+5. Users pick up the update automatically the next time they open the app
+   (checked in the background, activated once it's safe — see "Service
+   worker updates"), or immediately via the Account tab's "Check for
+   Updates" button. No manual cache-clearing should ever be necessary for
+   a real user — that's only ever been a *local dev-server* workaround
+   (see below), never something to tell an actual user to do.
+
+## Local development
 
 ```
 python -m http.server 8149
@@ -20,14 +55,6 @@ page gets the current content. Nothing to do with the app itself; if a code
 change doesn't seem to take effect, verify with that fetch trick first, and
 if it confirms stale content, just bump the port again rather than
 debugging the app.
-
-Every time any `.js`/`.css`/`.html` file changes, **bump `CACHE_NAME` in
-`sw.js`** (e.g. `workout-tracker-v49` → `v50`) **and add a matching entry
-to `changelog.js`** with that exact same version string as its `version`
-field — the two are meant to be bumped together on every deploy (see
-"Service worker updates" below for why they need to match exactly). The
-service worker is cache-first; without a `CACHE_NAME` bump it keeps serving
-stale files.
 
 ## File map
 

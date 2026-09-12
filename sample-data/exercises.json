@@ -96,7 +96,6 @@
       "id": "ex-deadlift",
       "name": "Deadlift",
       "muscleGroups": [
-        "back",
         "lower_back",
         "hamstring",
         "glutes"
@@ -113,7 +112,7 @@
       "id": "ex-barbell-row",
       "name": "Barbell Row",
       "muscleGroups": [
-        "back",
+        "teres",
         "lats"
       ],
       "metric": {
@@ -129,7 +128,7 @@
       "name": "Pull-up",
       "muscleGroups": [
         "lats",
-        "back",
+        "teres",
         "bicep"
       ],
       "metric": {
@@ -145,7 +144,7 @@
       "name": "Lat Pulldown",
       "muscleGroups": [
         "lats",
-        "back"
+        "teres"
       ],
       "metric": {
         "type": "reps",
@@ -159,7 +158,7 @@
       "id": "ex-seated-cable-row",
       "name": "Seated Cable Row",
       "muscleGroups": [
-        "back",
+        "teres",
         "lats"
       ],
       "metric": {
