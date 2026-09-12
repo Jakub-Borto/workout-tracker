@@ -133,6 +133,22 @@ function recordUpdateDebug(settings, { previousVersion, newVersion, entryCount, 
   };
 }
 
+/** See the call site in handleActivated for why this is necessary. Fetches
+ * the plain (non-busted) changelog.js URL — which by this point in the
+ * service worker lifecycle is already the freshly precached new version —
+ * and re-executes it, which re-runs its IIFE and reassigns window.Changelog
+ * in place. */
+async function refreshChangelogModule() {
+  try {
+    const res = await fetch('./changelog.js');
+    const code = await res.text();
+    // eslint-disable-next-line no-eval
+    (0, eval)(code);
+  } catch (err) {
+    console.error('Failed to refresh changelog module before computing update diff', err);
+  }
+}
+
 // -- "What's new" popup, shown once per genuine version transition --------
 
 async function handleActivated(newVersion) {
@@ -150,6 +166,18 @@ async function handleActivated(newVersion) {
   }
 
   settings.lastKnownAppVersion = newVersion;
+
+  // The page executing this code right now loaded changelog.js at page-load
+  // time, under the OLD service worker version — activation only changes
+  // which file is served for *future* requests, it never re-runs scripts
+  // already parsed into this page. So window.Changelog here can never
+  // contain an entry for the version that's activating right now (that
+  // entry only exists in the new file), which made every real transition
+  // compute zero entries. Re-fetch and re-execute changelog.js immediately
+  // before diffing — this hits the exact same precached copy sw.js's
+  // 'install' step already wrote fresh under the plain URL, so
+  // window.Changelog is swapped to the real, current data first.
+  await refreshChangelogModule();
 
   // Queued rather than shown directly — this fires from an async
   // service-worker message that can land at any moment, completely

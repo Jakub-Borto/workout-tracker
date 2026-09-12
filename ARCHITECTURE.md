@@ -715,6 +715,23 @@ full URL changes every time `CACHE_NAME` does, no cache anywhere — browser
 or CDN — has ever seen that exact URL before, so there's nothing to serve
 except a genuine fresh fetch from the origin.
 
+**A fourth, different-shaped bug in the same area**: once every file was
+reliably fresh in Cache Storage, "See Changes" *still* reported no changes
+for a real transition. This one wasn't caching at all — it was that
+`handleActivated()` (in `updates.js`) runs inside the **page that's still
+running the old code**. Activation only changes which file the service
+worker hands out for *future* requests; it never re-executes scripts
+already parsed into the currently-loaded page. So `window.Changelog` at the
+moment `handleActivated` runs is always the array from the *old* file,
+which by construction can never contain an entry for the version that's
+activating right this moment (that entry only exists in the new file the
+page hasn't loaded yet) — so `getEntriesBetween(old, new)` always failed to
+find `new` and returned nothing, on every single real transition. Fixed by
+having `handleActivated` `fetch('./changelog.js')` and re-`eval` it
+immediately before diffing — that fetch hits the exact same precached,
+already-fresh copy the `install` step wrote under the plain URL, so
+`window.Changelog` gets swapped to the real current data first.
+
 **Registration timing gotcha**: `updates.js` registers the service worker
 at *module-load time* (checking `document.readyState` directly, falling
 back to a `window 'load'` listener only if the page hasn't finished

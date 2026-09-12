@@ -135,6 +135,13 @@ const CHANGELOG = [
       'Fixed a deeper caching issue (the CDN, not just the browser) that could still let an old file slip through even after an update reported the correct new version',
     ],
   },
+  {
+    version: 'workout-tracker-v61',
+    date: '2026-09-12',
+    changes: [
+      'Fixed "See Changes" showing no changes for a real update — it was comparing against the changelog still loaded from before the update instead of the new one',
+    ],
+  },
 ];
 
 /**
