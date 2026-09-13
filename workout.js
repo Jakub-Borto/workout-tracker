@@ -136,7 +136,11 @@ function sanitizeInputValue(raw, format) {
     return raw.replace(/[^0-9]/g, '');
   }
   if (format === 'rational') {
-    const cleaned = raw.replace(/[^0-9.]/g, '');
+    // Some keyboards (notably iOS with certain regional/number-pad
+    // settings) only offer a comma for the decimal separator, not a dot.
+    // Treat it exactly like a dot rather than stripping it, so those users
+    // can still type a fractional weight at all.
+    const cleaned = raw.replace(/,/g, '.').replace(/[^0-9.]/g, '');
     const firstDot = cleaned.indexOf('.');
     if (firstDot === -1) return cleaned;
     return cleaned.slice(0, firstDot + 1) + cleaned.slice(firstDot + 1).replace(/\./g, '');

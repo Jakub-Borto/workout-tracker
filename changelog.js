@@ -181,6 +181,13 @@ const CHANGELOG = [
       'Changing the metric or effort tracking on an exercise that already has logged sets now asks for confirmation before saving',
     ],
   },
+  {
+    version: 'workout-tracker-v67',
+    date: '2026-09-13',
+    changes: [
+      'Fixed weight/distance fields rejecting a comma as the decimal separator — some keyboards (notably certain iOS setups) only offer a comma, not a dot',
+    ],
+  },
 ];
 
 /**
