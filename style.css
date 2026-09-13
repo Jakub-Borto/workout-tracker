@@ -580,6 +580,16 @@ body {
   margin: 0 0 16px;
 }
 
+.field-note {
+  background: var(--surface-2);
+  color: var(--text-dim);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 4px 0 16px;
+}
+
 .btn-text {
   background: none;
   border: none;

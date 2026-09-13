@@ -101,6 +101,7 @@ class ExerciseEditorController {
     this.metricUnitSelect = document.getElementById('editor-metric-unit');
     this.effortTrackingContainer = document.getElementById('editor-effort-tracking');
     this.notesInput = document.getElementById('editor-notes-input');
+    this.metricEffortWarningEl = document.getElementById('editor-metric-effort-warning');
     this.errorEl = document.getElementById('editor-error');
     this.cancelBtn = document.getElementById('editor-cancel-btn');
     this.saveBtn = document.getElementById('editor-save-btn');
@@ -109,6 +110,8 @@ class ExerciseEditorController {
     this.editingId = null;
     this.selectedMuscleGroups = new Set();
     this.effortTracking = EffortTracking.NONE;
+    this.originalMetric = null;
+    this.originalEffortTracking = null;
 
     this.populateMetricSelects();
     this.renderMuscleGroupChips();
@@ -190,6 +193,13 @@ class ExerciseEditorController {
     this.titleEl.textContent = window.I18n.t(this.titleEl.dataset.i18n, getLang());
     this.deleteBtn.hidden = !exercise;
 
+    // Only meaningful once there's a saved metric/effortTracking to compare
+    // a later save() against — null for a brand-new exercise, where nothing
+    // has ever been logged yet so no change here could be unsafe.
+    this.originalMetric = exercise ? { ...exercise.metric } : null;
+    this.originalEffortTracking = exercise ? exercise.effortTracking : null;
+    this.metricEffortWarningEl.hidden = !exercise;
+
     this.hideError();
     this.overlay.hidden = false;
   }
@@ -229,6 +239,32 @@ class ExerciseEditorController {
       effortTracking: this.effortTracking,
       notes: this.notesInput.value,
     };
+
+    if (this.editingId && this.originalMetric) {
+      const metricChanged =
+        data.metric.type !== this.originalMetric.type || data.metric.unit !== this.originalMetric.unit;
+      const effortChanged = data.effortTracking !== this.originalEffortTracking;
+
+      // Renaming/muscle-groups/notes are always safe (looked up live by
+      // every screen, never copied onto a WorkoutSet) — only the metric and
+      // effort-tracking definition can make an already-logged set's raw
+      // input_1/input_2/rir/rpe values display incorrectly, since old sets
+      // are never converted to match a new definition. And even that's only
+      // a real risk once something has actually been logged against this
+      // exercise — an unlogged exercise has nothing to make nonsense of.
+      if (metricChanged || effortChanged) {
+        const existingSets = await window.WorkoutRepo.getSetsForExercise(this.editingId);
+        if (existingSets.length > 0) {
+          const lang = getLang();
+          const confirmed = await window.WorkoutDialogs.showConfirm({
+            title: window.I18n.t('exercise.editor.confirmMetricChangeTitle', lang),
+            message: window.I18n.t('exercise.editor.confirmMetricChangeMessage', lang),
+            confirmText: window.I18n.t('exercise.editor.confirmMetricChangeSave', lang),
+          });
+          if (!confirmed) return;
+        }
+      }
+    }
 
     const saved = this.editingId
       ? await window.WorkoutRepo.updateExercise(data)

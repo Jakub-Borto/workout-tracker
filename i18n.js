@@ -46,6 +46,16 @@ const TRANSLATIONS = {
   'exercise.editor.metricTypeLabel': { en: 'Type', pl: 'Typ' },
   'exercise.editor.metricUnitLabel': { en: 'Unit', pl: 'Jednostka' },
   'exercise.editor.effortTrackingLabel': { en: 'Effort Tracking', pl: 'Śledzenie wysiłku' },
+  'exercise.editor.metricEffortWarning': {
+    en: "Renaming this exercise, changing its muscle groups, or editing its notes is always safe — old workout logs update to match. Changing the metric or effort tracking (RIR/RPE) is different: past logged sets aren't converted, so they can end up displaying incorrectly under the new definition. If this exercise hasn't been logged yet, changing anything is safe.",
+    pl: 'Zmiana nazwy, grup mięśniowych lub notatek tego ćwiczenia jest zawsze bezpieczna — stare wpisy treningowe dopasują się automatycznie. Zmiana metryki lub śledzenia wysiłku (RIR/RPE) jest inna: zapisane wcześniej serie nie zostaną przeliczone, więc mogą wyświetlać się niepoprawnie względem nowej definicji. Jeśli to ćwiczenie nie było jeszcze nigdy zalogowane, zmiana czegokolwiek jest bezpieczna.',
+  },
+  'exercise.editor.confirmMetricChangeTitle': { en: 'Change metric or effort tracking?', pl: 'Zmienić metrykę lub śledzenie wysiłku?' },
+  'exercise.editor.confirmMetricChangeMessage': {
+    en: "This exercise already has logged sets. They won't be converted, so they may now display incorrectly under the new metric or effort tracking. Save anyway?",
+    pl: 'To ćwiczenie ma już zapisane serie. Nie zostaną one przeliczone, więc mogą teraz wyświetlać się niepoprawnie przy nowej metryce lub śledzeniu wysiłku. Zapisać mimo to?',
+  },
+  'exercise.editor.confirmMetricChangeSave': { en: 'Save Anyway', pl: 'Zapisz mimo to' },
   'exercise.editor.notesLabel': { en: 'Notes', pl: 'Notatki' },
   'exercise.editor.notesPlaceholder': { en: 'Optional notes', pl: 'Opcjonalne notatki' },
   'exercise.editor.cancel': { en: 'Cancel', pl: 'Anuluj' },

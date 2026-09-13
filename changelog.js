@@ -173,6 +173,14 @@ const CHANGELOG = [
       'Added an Edit button to each exercise during an active workout, opening the same Create/Edit Exercise screen',
     ],
   },
+  {
+    version: 'workout-tracker-v66',
+    date: '2026-09-13',
+    changes: [
+      'The Edit Exercise screen now explains what\'s safe to change (name, muscle groups, notes) vs. what can make old logged sets display incorrectly (metric, effort tracking)',
+      'Changing the metric or effort tracking on an exercise that already has logged sets now asks for confirmation before saving',
+    ],
+  },
 ];
 
 /**
