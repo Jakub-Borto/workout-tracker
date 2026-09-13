@@ -1782,6 +1782,12 @@ class ActiveWorkoutController {
     historyBtn.textContent = t('workout.historyButton');
     historyBtn.addEventListener('click', () => this.handleOpenHistory(exerciseId));
 
+    const editBtn = document.createElement('button');
+    editBtn.type = 'button';
+    editBtn.className = 'workout-action-btn';
+    editBtn.textContent = t('workout.editExercise');
+    editBtn.addEventListener('click', () => this.handleEditExercise(exerciseId));
+
     const idx = this.draft.exercises.indexOf(exerciseId);
 
     const moveLeftBtn = document.createElement('button');
@@ -1808,8 +1814,39 @@ class ActiveWorkoutController {
     removeBtn.textContent = t('workout.remove');
     removeBtn.addEventListener('click', () => this.handleRemoveExercise(exerciseId));
 
-    row.append(addSetBtn, addWarmupBtn, swapBtn, noteBtn, gymBtn, prBtn, historyBtn, moveLeftBtn, moveRightBtn, removeBtn);
+    row.append(
+      addSetBtn,
+      addWarmupBtn,
+      swapBtn,
+      editBtn,
+      noteBtn,
+      gymBtn,
+      prBtn,
+      historyBtn,
+      moveLeftBtn,
+      moveRightBtn,
+      removeBtn
+    );
     return row;
+  }
+
+  /** Opens the same shared Create/Edit Exercise screen used from the
+   * Exercises tab. Editing here only ever changes the Exercise record
+   * itself (name/muscle groups/metric/effort tracking/notes) — it never
+   * touches any WorkoutSet already logged, so nothing about past sets is
+   * rewritten. this.exerciseCache is keyed by exerciseId and would
+   * otherwise keep serving the pre-edit copy for the rest of this session. */
+  async handleEditExercise(exerciseId) {
+    const exercise = await this.loadExercise(exerciseId);
+    const editor = window.WorkoutExercisesFeature.editor;
+    if (!exercise || !editor) return;
+    editor.open(exercise, {
+      onClose: async () => {
+        this.exerciseCache.delete(exerciseId);
+        this.renderExerciseRow();
+        await this.renderMain();
+      },
+    });
   }
 
   async handleOpenPR(exerciseId) {

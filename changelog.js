@@ -165,6 +165,14 @@ const CHANGELOG = [
       'Exercise list now shows the metric and effort tracking (e.g. RIR/RPE) alongside the muscle groups',
     ],
   },
+  {
+    version: 'workout-tracker-v65',
+    date: '2026-09-13',
+    changes: [
+      'Added a new "Rehab" muscle group',
+      'Added an Edit button to each exercise during an active workout, opening the same Create/Edit Exercise screen',
+    ],
+  },
 ];
 
 /**

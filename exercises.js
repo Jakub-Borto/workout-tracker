@@ -48,7 +48,7 @@ const MUSCLE_GROUP_ROWS = [
   ['bicep', 'tricep'],
   ['abs_core', 'neck', 'forearm'],
   ['quads', 'hamstring', 'glutes', 'abductor', 'adductor', 'calves'],
-  ['cardio', 'none'],
+  ['cardio', 'rehab', 'none'],
 ];
 
 function renderChipGrid(container, ids, selectedSet, exclusiveNone, onToggle) {
@@ -173,7 +173,8 @@ class ExerciseEditorController {
     this.errorEl.hidden = true;
   }
 
-  open(exercise = null) {
+  open(exercise = null, { onClose } = {}) {
+    this.onCloseOnce = onClose ?? null;
     this.editingId = exercise ? exercise.id : null;
     this.selectedMuscleGroups = new Set(exercise ? exercise.muscleGroups : []);
 
@@ -195,6 +196,11 @@ class ExerciseEditorController {
 
   close() {
     this.overlay.hidden = true;
+    if (this.onCloseOnce) {
+      const cb = this.onCloseOnce;
+      this.onCloseOnce = null;
+      cb();
+    }
   }
 
   validate() {
@@ -614,9 +620,13 @@ function initExercisesFeature() {
 
   list.refresh();
 
+  window.WorkoutExercisesFeature.editor = editor;
   return { editor, list, filterSheet, gyms };
 }
 
-window.WorkoutExercisesFeature = { init: initExercisesFeature };
+// `editor` is populated once initExercisesFeature() runs (at app startup) —
+// other features (e.g. the active workout screen's Edit button) reuse this
+// same shared overlay instead of creating a second one over the same DOM ids.
+window.WorkoutExercisesFeature = { init: initExercisesFeature, editor: null };
 
 })();

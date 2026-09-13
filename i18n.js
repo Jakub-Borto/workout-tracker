@@ -104,6 +104,7 @@ const TRANSLATIONS = {
   'muscleGroup.adductor': { en: 'Adductor', pl: 'Przywodziciele' },
   'muscleGroup.calves': { en: 'Calves', pl: 'Łydki' },
   'muscleGroup.cardio': { en: 'Cardio', pl: 'Cardio' },
+  'muscleGroup.rehab': { en: 'Rehab', pl: 'Rehabilitacja' },
 
   'common.yes': { en: 'Yes', pl: 'Tak' },
   'common.no': { en: 'No', pl: 'Nie' },
@@ -234,6 +235,7 @@ const TRANSLATIONS = {
   'workout.addSet': { en: 'Add Set', pl: 'Dodaj serię' },
   'workout.addWarmup': { en: 'Add Warmup', pl: 'Dodaj rozgrzewkę' },
   'workout.swap': { en: 'Swap', pl: 'Zamień' },
+  'workout.editExercise': { en: 'Edit', pl: 'Edytuj' },
   'workout.remove': { en: 'Remove', pl: 'Usuń' },
   'workout.deleteSet': { en: 'Delete set', pl: 'Usuń serię' },
   'workout.confirmDeleteSetTitle': { en: 'Delete this set?', pl: 'Usunąć tę serię?' },
