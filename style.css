@@ -460,9 +460,25 @@ body {
   letter-spacing: -0.01em;
 }
 
+.exercise-list-item-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 10px;
+  row-gap: 2px;
+  width: 100%;
+}
+
 .exercise-list-item-groups {
   font-size: 13px;
   color: var(--text-dim);
+}
+
+.exercise-list-item-meta {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-left: auto;
+  text-align: right;
 }
 
 /* Chips (muscle group multi-select) */

@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'workout-tracker-v63';
+const CACHE_NAME = 'workout-tracker-v64';
 const APP_SHELL = [
   './',
   './index.html',

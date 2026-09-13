@@ -412,11 +412,29 @@ class ExercisesListController {
         name.className = 'exercise-list-item-name';
         name.textContent = ex.name;
 
+        const metaRow = document.createElement('div');
+        metaRow.className = 'exercise-list-item-meta-row';
+
         const groups = document.createElement('span');
         groups.className = 'exercise-list-item-groups';
         groups.textContent = ex.muscleGroups.map((g) => window.I18n.t(`muscleGroup.${g}`, lang)).join(', ');
 
-        item.append(name, groups);
+        const metaBits = [];
+        const metricLabel = window.I18n.t(`metricType.${ex.metric.type}`, lang);
+        metaBits.push(
+          ex.metric.unit && ex.metric.unit !== 'none'
+            ? `${metricLabel} (${window.I18n.t(`unit.${ex.metric.unit}`, lang)})`
+            : metricLabel
+        );
+        if (ex.effortTracking && ex.effortTracking !== 'none') {
+          metaBits.push(window.I18n.t(`effortTracking.${ex.effortTracking}`, lang));
+        }
+        const meta = document.createElement('span');
+        meta.className = 'exercise-list-item-meta';
+        meta.textContent = metaBits.join(' · ');
+
+        metaRow.append(groups, meta);
+        item.append(name, metaRow);
         item.addEventListener('click', () => this.onOpenExercise(ex));
         this.listEl.appendChild(item);
       });

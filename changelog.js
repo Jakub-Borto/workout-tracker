@@ -158,6 +158,13 @@ const CHANGELOG = [
       'Another test bullet point',
     ],
   },
+  {
+    version: 'workout-tracker-v64',
+    date: '2026-09-13',
+    changes: [
+      'Exercise list now shows the metric and effort tracking (e.g. RIR/RPE) alongside the muscle groups',
+    ],
+  },
 ];
 
 /**
