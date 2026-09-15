@@ -15,7 +15,8 @@
       },
       "effortTracking": "rir",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-bench-press",
@@ -31,7 +32,8 @@
       },
       "effortTracking": "rir",
       "notes": "Keep shoulder blades pinned back. Grip slightly narrower than last cycle.",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": true
     },
     {
       "id": "ex-bicep-curl",
@@ -45,7 +47,8 @@
       },
       "effortTracking": "rir",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-calf-raise",
@@ -59,7 +62,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-deadlift",
@@ -75,7 +79,8 @@
       },
       "effortTracking": "rir",
       "notes": "Mixed grip on top set only. Reset breath/brace between every rep.",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": true
     },
     {
       "id": "ex-hammer-curl",
@@ -90,7 +95,8 @@
       },
       "effortTracking": "rir",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-incline-db-press",
@@ -105,7 +111,8 @@
       },
       "effortTracking": "rpe",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-lat-pulldown",
@@ -120,7 +127,8 @@
       },
       "effortTracking": "rir",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-lateral-raise",
@@ -134,7 +142,8 @@
       },
       "effortTracking": "rir",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-leg-press",
@@ -149,7 +158,8 @@
       },
       "effortTracking": "rpe",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-overhead-press",
@@ -164,7 +174,8 @@
       },
       "effortTracking": "rir",
       "notes": "Warm up shoulders thoroughly -- old impingement flares up if rushed.",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-plank",
@@ -178,7 +189,8 @@
       },
       "effortTracking": "none",
       "notes": "Squeeze glutes, neutral neck. Quality over duration.",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-pullup",
@@ -194,7 +206,8 @@
       },
       "effortTracking": "rir",
       "notes": "Full dead hang at the bottom, no kipping.",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": true
     },
     {
       "id": "ex-pushup",
@@ -209,7 +222,8 @@
       },
       "effortTracking": "rir",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-rdl",
@@ -224,7 +238,8 @@
       },
       "effortTracking": "rir",
       "notes": "Soft knees, push hips back, stop at mid-shin. Don't round the lower back.",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-seated-cable-row",
@@ -239,7 +254,8 @@
       },
       "effortTracking": "rpe",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-squat",
@@ -254,7 +270,8 @@
       },
       "effortTracking": "rpe",
       "notes": "Low-bar position. Knees out, chase depth before adding weight.",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": true
     },
     {
       "id": "ex-treadmill-run",
@@ -268,7 +285,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-tricep-pushdown",
@@ -282,7 +300,8 @@
       },
       "effortTracking": "rir",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ex-walking-lunge",
@@ -297,7 +316,8 @@
       },
       "effortTracking": "rir",
       "notes": "Use the 12kg dumbbells max in the home gym -- ceiling height limits anything heavier overhead-adjacent.",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     }
   ],
   "workouts": [

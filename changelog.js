@@ -237,6 +237,13 @@ const CHANGELOG = [
       'Added favorite exercises: a star button on each exercise in the Exercises tab (favorites always sort first, filters still apply) and a matching star button in the active workout screen',
     ],
   },
+  {
+    version: 'workout-tracker-v75',
+    date: '2026-09-15',
+    changes: [
+      'Bundled sample data and base exercises now include the new favorite field (a few classic lifts pre-favorited in the sample data; all off by default in the base exercise library)',
+    ],
+  },
 ];
 
 /**

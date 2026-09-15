@@ -15,7 +15,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "014b8e11-360a-46f4-a828-eff1f969370b",
@@ -29,7 +30,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "03cd7255-973a-4860-8b75-f62b9618c1c3",
@@ -44,7 +46,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "03f2e545-6727-45c5-bc16-6f5c4d739b55",
@@ -59,7 +62,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "04695fee-4c78-4326-8101-0b0eb30b8f28",
@@ -75,7 +79,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "04d1d0e3-653e-457d-9ac3-4a3a1144e8d0",
@@ -89,7 +94,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "055024f4-db8a-4f18-8139-cfff561581e1",
@@ -103,7 +109,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "07e9fdb7-0773-4870-a029-f5e77d7f7f65",
@@ -118,7 +125,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "08c84f90-a4a7-4f90-8743-a52a2162281a",
@@ -132,7 +140,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "09178512-9515-4673-a8de-157e7fcf2b7f",
@@ -146,7 +155,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "09a64041-dbb7-4f4e-a63b-466462da8cd6",
@@ -160,7 +170,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "0c8695d1-5c30-430f-85a8-b269eafbe56e",
@@ -174,7 +185,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "0d67e1a0-dfb0-4d14-af8c-e8115f821e24",
@@ -188,7 +200,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "1211db96-daf0-47ae-a702-64f58d31833e",
@@ -202,7 +215,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "18bf15a3-ab38-4f28-bacd-acdd923b5ff5",
@@ -216,7 +230,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "1964e583-c8e3-4762-ba81-93ae3a780fa5",
@@ -231,7 +246,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "1a673c9a-7c70-496f-8f5d-0a527176c1f0",
@@ -245,7 +261,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "1b4f1222-71bf-4098-a378-9d14b87c463d",
@@ -259,7 +276,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "1f61da99-ef9e-464f-8a6b-d8e1408e2f6d",
@@ -273,7 +291,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "229c54ca-6397-48ff-b71e-a82c2f3fba03",
@@ -287,7 +306,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "22e76001-9887-4eed-b92c-cce2bb38168f",
@@ -301,7 +321,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "23c3f520-c551-42c7-8b18-0dbc40d75182",
@@ -315,7 +336,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "23dccb49-8231-4e45-b42b-357344559925",
@@ -329,7 +351,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "24dd3436-c416-44ba-8df2-4e75414e3174",
@@ -343,7 +366,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "25a034bc-d674-4496-82c9-6e4884d04022",
@@ -357,7 +381,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "27855dff-bfe8-45e4-baf9-f08ef0e22518",
@@ -371,7 +396,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "29b14955-1aaa-4c9b-836c-aad7074c2e99",
@@ -386,7 +412,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "2b4409e1-d0ec-4097-9594-3dc8f224e65f",
@@ -400,7 +427,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "2babbb01-d39f-4ea8-81b6-4484a3af4310",
@@ -414,7 +442,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "32905161-d73f-457c-bd8e-3cd7209ed7ff",
@@ -428,7 +457,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "33ff371a-f279-4d6b-a260-0a4824f0a313",
@@ -443,7 +473,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "3406a2ae-4f9d-48a1-b9ef-2224c3df1274",
@@ -457,7 +488,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "35e3776d-66b0-4f23-bd76-3835a1256cca",
@@ -471,7 +503,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "3a30e4a0-1ae2-4aee-a86f-f9cb35c04d21",
@@ -485,7 +518,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "3a971adb-e8df-4761-8a08-1fed8b744351",
@@ -499,7 +533,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "3ba576ec-717f-43ce-bac4-7353b913a619",
@@ -513,7 +548,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "3f772ef0-23bd-4325-8199-3749e02ce3be",
@@ -527,7 +563,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4070134b-e283-43cf-a74f-dce56b2abfe8",
@@ -541,7 +578,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "424cbb42-3451-47e7-8e99-cf739845fbe6",
@@ -557,7 +595,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "42855266-74e2-408f-a763-3f3e6c7393a5",
@@ -571,7 +610,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4617e674-326b-4c28-adb3-7b6a5210fb52",
@@ -585,7 +625,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4643f45c-1fc0-432b-8c6d-dbf5b44458b2",
@@ -599,7 +640,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "48fd01eb-fadc-455e-b7ad-619ccce1afc4",
@@ -614,7 +656,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4aee9cc1-06d4-41b2-9016-222573a997be",
@@ -628,7 +671,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4b420db6-ec63-4a38-a9b6-f901a9be4934",
@@ -643,7 +687,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4bb01b08-2ba1-4fb8-84c2-bd3be063532c",
@@ -657,7 +702,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4c68a6f4-27b5-42a7-a7b4-2f69e84ac473",
@@ -671,7 +717,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4c956295-89a6-4b14-8023-c15401423c05",
@@ -685,7 +732,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4ca3ca4b-4b27-414c-8947-d94fee60ae7e",
@@ -699,7 +747,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4e5d6e1a-a4e3-4f01-96da-cb3f61397a47",
@@ -713,7 +762,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4e767ec1-9847-466d-b4e5-7e19379221fc",
@@ -727,7 +777,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4edcd26c-331c-45d5-8290-f6e3c3fd2ff2",
@@ -741,7 +792,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "4f878d3f-8efa-4efb-b032-c919a76135ae",
@@ -755,7 +807,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "518ea8b9-1c99-4dbc-8dc2-8c285911269d",
@@ -770,7 +823,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "51fee71e-05ac-41a2-9204-f99c995f2c7c",
@@ -784,7 +838,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "52446e71-1107-4019-a27d-2bb4545caf66",
@@ -798,7 +853,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "52509b49-f4d0-49e0-b296-de50a006bd06",
@@ -812,7 +868,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "57772af2-41c6-4271-b8f5-0e1e4d3f98f8",
@@ -826,7 +883,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "5887136b-e700-463e-aff3-0d7720d0d4fb",
@@ -840,7 +898,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "59390292-f209-40a9-a029-6b8ac22fa7f9",
@@ -854,7 +913,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "59df199f-461b-4cd6-a580-fb6b51430177",
@@ -868,7 +928,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "5a0e43ce-d7a6-49ca-823a-3647a9f5372c",
@@ -882,7 +943,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "5b6fc00e-2a11-4dc2-bc89-f701809f73c6",
@@ -897,7 +959,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "5be5ef18-8c57-44da-bbb8-60d357606c9b",
@@ -911,7 +974,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "5dc21c62-a27b-4ba0-8d66-60a0fe779db7",
@@ -925,7 +989,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "5ea443eb-a3fd-4ab0-a651-0cf829de0c01",
@@ -939,7 +1004,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "5f267acc-374f-4409-8211-79c29cf115d9",
@@ -953,7 +1019,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "6468dbcc-965a-49f9-9e99-75f2afeacfdc",
@@ -967,7 +1034,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "65efd24c-740a-4bb1-971b-47b305d0586b",
@@ -981,7 +1049,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "69f1c3a0-55e4-4d21-8c69-12be7fd2c05f",
@@ -995,7 +1064,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "70e03415-47f4-424c-a9f3-812f30bf8ceb",
@@ -1009,7 +1079,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "70e106bf-30e7-432c-9c91-c25c5990a008",
@@ -1023,7 +1094,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "775e3c36-3e80-4555-94ec-413b601108a4",
@@ -1037,7 +1109,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "78602887-add0-45e9-ac40-eb0a58236824",
@@ -1051,7 +1124,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "7ab8ba61-ea8b-4431-8d2b-b17bc53ab37f",
@@ -1065,7 +1139,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "7ceda124-64b4-4bc3-87ed-e9316430dff4",
@@ -1080,7 +1155,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "7f77dae0-3788-4392-b1a0-f05b11e631f1",
@@ -1094,7 +1170,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "8011faa8-4dcd-4825-90d3-b4aa2ddfd800",
@@ -1108,7 +1185,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "80cd5294-3f45-4687-9bb6-9c446716516b",
@@ -1122,7 +1200,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "820cfd53-d99a-4ac4-9754-bc09cf6f1641",
@@ -1136,7 +1215,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "845dba13-9f75-4e35-9873-16e35e309261",
@@ -1150,7 +1230,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "8571975f-5a66-4d25-8200-70083d0eec2f",
@@ -1164,7 +1245,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "85f8102d-04b9-4203-852c-cee3d0ccf82a",
@@ -1178,7 +1260,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "89e2965b-5657-4e22-9bb5-a108e261474e",
@@ -1192,7 +1275,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "8a93b35b-5f5a-42f9-a1d0-5412bdedb967",
@@ -1206,7 +1290,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "8a9d564c-d649-4143-996f-6128c45070f0",
@@ -1220,7 +1305,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "8ba12cc5-ae05-49dd-aa75-93528d30e56b",
@@ -1234,7 +1320,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "9317dcb6-6712-4924-9cbf-ec25dc240d59",
@@ -1248,7 +1335,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "97ec9e2f-3ac0-4bfa-9524-3b677daa14b6",
@@ -1262,7 +1350,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "9807482e-2ead-4508-8a77-fd56f5a42594",
@@ -1276,7 +1365,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "992bbecf-12f0-48ae-b70e-2255c682fdb0",
@@ -1290,7 +1380,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "9a8ac138-fd78-48d7-b43c-dcfe5195cfe8",
@@ -1304,7 +1395,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "9aa5e4fe-ba7a-4f6e-8d8f-7623f14aeaa9",
@@ -1318,7 +1410,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "9e010ad8-3385-4c7a-b0d7-f3996d67579a",
@@ -1332,7 +1425,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "a028656d-3095-48f6-ae05-c9da0bed331e",
@@ -1346,7 +1440,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "a1db0ae2-1984-4755-a6d7-f0f05b7222b3",
@@ -1360,7 +1455,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "a35d8ab7-650d-4ae2-9747-e3f3e3b53bae",
@@ -1374,7 +1470,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "a71f5907-f31f-4709-9de3-2dbe7b0e6555",
@@ -1388,7 +1485,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ac0ad761-34fb-46f7-922f-ce93ee4574d9",
@@ -1402,7 +1500,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "b2399a37-c30c-4293-a659-700ab46d9087",
@@ -1416,7 +1515,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "b2cb20bb-a03d-4e2d-a8a9-d4ff9b6ac59a",
@@ -1430,7 +1530,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "b4b30bd3-e42d-4745-8fef-5d883f308cc8",
@@ -1444,7 +1545,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "b691d96a-c9ff-4fab-8faf-ab5151f0f3e0",
@@ -1458,7 +1560,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "b8f91570-8f06-4af7-a152-ad62d3080476",
@@ -1473,7 +1576,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "b9996336-54bd-481e-9255-2529d6880f8f",
@@ -1487,7 +1591,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "bda1dccc-9fc9-478f-8380-51fa938eb7b5",
@@ -1501,7 +1606,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "be278300-cf0e-4878-bb46-b99845fa37d3",
@@ -1515,7 +1621,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "bf882411-61dc-4382-bcfe-bd5775706533",
@@ -1529,7 +1636,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "bfd7530c-9ebc-42ec-a019-ebb72183f7bf",
@@ -1543,7 +1651,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "c4a34cd8-7500-4e1f-93be-24cd509d8a84",
@@ -1557,7 +1666,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "c4f1721c-a442-4812-bbc2-54199028cf25",
@@ -1571,7 +1681,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "c5d490ea-55a7-483a-9a75-e3f524b2aa5b",
@@ -1585,7 +1696,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "c71479a9-c24f-4f95-9ae7-30a1859b737f",
@@ -1599,7 +1711,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "c7949385-9157-40cb-b974-bdddc2c3bacf",
@@ -1614,7 +1727,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "c7ed8a20-90e6-4747-8eb1-439b1af53e69",
@@ -1628,7 +1742,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "c945e521-c7b0-4729-8cff-79303d209e89",
@@ -1642,7 +1757,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ca8e0c77-2488-474d-8ab0-70b84f8f31b3",
@@ -1656,7 +1772,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "cae752bf-2822-4215-a8b0-33a865c30d5d",
@@ -1670,7 +1787,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "cb26a997-f578-492b-baf4-62f33f6376e8",
@@ -1684,7 +1802,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "cc3497a6-a772-4d5f-ac22-e69c618cec0c",
@@ -1698,7 +1817,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "cdec1bad-be5f-49bd-9e59-f03136623cbc",
@@ -1712,7 +1832,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ced321aa-2f53-4cd4-895a-37cab7f499e4",
@@ -1726,7 +1847,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "d15786f8-5d21-4b20-add0-b9eb3613bb36",
@@ -1740,7 +1862,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "d1ceab57-7742-47f5-b7d0-61434f5a09a4",
@@ -1754,7 +1877,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "d4730726-98b9-4c8b-b1af-f012b634c006",
@@ -1768,7 +1892,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "d57e0896-5ed9-426a-9e66-9ca39808441f",
@@ -1782,7 +1907,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "d647c9cd-141d-4a81-9082-5587ac3294e3",
@@ -1796,7 +1922,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "d6899579-5ab9-42fa-861a-36711b2c332d",
@@ -1810,7 +1937,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "d6ef8339-5fa0-4c36-a287-bd2b44c99f5d",
@@ -1825,7 +1953,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "d8233d84-2be2-47dc-8398-7b575d85947c",
@@ -1839,7 +1968,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "d94680e4-666f-4992-bd31-6c05df83cb05",
@@ -1854,7 +1984,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ddeb8872-6152-4ed8-a23b-c6cac0f9155d",
@@ -1869,7 +2000,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "de345940-8f79-4528-99c3-d35e5b1a9a7f",
@@ -1883,7 +2015,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "df91ac19-825f-4c99-9c60-8f39055ed2c7",
@@ -1899,7 +2032,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "e0a61245-d32f-4dae-bc85-ebefacd84c78",
@@ -1913,7 +2047,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "e7163125-2210-44b2-bedd-8251e9894bc5",
@@ -1927,7 +2062,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "eb838f47-8410-4239-adb3-e8f0dc02aa3f",
@@ -1941,7 +2077,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ec7c6d60-beff-4f8d-81f6-a3480ae008fa",
@@ -1955,7 +2092,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ecd25701-4b5c-4e80-be90-22603b8b7e47",
@@ -1969,7 +2107,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ee1d833c-3aab-413b-b271-4a9314634080",
@@ -1983,7 +2122,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ee9a8ff1-20b5-48bc-86a7-d730bc988861",
@@ -1997,7 +2137,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "f2a06bc2-3bd3-4d52-aa07-dedbed1bebbb",
@@ -2013,7 +2154,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "f2cfac69-4902-4594-99c9-e4844654fb54",
@@ -2027,7 +2169,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "f3e90a90-762c-439d-aaa7-a05392cd70ff",
@@ -2041,7 +2184,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "f5b7f026-167b-455f-b19d-36f579a820d8",
@@ -2055,7 +2199,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "f9d3b263-4100-466c-a6ad-be62a925a06c",
@@ -2070,7 +2215,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     },
     {
       "id": "ff19abf8-d781-4d8e-9651-742a64f7fa40",
@@ -2084,7 +2230,8 @@
       },
       "effortTracking": "none",
       "notes": "",
-      "schemaVersion": 1
+      "schemaVersion": 1,
+      "isFavorite": false
     }
   ]
 }

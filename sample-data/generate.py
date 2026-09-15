@@ -118,6 +118,11 @@ GLOBAL_NOTES = {
     "ex-plank": "Squeeze glutes, neutral neck. Quality over duration.",
 }
 
+# A handful of favorited exercises, same as a real user would only star a
+# few go-to lifts rather than everything -- exercised by the Favorite
+# Exercises feature (star button, favorites-first sort).
+FAVORITE_IDS = {"ex-bench-press", "ex-squat", "ex-deadlift", "ex-pullup"}
+
 exercises = []
 for ex in EXERCISES:
     exercises.append({
@@ -127,6 +132,7 @@ for ex in EXERCISES:
         "metric": {"type": ex["metric"][0], "unit": ex["metric"][1]},
         "effortTracking": ex["effort"],
         "notes": GLOBAL_NOTES.get(ex["id"], ""),
+        "isFavorite": ex["id"] in FAVORITE_IDS,
         "schemaVersion": SCHEMA_VERSION,
     })
 
