@@ -397,6 +397,23 @@ const TRANSLATIONS = {
   'account.languageEnglish': { en: 'English', pl: 'Angielski' },
   'account.languagePolish': { en: 'Polish', pl: 'Polski' },
   'account.devToolsButton': { en: 'Dev Tools', pl: 'Narzędzia deweloperskie' },
+  'account.addBaseExercisesButton': { en: 'Add Base Exercises', pl: 'Dodaj bazowe ćwiczenia' },
+  'account.baseExercisesDialogTitle': { en: 'Add Base Exercises', pl: 'Dodaj bazowe ćwiczenia' },
+  'account.baseExercisesLanguageLabel': { en: 'Language', pl: 'Język' },
+  'account.baseExercisesOverwriteWarning': {
+    en: 'This completely replaces your exercise library. Every exercise you have added or edited will be permanently deleted.',
+    pl: 'To całkowicie zastąpi Twoją bazę ćwiczeń. Każde dodane lub edytowane przez Ciebie ćwiczenie zostanie trwale usunięte.',
+  },
+  'account.baseExercisesEffortWarning': {
+    en: "This effort-tracking setting will be force-applied to every base exercise, even ones it doesn't make sense for (e.g. Running). You can adjust individual exercises afterward.",
+    pl: 'To ustawienie śledzenia wysiłku zostanie wymuszone na każdym bazowym ćwiczeniu, nawet tam, gdzie nie ma to sensu (np. Bieganie). Możesz później dostosować poszczególne ćwiczenia.',
+  },
+  'account.baseExercisesConfirmButton': { en: 'Replace Exercises', pl: 'Zastąp ćwiczenia' },
+  'account.baseExercisesErrorTitle': { en: 'Load Failed', pl: 'Wczytywanie nie powiodło się' },
+  'account.baseExercisesFetchError': {
+    en: 'Could not load the base exercises file. Try again.',
+    pl: 'Nie udało się wczytać pliku bazowych ćwiczeń. Spróbuj ponownie.',
+  },
   'account.exportBackupButton': { en: 'Export All Data', pl: 'Eksportuj wszystkie dane' },
   'account.importBackupButton': { en: 'Import All Data', pl: 'Importuj wszystkie dane' },
   'account.confirmBackupImportTitle': { en: 'Import Backup?', pl: 'Zaimportować kopię zapasową?' },

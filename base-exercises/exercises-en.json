@@ -1,0 +1,38 @@
+[
+  {
+    "id": "base-bench-press",
+    "name": "Bench Press",
+    "muscleGroups": ["chest", "tricep", "shoulders"],
+    "metric": { "type": "reps", "unit": "kg" },
+    "effortTracking": "none",
+    "notes": "",
+    "schemaVersion": 1
+  },
+  {
+    "id": "base-back-squat",
+    "name": "Back Squat",
+    "muscleGroups": ["quads", "glutes", "hamstring"],
+    "metric": { "type": "reps", "unit": "kg" },
+    "effortTracking": "none",
+    "notes": "",
+    "schemaVersion": 1
+  },
+  {
+    "id": "base-pull-up",
+    "name": "Pull-Up",
+    "muscleGroups": ["lats", "bicep"],
+    "metric": { "type": "reps", "unit": "none" },
+    "effortTracking": "none",
+    "notes": "",
+    "schemaVersion": 1
+  },
+  {
+    "id": "base-plank",
+    "name": "Plank",
+    "muscleGroups": ["abs_core"],
+    "metric": { "type": "seconds", "unit": "none" },
+    "effortTracking": "none",
+    "notes": "",
+    "schemaVersion": 1
+  }
+]

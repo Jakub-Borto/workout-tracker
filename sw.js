@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'workout-tracker-v69';
+const CACHE_NAME = 'workout-tracker-v70';
 const APP_SHELL = [
   './',
   './index.html',
@@ -14,6 +14,7 @@ const APP_SHELL = [
   './workout.js',
   './stats.js',
   './devtools.js',
+  './base-exercises.js',
   './backup.js',
   './plans.js',
   './calendar.js',
@@ -25,6 +26,8 @@ const APP_SHELL = [
   './icons/icon-maskable-192.png',
   './icons/icon-maskable-512.png',
   './sample-data/full-backup-sample.json',
+  './base-exercises/exercises-en.json',
+  './base-exercises/exercises-pl.json',
 ];
 
 self.addEventListener('install', (event) => {

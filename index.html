@@ -199,6 +199,13 @@
           </div>
 
           <div class="settings-card">
+            <button type="button" class="settings-row settings-row-link" id="add-base-exercises-btn">
+              <span class="settings-row-label" data-i18n="account.addBaseExercisesButton">Add Base Exercises</span>
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="settings-card">
             <button type="button" class="settings-row settings-row-link" id="check-for-updates-btn">
               <span class="settings-row-label" data-i18n="updates.checkButton">Check for Updates</span>
               <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -690,6 +697,39 @@
     </div>
   </div>
 
+  <!-- Add Base Exercises picker -->
+  <div id="base-exercises-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" data-i18n="account.baseExercisesDialogTitle">Add Base Exercises</p>
+
+      <label class="field-label" data-i18n="account.baseExercisesLanguageLabel">Language</label>
+      <div class="segmented-control" id="base-exercises-language" role="group">
+        <button class="segmented-option is-active" type="button" data-value="en">
+          <span data-i18n="account.languageEnglish">English</span>
+        </button>
+        <button class="segmented-option" type="button" data-value="pl">
+          <span data-i18n="account.languagePolish">Polish</span>
+        </button>
+      </div>
+
+      <label class="field-label" data-i18n="exercise.editor.effortTrackingLabel">Effort Tracking</label>
+      <div class="segmented-control segmented-control-wide" id="base-exercises-effort-tracking" role="group">
+        <button class="segmented-option is-active" type="button" data-value="none"><span data-i18n="effortTracking.none">None</span></button>
+        <button class="segmented-option" type="button" data-value="rir"><span data-i18n="effortTracking.rir">RIR</span></button>
+        <button class="segmented-option" type="button" data-value="rpe"><span data-i18n="effortTracking.rpe">RPE</span></button>
+      </div>
+
+      <p class="field-note" data-i18n="account.baseExercisesOverwriteWarning">This completely replaces your exercise library. Every exercise you have added or edited will be permanently deleted.</p>
+
+      <p class="field-note" id="base-exercises-effort-warning" data-i18n="account.baseExercisesEffortWarning" hidden>This effort-tracking setting will be force-applied to every base exercise, even ones it doesn't make sense for (e.g. Running). You can adjust individual exercises afterward.</p>
+
+      <div class="modal-actions" style="margin-top: 18px;">
+        <button type="button" class="btn-secondary" id="base-exercises-cancel-btn" data-i18n="common.cancel">Cancel</button>
+        <button type="button" class="btn-primary modal-btn-primary" id="base-exercises-confirm-btn" data-i18n="account.baseExercisesConfirmButton">Replace Exercises</button>
+      </div>
+    </div>
+  </div>
+
   <!-- RIR picker -->
   <div id="rir-picker" class="modal-backdrop" hidden>
     <div class="modal-card">
@@ -836,6 +876,7 @@
   <script src="workout.js"></script>
   <script src="stats.js"></script>
   <script src="devtools.js"></script>
+  <script src="base-exercises.js"></script>
   <script src="backup.js"></script>
   <script src="plans.js"></script>
   <script src="calendar.js"></script>

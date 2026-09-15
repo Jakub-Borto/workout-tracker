@@ -223,6 +223,7 @@ async function initApp() {
   window.WorkoutStatsFeature.init();
   window.WorkoutStatsExtras.init();
   window.WorkoutDevTools.init();
+  window.WorkoutBaseExercises.init();
   window.WorkoutBackup.init();
   window.WorkoutPlans.init();
   window.WorkoutUpdates.init();

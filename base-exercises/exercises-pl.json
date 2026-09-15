@@ -1,0 +1,38 @@
+[
+  {
+    "id": "base-bench-press",
+    "name": "Wyciskanie sztangi na ławce",
+    "muscleGroups": ["chest", "tricep", "shoulders"],
+    "metric": { "type": "reps", "unit": "kg" },
+    "effortTracking": "none",
+    "notes": "",
+    "schemaVersion": 1
+  },
+  {
+    "id": "base-back-squat",
+    "name": "Przysiad ze sztangą",
+    "muscleGroups": ["quads", "glutes", "hamstring"],
+    "metric": { "type": "reps", "unit": "kg" },
+    "effortTracking": "none",
+    "notes": "",
+    "schemaVersion": 1
+  },
+  {
+    "id": "base-pull-up",
+    "name": "Podciąganie",
+    "muscleGroups": ["lats", "bicep"],
+    "metric": { "type": "reps", "unit": "none" },
+    "effortTracking": "none",
+    "notes": "",
+    "schemaVersion": 1
+  },
+  {
+    "id": "base-plank",
+    "name": "Deska",
+    "muscleGroups": ["abs_core"],
+    "metric": { "type": "seconds", "unit": "none" },
+    "effortTracking": "none",
+    "notes": "",
+    "schemaVersion": 1
+  }
+]

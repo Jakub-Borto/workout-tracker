@@ -203,6 +203,13 @@ const CHANGELOG = [
       'Fixed the Gyms store\'s "General" gym not being re-created if a Dev Tools import or per-store delete left it missing',
     ],
   },
+  {
+    version: 'workout-tracker-v70',
+    date: '2026-09-15',
+    changes: [
+      'Added "Add Base Exercises" in the Account tab — bulk-loads a starter exercise library in English or Polish, with a chosen default effort-tracking mode',
+    ],
+  },
 ];
 
 /**
