@@ -188,6 +188,13 @@ const CHANGELOG = [
       'Fixed weight/distance fields rejecting a comma as the decimal separator — some keyboards (notably certain iOS setups) only offer a comma, not a dot',
     ],
   },
+  {
+    version: 'workout-tracker-v68',
+    date: '2026-09-15',
+    changes: [
+      'Back-related muscle groups now display as "Back (Lats)", "Back (Traps)", "Back (Teres)" for clarity',
+    ],
+  },
 ];
 
 /**
