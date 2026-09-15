@@ -224,7 +224,7 @@ class DevToolsController {
     });
     if (!confirmed) return;
 
-    const { db, STORES } = window.WorkoutDB;
+    const { db, STORES, GENERAL_GYM_ID } = window.WorkoutDB;
 
     // Deleting the settings store specifically would otherwise silently
     // wipe lastKnownAppVersion (install/device state, not user data) —
@@ -237,6 +237,15 @@ class DevToolsController {
 
     if (preservedAppVersion != null) {
       await db.put(STORES.settings, { key: 'app', schemaVersion: window.WorkoutDB.CURRENT_SCHEMA_VERSION, lastKnownAppVersion: preservedAppVersion });
+    }
+
+    // Same sentinel issue as settings: deleting the Gyms store wipes the
+    // always-present "General" gym (WorkoutSet.gym_id falls back to its
+    // fixed id elsewhere) — this screen doesn't reload afterward, so
+    // without this the app would run with no General gym until the next
+    // full reload happens to trigger runMigrations' own re-seed.
+    if (storeName === STORES.gyms) {
+      await db.put(STORES.gyms, { id: GENERAL_GYM_ID, name: 'General', schemaVersion: window.WorkoutDB.CURRENT_SCHEMA_VERSION });
     }
 
     await this.render();
@@ -302,10 +311,13 @@ class DevToolsController {
   }
 
   /** Accepts either a raw JSON array of records or an export file shaped
-   * like handleExportStore's output (`{ records: [...] }`). Every record is
-   * put()'t through migrateRecord — an upsert, so a record whose id matches
-   * an existing one overwrites it, and everything else in the store is left
-   * alone (unlike the destructive per-store Delete button). */
+   * like handleExportStore's output (`{ records: [...] }`). Fully replaces
+   * the target store's contents — clears it, then put()'s every record from
+   * the file through migrateRecord — matching the same full-replace
+   * semantics as Load Sample Data / Import All Data / restoreAll, rather
+   * than a partial upsert that would leave anything not in the file
+   * (e.g. an exercise added after the file was exported) sitting there
+   * unchanged. */
   async handleImportFileSelected() {
     const file = this.importInput.files[0];
     const target = this.importTarget;
@@ -344,18 +356,25 @@ class DevToolsController {
     });
     if (!confirmed) return;
 
-    const { db, STORES } = window.WorkoutDB;
+    const { db, STORES, GENERAL_GYM_ID } = window.WorkoutDB;
 
-    // Importing into the settings store is a `put` per record, which fully
-    // replaces the existing 'app' record rather than merging fields — an
-    // older settings.json without lastKnownAppVersion (install/device
-    // state, not really "data") would otherwise silently wipe it, same as
-    // handleDeleteStore/restoreAll/handleWipeAll. Only fills the gap if the
-    // incoming record doesn't already carry its own value.
+    // Two stores carry install/device-local state that isn't really "user
+    // data" and has no reason to live in an arbitrary export file — losing
+    // either silently breaks something else rather than just losing a
+    // record the user meant to keep, so both are captured before the clear
+    // and restored if the incoming file doesn't already carry its own
+    // value. Settings: lastKnownAppVersion (see restoreAll/handleWipeAll —
+    // losing it makes the next real update look like a fresh install, so
+    // the "what's new" popup silently never fires). Gyms: the always-present
+    // "General" gym (id fixed as a sentinel elsewhere, e.g. WorkoutSet.gym_id
+    // falls back to it) — an export taken before Gyms existed, or just a
+    // partial file, could easily omit it.
     let preservedAppVersion = null;
     if (target.storeName === STORES.settings) {
       preservedAppVersion = (await db.get(STORES.settings, 'app'))?.lastKnownAppVersion ?? null;
     }
+
+    await db.clear(target.storeName);
 
     for (const record of records) {
       const migrated = window.WorkoutDB.migrateRecord(record);
@@ -364,6 +383,11 @@ class DevToolsController {
       }
       await db.put(target.storeName, migrated);
     }
+
+    if (target.storeName === STORES.gyms && !(await db.get(STORES.gyms, GENERAL_GYM_ID))) {
+      await db.put(STORES.gyms, { id: GENERAL_GYM_ID, name: 'General', schemaVersion: window.WorkoutDB.CURRENT_SCHEMA_VERSION });
+    }
+
     await this.render();
   }
 

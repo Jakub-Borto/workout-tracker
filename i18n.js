@@ -467,10 +467,10 @@ const TRANSLATIONS = {
   'devtools.exportStore': { en: 'Export this data', pl: 'Eksportuj te dane' },
   'devtools.importStore': { en: 'Import into this data', pl: 'Importuj do tych danych' },
   'devtools.importButton': { en: 'Import', pl: 'Importuj' },
-  'devtools.confirmImportTitle': { en: 'Import into {name}?', pl: 'Zaimportować do „{name}”?' },
+  'devtools.confirmImportTitle': { en: 'Replace {name}?', pl: 'Zastąpić „{name}”?' },
   'devtools.confirmImportMessage': {
-    en: 'This adds {count} record(s) from the file into "{name}", overwriting any existing record with the same id. This cannot be undone.',
-    pl: 'To doda {count} rekord(ów) z pliku do „{name}”, nadpisując istniejące rekordy o tym samym id. Tej operacji nie można cofnąć.',
+    en: 'This replaces ALL existing data in "{name}" with the {count} record(s) from the file. Anything currently in this store that isn\'t in the file will be permanently deleted. This cannot be undone.',
+    pl: 'To zastąpi WSZYSTKIE dane w „{name}” {count} rekordami z pliku. Wszystko, co obecnie znajduje się w tym magazynie, a czego nie ma w pliku, zostanie trwale usunięte. Tej operacji nie można cofnąć.',
   },
   'devtools.importErrorTitle': { en: 'Import failed', pl: 'Import nie powiódł się' },
   'devtools.importParseError': {

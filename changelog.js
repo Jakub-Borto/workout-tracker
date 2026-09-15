@@ -195,6 +195,14 @@ const CHANGELOG = [
       'Back-related muscle groups now display as "Back (Lats)", "Back (Traps)", "Back (Teres)" for clarity',
     ],
   },
+  {
+    version: 'workout-tracker-v69',
+    date: '2026-09-15',
+    changes: [
+      'Dev Tools: importing a file into a single store now fully replaces that store\'s data (matching Load Sample Data / Import All Data) instead of only merging in matching records',
+      'Fixed the Gyms store\'s "General" gym not being re-created if a Dev Tools import or per-store delete left it missing',
+    ],
+  },
 ];
 
 /**
