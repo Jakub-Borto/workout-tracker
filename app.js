@@ -93,6 +93,7 @@ class NavController {
 
 class HomeController {
   constructor() {
+    this.weekCardEl = document.getElementById('week-card');
     this.weekLabelEl = document.getElementById('week-label');
     this.weekGridEl = document.getElementById('week-grid');
     this.prevBtn = document.getElementById('week-prev-btn');
@@ -105,8 +106,52 @@ class HomeController {
     this.prevBtn.addEventListener('click', () => this.shiftWeek(-1));
     this.nextBtn.addEventListener('click', () => this.shiftWeek(1));
     this.startWorkoutBtn.addEventListener('click', () => this.handleStartWorkout());
+    this.wireSwipe();
 
     this.render();
+  }
+
+  /** Touch-swipe left/right on the week card as an alternative to the
+   * prev/next buttons — the buttons stay the primary way to navigate, this
+   * is just a convenience for phones. Deliberately a plain touch-distance
+   * check rather than anything gesture-library-based: a short/mostly-
+   * vertical touch (a tap on a day cell, or a vertical scroll) is ignored
+   * so it never fights the day cells' own click handlers. */
+  wireSwipe() {
+    const SWIPE_THRESHOLD_PX = 40;
+    const MAX_VERTICAL_DRIFT_PX = 60;
+    let startX = 0;
+    let startY = 0;
+    let tracking = false;
+
+    this.weekCardEl.addEventListener(
+      'touchstart',
+      (e) => {
+        if (e.touches.length !== 1) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        tracking = true;
+      },
+      { passive: true }
+    );
+
+    this.weekCardEl.addEventListener(
+      'touchend',
+      (e) => {
+        if (!tracking) return;
+        tracking = false;
+        const touch = e.changedTouches[0];
+        const dx = touch.clientX - startX;
+        const dy = touch.clientY - startY;
+        if (Math.abs(dx) < SWIPE_THRESHOLD_PX || Math.abs(dy) > MAX_VERTICAL_DRIFT_PX) return;
+        this.shiftWeek(dx < 0 ? 1 : -1);
+      },
+      { passive: true }
+    );
+
+    this.weekCardEl.addEventListener('touchcancel', () => {
+      tracking = false;
+    });
   }
 
   shiftWeek(deltaWeeks) {

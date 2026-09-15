@@ -210,6 +210,14 @@ const CHANGELOG = [
       'Added "Add Base Exercises" in the Account tab — bulk-loads a starter exercise library in English or Polish, with a chosen default effort-tracking mode',
     ],
   },
+  {
+    version: 'workout-tracker-v71',
+    date: '2026-09-15',
+    changes: [
+      'Fixed the "resume workout" bar\'s elapsed time getting stuck instead of ticking while the active workout is minimized',
+      'You can now swipe left/right on the calendar week strip to move between weeks, not just tap the arrow buttons',
+    ],
+  },
 ];
 
 /**

@@ -1262,6 +1262,8 @@ class ActiveWorkoutController {
 
     this.elapsedInterval = null;
     this.countdownInterval = null;
+    this.resumeBarInterval = null;
+    this.resumeBarDraft = null;
 
     this.picker = sharedExercisePicker;
     this.noteEditor = sharedNoteEditor;
@@ -2231,10 +2233,29 @@ class ActiveWorkoutController {
     const draft = this.draft && this.isOpen() ? this.draft : await window.WorkoutRepo.getDraft();
     const shouldShow = !!draft && !this.isOpen();
     this.resumeBar.hidden = !shouldShow;
+
     if (shouldShow) {
-      const ms = Date.now() - new Date(draft.startedAt).getTime();
-      this.resumeBarElapsed.textContent = formatElapsed(ms);
+      // The full workout screen's own elapsed ticker (tickElapsed) stops as
+      // soon as it's minimized, so without a ticker of its own here the
+      // resume bar only ever got a single snapshot — showing whatever time
+      // happened to be true at the moment it was minimized, then never
+      // advancing until the next full refreshResumeBar() call (previously
+      // only the 30s safety-net poll below, which reads as "stuck").
+      this.resumeBarDraft = draft;
+      this.tickResumeBar();
+      if (!this.resumeBarInterval) {
+        this.resumeBarInterval = setInterval(() => this.tickResumeBar(), 1000);
+      }
+    } else if (this.resumeBarInterval) {
+      clearInterval(this.resumeBarInterval);
+      this.resumeBarInterval = null;
     }
+  }
+
+  tickResumeBar() {
+    if (!this.resumeBarDraft) return;
+    const ms = Date.now() - new Date(this.resumeBarDraft.startedAt).getTime();
+    this.resumeBarElapsed.textContent = formatElapsed(ms);
   }
 }
 
