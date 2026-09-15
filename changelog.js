@@ -230,6 +230,13 @@ const CHANGELOG = [
     date: '2026-09-15',
     changes: ['Added a "Full Body" muscle group'],
   },
+  {
+    version: 'workout-tracker-v74',
+    date: '2026-09-15',
+    changes: [
+      'Added favorite exercises: a star button on each exercise in the Exercises tab (favorites always sort first, filters still apply) and a matching star button in the active workout screen',
+    ],
+  },
 ];
 
 /**

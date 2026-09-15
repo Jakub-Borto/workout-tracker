@@ -262,7 +262,15 @@ async function initApp() {
   updateLanguageSwitchUI(currentLanguage);
   wireLanguageSwitch();
 
-  const navController = new NavController();
+  const navController = new NavController({
+    onNavigate: (target) => {
+      // Favoriting an exercise from the active workout screen updates a
+      // separately-fetched copy of the exercise list, so without this the
+      // Exercises tab could keep showing a stale favorite/order until the
+      // next edit/delete happened to trigger its own refresh.
+      if (target === 'exercises') window.WorkoutExercisesFeature.list?.refresh();
+    },
+  });
   homeControllerInstance = new HomeController();
   window.WorkoutExercisesFeature.init();
   window.WorkoutStatsFeature.init();

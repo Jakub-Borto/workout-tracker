@@ -38,6 +38,7 @@ const TRANSLATIONS = {
   'exercises.clearFilters': { en: 'Clear filters', pl: 'Wyczyść filtry' },
 
   'exercise.editor.titleNew': { en: 'New Exercise', pl: 'Nowe ćwiczenie' },
+  'exercise.favoriteToggle': { en: 'Toggle favorite', pl: 'Przełącz ulubione' },
   'exercise.editor.titleEdit': { en: 'Edit Exercise', pl: 'Edytuj ćwiczenie' },
   'exercise.editor.nameLabel': { en: 'Name', pl: 'Nazwa' },
   'exercise.editor.namePlaceholder': { en: 'e.g. Bench Press', pl: 'np. Wyciskanie sztangi' },

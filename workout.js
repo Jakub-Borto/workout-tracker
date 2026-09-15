@@ -1820,6 +1820,15 @@ class ActiveWorkoutController {
     removeBtn.textContent = t('workout.remove');
     removeBtn.addEventListener('click', () => this.handleRemoveExercise(exerciseId));
 
+    const favoriteBtn = document.createElement('button');
+    favoriteBtn.type = 'button';
+    favoriteBtn.className = 'workout-action-btn workout-action-btn-icon';
+    favoriteBtn.classList.toggle('is-favorite', !!exercise.isFavorite);
+    favoriteBtn.setAttribute('aria-pressed', String(!!exercise.isFavorite));
+    favoriteBtn.setAttribute('aria-label', t('exercise.favoriteToggle'));
+    favoriteBtn.innerHTML = window.WorkoutIcons.starIconSvg(!!exercise.isFavorite);
+    favoriteBtn.addEventListener('click', () => this.handleToggleFavorite(exerciseId));
+
     row.append(
       addSetBtn,
       addWarmupBtn,
@@ -1831,9 +1840,17 @@ class ActiveWorkoutController {
       removeBtn,
       gymBtn,
       moveLeftBtn,
-      moveRightBtn
+      moveRightBtn,
+      favoriteBtn
     );
     return row;
+  }
+
+  async handleToggleFavorite(exerciseId) {
+    const updated = await window.WorkoutRepo.toggleExerciseFavorite(exerciseId);
+    if (!updated) return;
+    this.exerciseCache.set(exerciseId, updated);
+    await this.renderMain();
   }
 
   /** Opens the same shared Create/Edit Exercise screen used from the

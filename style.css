@@ -441,7 +441,8 @@ body {
   flex-direction: column;
   align-items: flex-start;
   gap: 3px;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   text-align: left;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -451,6 +452,37 @@ body {
 }
 
 .exercise-list-item:active {
+  background: var(--surface-2);
+}
+
+/* Only the Exercises tab's own list wraps a favorite-star button next to
+   the (otherwise unchanged) .exercise-list-item button — the shared
+   exercise picker used from an active workout/plan builder still renders
+   a bare .exercise-list-item with no wrapper. */
+.exercise-list-row {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  width: 100%;
+}
+
+.exercise-favorite-btn {
+  flex-shrink: 0;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-dim);
+}
+
+.exercise-favorite-btn.is-favorite {
+  color: #f5b301;
+}
+
+.exercise-favorite-btn:active {
   background: var(--surface-2);
 }
 
@@ -1093,6 +1125,10 @@ body {
 
 .workout-action-btn-danger {
   color: var(--danger);
+}
+
+.workout-action-btn.is-favorite {
+  color: #f5b301;
 }
 
 .set-table-wrap {

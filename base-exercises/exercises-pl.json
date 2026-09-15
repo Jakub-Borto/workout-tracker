@@ -1,38 +1,2090 @@
-[
-  {
-    "id": "base-bench-press",
-    "name": "Wyciskanie sztangi na ławce",
-    "muscleGroups": ["chest", "tricep", "shoulders"],
-    "metric": { "type": "reps", "unit": "kg" },
-    "effortTracking": "none",
-    "notes": "",
-    "schemaVersion": 1
-  },
-  {
-    "id": "base-back-squat",
-    "name": "Przysiad ze sztangą",
-    "muscleGroups": ["quads", "glutes", "hamstring"],
-    "metric": { "type": "reps", "unit": "kg" },
-    "effortTracking": "none",
-    "notes": "",
-    "schemaVersion": 1
-  },
-  {
-    "id": "base-pull-up",
-    "name": "Podciąganie",
-    "muscleGroups": ["lats", "bicep"],
-    "metric": { "type": "reps", "unit": "none" },
-    "effortTracking": "none",
-    "notes": "",
-    "schemaVersion": 1
-  },
-  {
-    "id": "base-plank",
-    "name": "Deska",
-    "muscleGroups": ["abs_core"],
-    "metric": { "type": "seconds", "unit": "none" },
-    "effortTracking": "none",
-    "notes": "",
-    "schemaVersion": 1
-  }
-]
+{
+  "store": "exercises",
+  "exportedAt": "2026-09-15T20:57:04.278Z",
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "00d61d97-0b81-4b19-a031-16e589262434",
+      "name": "Deska",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "seconds",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "014b8e11-360a-46f4-a828-eff1f969370b",
+      "name": "Uginanie Ramion na Wyciągu Jednorącz",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "03cd7255-973a-4860-8b75-f62b9618c1c3",
+      "name": "Ściąganie Drążka Wyciągu Górnego V-Gripem",
+      "muscleGroups": [
+        "lats",
+        "teres"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "03f2e545-6727-45c5-bc16-6f5c4d739b55",
+      "name": "Ściąganie Drążka Wyciągu Górnego Neutralnym Chwytem",
+      "muscleGroups": [
+        "teres",
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "04695fee-4c78-4326-8101-0b0eb30b8f28",
+      "name": "Podciąganie na Drążku",
+      "muscleGroups": [
+        "lats",
+        "teres",
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "04d1d0e3-653e-457d-9ac3-4a3a1144e8d0",
+      "name": "Rotacja Tułowia na Wyciągu",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "055024f4-db8a-4f18-8139-cfff561581e1",
+      "name": "Prostowanie Ramion nad Głową z Hantlami",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "07e9fdb7-0773-4870-a029-f5e77d7f7f65",
+      "name": "Wiosłowanie Sztangą Podchwytem",
+      "muscleGroups": [
+        "lats",
+        "teres"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "08c84f90-a4a7-4f90-8743-a52a2162281a",
+      "name": "Wiosłowanie T-Bar Neutralnym Chwytem",
+      "muscleGroups": [
+        "lats"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "09178512-9515-4673-a8de-157e7fcf2b7f",
+      "name": "Wyciskanie Sztangi Larsena",
+      "muscleGroups": [
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "09a64041-dbb7-4f4e-a63b-466462da8cd6",
+      "name": "Przysiad ze Sztangą z Tyłu (High-Bar)",
+      "muscleGroups": [
+        "quads"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "0c8695d1-5c30-430f-85a8-b269eafbe56e",
+      "name": "Prostowanie Skrzyżowanych Ramion zza Głowy",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "0d67e1a0-dfb0-4d14-af8c-e8115f821e24",
+      "name": "Uginanie Nóg na Maszynie Siedząc",
+      "muscleGroups": [
+        "hamstring"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "1211db96-daf0-47ae-a702-64f58d31833e",
+      "name": "Odwodzenie Ramienia Na Maszynie",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "18bf15a3-ab38-4f28-bacd-acdd923b5ff5",
+      "name": "Brzuszki",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "1964e583-c8e3-4762-ba81-93ae3a780fa5",
+      "name": "Podciąganie na Drążku Szerokim Chwytem",
+      "muscleGroups": [
+        "traps",
+        "teres"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "1a673c9a-7c70-496f-8f5d-0a527176c1f0",
+      "name": "Prostowanie Ramion nad Głową z Hantlami Leżąc",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "1b4f1222-71bf-4098-a378-9d14b87c463d",
+      "name": "Wyciskanie Francuskie Leżąc",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "1f61da99-ef9e-464f-8a6b-d8e1408e2f6d",
+      "name": "Face Pull",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "229c54ca-6397-48ff-b71e-a82c2f3fba03",
+      "name": "Unoszenie Nóg z Ciężarem",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "22e76001-9887-4eed-b92c-cce2bb38168f",
+      "name": "Leg Press",
+      "muscleGroups": [
+        "quads"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "23c3f520-c551-42c7-8b18-0dbc40d75182",
+      "name": "Prostowanie Ramion na Wyciągu w Dół Linką",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "23dccb49-8231-4e45-b42b-357344559925",
+      "name": "Wspięcia na Palce Na Leg Pressie",
+      "muscleGroups": [
+        "calves"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "24dd3436-c416-44ba-8df2-4e75414e3174",
+      "name": "Prostowanie Ramion nad Głową na Wyciągu Drążkiem Łamanym",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "25a034bc-d674-4496-82c9-6e4884d04022",
+      "name": "Wiosłowanie T-Bar Szerokim Chwytem",
+      "muscleGroups": [
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "27855dff-bfe8-45e4-baf9-f08ef0e22518",
+      "name": "Wznosy Do Boku Na Linkach",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "29b14955-1aaa-4c9b-836c-aad7074c2e99",
+      "name": "Ściąganie Drążka Wyciągu Górnego Podchwytem",
+      "muscleGroups": [
+        "lats",
+        "teres"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "2b4409e1-d0ec-4097-9594-3dc8f224e65f",
+      "name": "Prostowanie Ramion na Wyciągu w Dół Drążkiem Łamanym",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "2babbb01-d39f-4ea8-81b6-4484a3af4310",
+      "name": "Rozpiętki Na Maszynie",
+      "muscleGroups": [
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "32905161-d73f-457c-bd8e-3cd7209ed7ff",
+      "name": "Uginanie Ramion na Bramie w Pozycji Rozciągniętej",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "33ff371a-f279-4d6b-a260-0a4824f0a313",
+      "name": "Ściąganie Drążka Wyciągu Górnego Szerokim Chwytem",
+      "muscleGroups": [
+        "teres",
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "3406a2ae-4f9d-48a1-b9ef-2224c3df1274",
+      "name": "Wznosy Do Boku Z Hantlami",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "35e3776d-66b0-4f23-bd76-3835a1256cca",
+      "name": "Uginanie Ramion ze Sztangą Łamaną",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "3a30e4a0-1ae2-4aee-a86f-f9cb35c04d21",
+      "name": "Wyciskanie Na Maszynie Nad Głowę",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "3a971adb-e8df-4761-8a08-1fed8b744351",
+      "name": "Prostowanie Ramion nad Głową z Hantlami Jednorącz",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "3ba576ec-717f-43ce-bac4-7353b913a619",
+      "name": "Wyciskanie Sztangi Na Ławce Płaskiej",
+      "muscleGroups": [
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "3f772ef0-23bd-4325-8199-3749e02ce3be",
+      "name": "Rozpiętki (Z Góry Na Dół)",
+      "muscleGroups": [
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4070134b-e283-43cf-a74f-dce56b2abfe8",
+      "name": "Uginanie Nadgarstka na Wyciągu Jednorącz",
+      "muscleGroups": [
+        "forearm"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "424cbb42-3451-47e7-8e99-cf739845fbe6",
+      "name": "Pullover na Maszynie",
+      "muscleGroups": [
+        "chest",
+        "teres",
+        "lats"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "42855266-74e2-408f-a763-3f3e6c7393a5",
+      "name": "Uginanie Ramion Młotkowe z Hantlami",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4617e674-326b-4c28-adb3-7b6a5210fb52",
+      "name": "Wiosłowanie Hantlami z Podparciem Klatki",
+      "muscleGroups": [
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4643f45c-1fc0-432b-8c6d-dbf5b44458b2",
+      "name": "Wyciskanie Leżąc Na Maszynie Na Skosie Dodatnim",
+      "muscleGroups": [
+        "upper_chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "48fd01eb-fadc-455e-b7ad-619ccce1afc4",
+      "name": "Martwy Ciąg Rumuński",
+      "muscleGroups": [
+        "glutes",
+        "hamstring"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4aee9cc1-06d4-41b2-9016-222573a997be",
+      "name": "Deska Boczna",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "seconds",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4b420db6-ec63-4a38-a9b6-f901a9be4934",
+      "name": "Podciąganie na Drążku Neutralnym Chwytem",
+      "muscleGroups": [
+        "lats",
+        "teres"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4bb01b08-2ba1-4fb8-84c2-bd3be063532c",
+      "name": "Wyciskanie Hantli Na Ławce Płaskiej",
+      "muscleGroups": [
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4c68a6f4-27b5-42a7-a7b4-2f69e84ac473",
+      "name": "Jefferson Curl",
+      "muscleGroups": [
+        "lower_back"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4c956295-89a6-4b14-8023-c15401423c05",
+      "name": "Uginanie Nadgarstka z Hantlami",
+      "muscleGroups": [
+        "forearm"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4ca3ca4b-4b27-414c-8947-d94fee60ae7e",
+      "name": "Wyciskanie Sztangi Na Ławce Skośnej",
+      "muscleGroups": [
+        "upper_chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4e5d6e1a-a4e3-4f01-96da-cb3f61397a47",
+      "name": "Zarzut na Barki ze Sztangą",
+      "muscleGroups": [
+        "full_body"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4e767ec1-9847-466d-b4e5-7e19379221fc",
+      "name": "Deska z Ciężarem",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "seconds",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4edcd26c-331c-45d5-8290-f6e3c3fd2ff2",
+      "name": "Prostowanie Ramion na Wyciągu w Dół Linką Jednorącz",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "4f878d3f-8efa-4efb-b032-c919a76135ae",
+      "name": "Brzuszki z Ciężarem",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "518ea8b9-1c99-4dbc-8dc2-8c285911269d",
+      "name": "Hip Thrust na Maszynie",
+      "muscleGroups": [
+        "glutes",
+        "hamstring"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "51fee71e-05ac-41a2-9204-f99c995f2c7c",
+      "name": "Prostowanie Ramion nad Głową na Wyciągu Prostym Drążkiem",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "52446e71-1107-4019-a27d-2bb4545caf66",
+      "name": "Wiosłowanie na Maszynie Neutralnym Chwytem",
+      "muscleGroups": [
+        "lats"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "52509b49-f4d0-49e0-b296-de50a006bd06",
+      "name": "Uginanie Ramion z Hantlami",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "57772af2-41c6-4271-b8f5-0e1e4d3f98f8",
+      "name": "Wyciskanie Na Maszynie Leżąc",
+      "muscleGroups": [
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "5887136b-e700-463e-aff3-0d7720d0d4fb",
+      "name": "Uginanie Ramion na Modlitewniku ze Sztangą Łamaną",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "59390292-f209-40a9-a029-6b8ac22fa7f9",
+      "name": "Podrzut Siłowy",
+      "muscleGroups": [
+        "full_body"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "59df199f-461b-4cd6-a580-fb6b51430177",
+      "name": "Uginanie Ramion na Modlitewniku Hantlami Jednorącz",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "5a0e43ce-d7a6-49ca-823a-3647a9f5372c",
+      "name": "Unoszenie Nóg w Bok z Ciężarem",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "5b6fc00e-2a11-4dc2-bc89-f701809f73c6",
+      "name": "JM Press na Maszynie Smitha",
+      "muscleGroups": [
+        "tricep",
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "5be5ef18-8c57-44da-bbb8-60d357606c9b",
+      "name": "Wspięcia na Palce Stojąc na Maszynie",
+      "muscleGroups": [
+        "calves"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "5dc21c62-a27b-4ba0-8d66-60a0fe779db7",
+      "name": "Wznosy Do Przodu Z Hantlami",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "5ea443eb-a3fd-4ab0-a651-0cf829de0c01",
+      "name": "Prostowanie Ramion na Wyciągu w Dół Uchwytem Jednorącz",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "5f267acc-374f-4409-8211-79c29cf115d9",
+      "name": "Wiosłowanie Sztangą",
+      "muscleGroups": [
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "6468dbcc-965a-49f9-9e99-75f2afeacfdc",
+      "name": "Wiosłowanie na Maszynie Szerokim Chwytem",
+      "muscleGroups": [
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "65efd24c-740a-4bb1-971b-47b305d0586b",
+      "name": "Prostowanie Ramion nad Głową na Wyciągu Linką Jednorącz",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "69f1c3a0-55e4-4d21-8c69-12be7fd2c05f",
+      "name": "Uginanie Nóg na Maszynie Leżąc",
+      "muscleGroups": [
+        "hamstring"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "70e03415-47f4-424c-a9f3-812f30bf8ceb",
+      "name": "Uginanie Ramion na Maszynie",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "70e106bf-30e7-432c-9c91-c25c5990a008",
+      "name": "Wyciskanie Hantli Na Ławce Skośnej",
+      "muscleGroups": [
+        "upper_chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "775e3c36-3e80-4555-94ec-413b601108a4",
+      "name": "Dzień Dobry Stojąc",
+      "muscleGroups": [
+        "lower_back"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "78602887-add0-45e9-ac40-eb0a58236824",
+      "name": "Y-Raise",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "7ab8ba61-ea8b-4431-8d2b-b17bc53ab37f",
+      "name": "Wznosy Do Boku W Opadzie Tłowia",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "7ceda124-64b4-4bc3-87ed-e9316430dff4",
+      "name": "Bułgary",
+      "muscleGroups": [
+        "quads",
+        "glutes"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "7f77dae0-3788-4392-b1a0-f05b11e631f1",
+      "name": "Uginanie Ramion ze Sztangą Prostą",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "8011faa8-4dcd-4825-90d3-b4aa2ddfd800",
+      "name": "Wyciskanie Sztangi Nad Głowę Stojąc",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "80cd5294-3f45-4687-9bb6-9c446716516b",
+      "name": "Wznosy Bokiem Na Maszynie",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "820cfd53-d99a-4ac4-9754-bc09cf6f1641",
+      "name": "Uginanie Ramion na Bramie w Pozycji Rozciągniętej Jednorącz",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "845dba13-9f75-4e35-9873-16e35e309261",
+      "name": "Wspięcia na Palce Stojąc z Hantlami",
+      "muscleGroups": [
+        "calves"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "8571975f-5a66-4d25-8200-70083d0eec2f",
+      "name": "Allahy (Tyłem do Wyciągu)",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "85f8102d-04b9-4203-852c-cee3d0ccf82a",
+      "name": "Przysiad ze Sztangą z Przodu",
+      "muscleGroups": [
+        "quads"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "89e2965b-5657-4e22-9bb5-a108e261474e",
+      "name": "Prostowanie Ramion na Wyciągu w Dół Prostym Drążkiem",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "8a93b35b-5f5a-42f9-a1d0-5412bdedb967",
+      "name": "Uginanie Ramion Młotkowe na Modlitewniku Hantlami Jednorącz",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "8a9d564c-d649-4143-996f-6128c45070f0",
+      "name": "Prostowanie Ramion nad Głową na Wyciągu Linką",
+      "muscleGroups": [
+        "tricep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "8ba12cc5-ae05-49dd-aa75-93528d30e56b",
+      "name": "Zarzut ze Sztangą",
+      "muscleGroups": [
+        "full_body"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "9317dcb6-6712-4924-9cbf-ec25dc240d59",
+      "name": "Prostowanie Nadgarstka na Wyciągu Jednorącz",
+      "muscleGroups": [
+        "forearm"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "97ec9e2f-3ac0-4bfa-9524-3b677daa14b6",
+      "name": "Prostowanie Nadgarstka z Hantlami",
+      "muscleGroups": [
+        "forearm"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "9807482e-2ead-4508-8a77-fd56f5a42594",
+      "name": "Unoszenie Nóg",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "992bbecf-12f0-48ae-b70e-2255c682fdb0",
+      "name": "Wznosy Bokiem Na Wysokich Linkach",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "9a8ac138-fd78-48d7-b43c-dcfe5195cfe8",
+      "name": "Wiosłowanie Hantlami Jednorącz",
+      "muscleGroups": [
+        "lats"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "9aa5e4fe-ba7a-4f6e-8d8f-7623f14aeaa9",
+      "name": "Wysokie Wiosłowanie Jednorącz Siedząc",
+      "muscleGroups": [
+        "lats"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "9e010ad8-3385-4c7a-b0d7-f3996d67579a",
+      "name": "Shrugsy Hantlami",
+      "muscleGroups": [
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "a028656d-3095-48f6-ae05-c9da0bed331e",
+      "name": "Przysiad ze Sztangą z Tyłu (Low-Bar)",
+      "muscleGroups": [
+        "quads"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "a1db0ae2-1984-4755-a6d7-f0f05b7222b3",
+      "name": "Wyciskanie Hantli Nad Głowę",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "a35d8ab7-650d-4ae2-9747-e3f3e3b53bae",
+      "name": "Rotacje Szyi",
+      "muscleGroups": [
+        "neck"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "a71f5907-f31f-4709-9de3-2dbe7b0e6555",
+      "name": "Wiosłowanie na Maszynie",
+      "muscleGroups": [
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ac0ad761-34fb-46f7-922f-ce93ee4574d9",
+      "name": "Allahy (Przodem do Wyciągu)",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "b2399a37-c30c-4293-a659-700ab46d9087",
+      "name": "Wyprosty Biodra na Łwace Rzymskiej",
+      "muscleGroups": [
+        "lower_back"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "b2cb20bb-a03d-4e2d-a8a9-d4ff9b6ac59a",
+      "name": "Wspięcia na Palce Stojąc na Maszynie Smitha",
+      "muscleGroups": [
+        "calves"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "b4b30bd3-e42d-4745-8fef-5d883f308cc8",
+      "name": "Ściąganie Drążka Wyciągu Górnego Jednorącz",
+      "muscleGroups": [
+        "lats"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "b691d96a-c9ff-4fab-8faf-ab5151f0f3e0",
+      "name": "Prostowanie Nadgarstka na Wyciągu Prostym Drążkiem",
+      "muscleGroups": [
+        "forearm"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "b8f91570-8f06-4af7-a152-ad62d3080476",
+      "name": "Hip Thrust ze Sztangą",
+      "muscleGroups": [
+        "glutes",
+        "hamstring"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "b9996336-54bd-481e-9255-2529d6880f8f",
+      "name": "Ściąganie Drążka Wyciągu Górnego",
+      "muscleGroups": [
+        "teres"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "bda1dccc-9fc9-478f-8380-51fa938eb7b5",
+      "name": "Ściąganie Drążka Wyciągu Górnego Jednorącz w Klęku",
+      "muscleGroups": [
+        "lats"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "be278300-cf0e-4878-bb46-b99845fa37d3",
+      "name": "Wiosłowanie na Wyciągu V-Gripem",
+      "muscleGroups": [
+        "lats"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "bf882411-61dc-4382-bcfe-bd5775706533",
+      "name": "Wiosłowanie na Wyciągu Jednorącz Neutralnym Chwytem",
+      "muscleGroups": [
+        "lats"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "bfd7530c-9ebc-42ec-a019-ebb72183f7bf",
+      "name": "Wznosy Do Przodu Na Linkach",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "c4a34cd8-7500-4e1f-93be-24cd509d8a84",
+      "name": "Uginanie Ramion Młotkowe na Linkach",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "c4f1721c-a442-4812-bbc2-54199028cf25",
+      "name": "Maszyna do Przywodzenia",
+      "muscleGroups": [
+        "adductor"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "c5d490ea-55a7-483a-9a75-e3f524b2aa5b",
+      "name": "Uginanie Szyi",
+      "muscleGroups": [
+        "neck"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "c71479a9-c24f-4f95-9ae7-30a1859b737f",
+      "name": "Wyciskanie Sztangi Spoto",
+      "muscleGroups": [
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "c7949385-9157-40cb-b974-bdddc2c3bacf",
+      "name": "Mostek Biodrowy ze Sztangą",
+      "muscleGroups": [
+        "glutes",
+        "hamstring"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "c7ed8a20-90e6-4747-8eb1-439b1af53e69",
+      "name": "Wiosłowanie na Maszynie Jednorącz Neutralnym Chwytem",
+      "muscleGroups": [
+        "lats"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "c945e521-c7b0-4729-8cff-79303d209e89",
+      "name": "Wiosłowanie na Wyciągu",
+      "muscleGroups": [
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ca8e0c77-2488-474d-8ab0-70b84f8f31b3",
+      "name": "Rozpiętki (Z Dołu Do Góry)",
+      "muscleGroups": [
+        "upper_chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "cae752bf-2822-4215-a8b0-33a865c30d5d",
+      "name": "Maszyna do Odwodzenia",
+      "muscleGroups": [
+        "abductor"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "cb26a997-f578-492b-baf4-62f33f6376e8",
+      "name": "Wyciskanie Sztangi Nad Głowę Siedząc",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "cc3497a6-a772-4d5f-ac22-e69c618cec0c",
+      "name": "Prostowanie Szyi",
+      "muscleGroups": [
+        "neck"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "cdec1bad-be5f-49bd-9e59-f03136623cbc",
+      "name": "Shrugsy ze Sztangą",
+      "muscleGroups": [
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ced321aa-2f53-4cd4-895a-37cab7f499e4",
+      "name": "Uginanie Ramion na Wyciągu",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "d15786f8-5d21-4b20-add0-b9eb3613bb36",
+      "name": "Szerokie Wyciskanie Sztangi Na Ławce Płaskiej",
+      "muscleGroups": [
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "d1ceab57-7742-47f5-b7d0-61434f5a09a4",
+      "name": "Bieganie",
+      "muscleGroups": [
+        "cardio"
+      ],
+      "metric": {
+        "type": "min_sec",
+        "unit": "km"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "d4730726-98b9-4c8b-b1af-f012b634c006",
+      "name": "Rozpiętki z Hantlami",
+      "muscleGroups": [
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "d57e0896-5ed9-426a-9e66-9ca39808441f",
+      "name": "Wiosłowanie na Wyciągu Szerokim Chwytem",
+      "muscleGroups": [
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "d647c9cd-141d-4a81-9082-5587ac3294e3",
+      "name": "Clean and Jerk",
+      "muscleGroups": [
+        "full_body"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "d6899579-5ab9-42fa-861a-36711b2c332d",
+      "name": "Uginanie Nadgarstka na Wyciągu Prostym Drążkiem",
+      "muscleGroups": [
+        "forearm"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "d6ef8339-5fa0-4c36-a287-bd2b44c99f5d",
+      "name": "Hack Squat",
+      "muscleGroups": [
+        "quads",
+        "glutes"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "d8233d84-2be2-47dc-8398-7b575d85947c",
+      "name": "Brzuszki Skośne",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "d94680e4-666f-4992-bd31-6c05df83cb05",
+      "name": "Wąskie Wyciskanie Sztangi Leżąc Na Ławce Płaskiej",
+      "muscleGroups": [
+        "tricep",
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ddeb8872-6152-4ed8-a23b-c6cac0f9155d",
+      "name": "Martwy Ciąg",
+      "muscleGroups": [
+        "hamstring",
+        "glutes"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "de345940-8f79-4528-99c3-d35e5b1a9a7f",
+      "name": "Leg Press Jednonóż",
+      "muscleGroups": [
+        "quads"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "df91ac19-825f-4c99-9c60-8f39055ed2c7",
+      "name": "Pullover z Linkami",
+      "muscleGroups": [
+        "lats",
+        "teres",
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "e0a61245-d32f-4dae-bc85-ebefacd84c78",
+      "name": "Wiosłowanie na Wyciągu Neutralnym Chwytem",
+      "muscleGroups": [
+        "lats"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "e7163125-2210-44b2-bedd-8251e9894bc5",
+      "name": "Wyciskanie Siedząc Na Maszynie Na Skosie Dodatnim",
+      "muscleGroups": [
+        "upper_chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "eb838f47-8410-4239-adb3-e8f0dc02aa3f",
+      "name": "Prostowanie Nóg na Maszynie",
+      "muscleGroups": [
+        "quads"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ec7c6d60-beff-4f8d-81f6-a3480ae008fa",
+      "name": "Wiosłowanie T-Bar",
+      "muscleGroups": [
+        "traps"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ecd25701-4b5c-4e80-be90-22603b8b7e47",
+      "name": "Unoszenie Nóg w Bok",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "none"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ee1d833c-3aab-413b-b271-4a9314634080",
+      "name": "Odwodzenie Jednorącz Ramienia Na Maszynie",
+      "muscleGroups": [
+        "shoulders"
+      ],
+      "metric": {
+        "type": "reps_per_side",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ee9a8ff1-20b5-48bc-86a7-d730bc988861",
+      "name": "Brzuszki na Maszynie",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "f2a06bc2-3bd3-4d52-aa07-dedbed1bebbb",
+      "name": "Martwy Ciąg Sumo",
+      "muscleGroups": [
+        "glutes",
+        "hamstring",
+        "quads"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "f2cfac69-4902-4594-99c9-e4844654fb54",
+      "name": "Spacer Farmera",
+      "muscleGroups": [
+        "abs_core"
+      ],
+      "metric": {
+        "type": "meters",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "f3e90a90-762c-439d-aaa7-a05392cd70ff",
+      "name": "Wyciskanie Na Maszynie Siedząc",
+      "muscleGroups": [
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "f5b7f026-167b-455f-b19d-36f579a820d8",
+      "name": "Wspięcia na Palce Siedząc na Maszynie",
+      "muscleGroups": [
+        "calves"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "f9d3b263-4100-466c-a6ad-be62a925a06c",
+      "name": "JM Press",
+      "muscleGroups": [
+        "tricep",
+        "chest"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    },
+    {
+      "id": "ff19abf8-d781-4d8e-9651-742a64f7fa40",
+      "name": "Uginanie Ramion z Hantlami na Ławce Skośnej",
+      "muscleGroups": [
+        "bicep"
+      ],
+      "metric": {
+        "type": "reps",
+        "unit": "kg_per_side"
+      },
+      "effortTracking": "none",
+      "notes": "",
+      "schemaVersion": 1
+    }
+  ]
+}

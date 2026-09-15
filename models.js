@@ -122,6 +122,7 @@ class Exercise {
     metric = null,
     effortTracking = EffortTracking.NONE,
     notes = '',
+    isFavorite = false,
     schemaVersion,
   } = {}) {
     this.id = id ?? window.WorkoutDB.generateId();
@@ -133,6 +134,7 @@ class Exercise {
     this.metric = metric && metric.type ? { type: metric.type, unit: metric.unit ?? Unit.NONE } : { ...DEFAULT_METRIC };
     this.effortTracking = effortTracking ?? EffortTracking.NONE; // 'none' | 'rir' | 'rpe', mutually exclusive
     this.notes = notes ?? '';
+    this.isFavorite = isFavorite ?? false;
     this.schemaVersion = schemaVersion ?? SCHEMA_VERSION;
   }
 
@@ -157,6 +159,7 @@ class Exercise {
       metric,
       effortTracking,
       notes: r.notes ?? '',
+      isFavorite: r.isFavorite ?? false,
       schemaVersion: r.schemaVersion,
     });
   }

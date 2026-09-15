@@ -13,6 +13,15 @@ function getLang() {
   return window.WorkoutI18nState ? window.WorkoutI18nState.get() : window.I18n.DEFAULT_LANGUAGE;
 }
 
+/** Shared star icon markup — filled gold when favorited, gray outline
+ * otherwise. Also used by workout.js's active-workout favorite button. */
+function starIconSvg(filled) {
+  return filled
+    ? '<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2.5l2.9 6.4 7 .7-5.3 4.7 1.6 6.9L12 17.8l-6.2 3.4 1.6-6.9L2.1 9.6l7-.7L12 2.5z" fill="currentColor"/></svg>'
+    : '<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2.5l2.9 6.4 7 .7-5.3 4.7 1.6 6.9L12 17.8l-6.2 3.4 1.6-6.9L2.1 9.6l7-.7L12 2.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+}
+window.WorkoutIcons = Object.assign(window.WorkoutIcons ?? {}, { starIconSvg });
+
 /** Toggles `id` in `selectedSet`. When exclusiveNone is true, selecting
  * 'none' clears every other selection and vice versa. */
 function toggleMuscleGroup(selectedSet, id, exclusiveNone) {
@@ -444,11 +453,35 @@ class ExercisesListController {
 
     filtered
       .slice()
-      .sort((a, b) => a.name.localeCompare(b.name))
+      // Favorites always sort first, regardless of active filters — the
+      // filters still narrow which exercises show up, but within whatever
+      // survives filtering, favorited ones lead.
+      .sort((a, b) => {
+        if (!!a.isFavorite !== !!b.isFavorite) return a.isFavorite ? -1 : 1;
+        return a.name.localeCompare(b.name);
+      })
       .forEach((ex) => {
-        const item = document.createElement('button');
-        item.type = 'button';
-        item.className = 'exercise-list-item';
+        const row = document.createElement('div');
+        row.className = 'exercise-list-row';
+
+        const favBtn = document.createElement('button');
+        favBtn.type = 'button';
+        favBtn.className = 'exercise-favorite-btn';
+        favBtn.classList.toggle('is-favorite', !!ex.isFavorite);
+        favBtn.setAttribute('aria-pressed', String(!!ex.isFavorite));
+        favBtn.setAttribute('aria-label', window.I18n.t('exercise.favoriteToggle', lang));
+        favBtn.innerHTML = starIconSvg(!!ex.isFavorite);
+        favBtn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          const updated = await window.WorkoutRepo.toggleExerciseFavorite(ex.id);
+          if (!updated) return;
+          ex.isFavorite = updated.isFavorite;
+          this.render();
+        });
+
+        const body = document.createElement('button');
+        body.type = 'button';
+        body.className = 'exercise-list-item';
 
         const name = document.createElement('span');
         name.className = 'exercise-list-item-name';
@@ -476,9 +509,11 @@ class ExercisesListController {
         meta.textContent = metaBits.join(' · ');
 
         metaRow.append(groups, meta);
-        item.append(name, metaRow);
-        item.addEventListener('click', () => this.onOpenExercise(ex));
-        this.listEl.appendChild(item);
+        body.append(name, metaRow);
+        body.addEventListener('click', () => this.onOpenExercise(ex));
+
+        row.append(favBtn, body);
+        this.listEl.appendChild(row);
       });
   }
 }
@@ -657,12 +692,17 @@ function initExercisesFeature() {
   list.refresh();
 
   window.WorkoutExercisesFeature.editor = editor;
+  window.WorkoutExercisesFeature.list = list;
   return { editor, list, filterSheet, gyms };
 }
 
-// `editor` is populated once initExercisesFeature() runs (at app startup) —
-// other features (e.g. the active workout screen's Edit button) reuse this
-// same shared overlay instead of creating a second one over the same DOM ids.
-window.WorkoutExercisesFeature = { init: initExercisesFeature, editor: null };
+// `editor`/`list` are populated once initExercisesFeature() runs (at app
+// startup) — other features reuse these same shared instances instead of
+// creating second ones over the same DOM ids. `list` in particular needs to
+// be reachable so app.js can refresh it when the Exercises tab is switched
+// to, since favoriting an exercise from the active workout screen updates a
+// separately-fetched copy of the data and wouldn't otherwise be reflected
+// here until the next full list.refresh() (e.g. after an edit/delete).
+window.WorkoutExercisesFeature = { init: initExercisesFeature, editor: null, list: null };
 
 })();

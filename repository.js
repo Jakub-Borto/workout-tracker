@@ -44,6 +44,14 @@ async function deleteExercise(id) {
   return repoDb.delete(REPO_STORES.exercises, id);
 }
 
+async function toggleExerciseFavorite(id) {
+  const exercise = await getExercise(id);
+  if (!exercise) return null;
+  exercise.isFavorite = !exercise.isFavorite;
+  await repoDb.put(REPO_STORES.exercises, exercise.toRecord());
+  return exercise;
+}
+
 // -- WorkoutSet CRUD -----------------------------------------------------
 
 async function createWorkoutSet(data) {
@@ -657,6 +665,7 @@ window.WorkoutRepo = {
   getAllExercises,
   updateExercise,
   deleteExercise,
+  toggleExerciseFavorite,
   createWorkoutSet,
   getWorkoutSet,
   getSetsForWorkout,
