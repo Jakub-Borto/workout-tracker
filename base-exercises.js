@@ -89,12 +89,18 @@ class BaseExercisesController {
    * store with the result. */
   async handleConfirm() {
     const file = FILE_BY_LANGUAGE[this.selectedLanguage];
-    let parsed;
+    let sourceRecords;
     try {
       const response = await fetch(file);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      parsed = await response.json();
-      if (!Array.isArray(parsed)) throw new Error('not an array');
+      const parsed = await response.json();
+      // Accepts either a raw JSON array or an export-envelope file shaped
+      // like devtools.js's per-store export ({ store, records: [...] }) —
+      // the same two shapes handleImportFileSelected accepts, since the
+      // bundled file may have been produced by exporting a real exercise
+      // list rather than hand-written as a bare array.
+      sourceRecords = Array.isArray(parsed) ? parsed : Array.isArray(parsed?.records) ? parsed.records : null;
+      if (!sourceRecords) throw new Error('not an array or {records: [...]}');
     } catch (err) {
       console.error('Failed to load base exercises', err);
       this.close();
@@ -110,7 +116,7 @@ class BaseExercisesController {
     // A fresh object per record — never mutates anything from the fetch
     // response, so the bundled base JSON's own effortTracking: "none"
     // stays exactly as shipped no matter what's chosen here.
-    const records = parsed.map((record) => ({ ...record, effortTracking: this.selectedEffortTracking }));
+    const records = sourceRecords.map((record) => ({ ...record, effortTracking: this.selectedEffortTracking }));
 
     this.close();
 

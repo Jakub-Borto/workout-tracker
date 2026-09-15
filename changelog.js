@@ -244,6 +244,13 @@ const CHANGELOG = [
       'Bundled sample data and base exercises now include the new favorite field (a few classic lifts pre-favorited in the sample data; all off by default in the base exercise library)',
     ],
   },
+  {
+    version: 'workout-tracker-v76',
+    date: '2026-09-15',
+    changes: [
+      'Fixed "Add Base Exercises" failing to load the real exercise library file (it only accepted a plain list of exercises, not the exported-backup format the file actually used)',
+    ],
+  },
 ];
 
 /**
