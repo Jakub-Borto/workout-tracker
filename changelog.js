@@ -218,6 +218,13 @@ const CHANGELOG = [
       'You can now swipe left/right on the calendar week strip to move between weeks, not just tap the arrow buttons',
     ],
   },
+  {
+    version: 'workout-tracker-v72',
+    date: '2026-09-15',
+    changes: [
+      'Reorganized the active workout exercise buttons into a clearer layout: Add Set/Add Warmup/History/PR, then Note/Edit/Swap/Remove, then Gym and move left/right',
+    ],
+  },
 ];
 
 /**

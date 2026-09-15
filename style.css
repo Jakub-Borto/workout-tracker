@@ -1061,6 +1061,10 @@ body {
   margin-bottom: 18px;
 }
 
+.workout-action-row-wide {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .workout-action-btn {
   background: var(--surface-2);
   border: 1px solid var(--border);

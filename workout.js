@@ -1744,7 +1744,7 @@ class ActiveWorkoutController {
 
   buildActionRow(exercise, exerciseId) {
     const row = document.createElement('div');
-    row.className = 'workout-action-row';
+    row.className = 'workout-action-row workout-action-row-wide';
 
     const addSetBtn = document.createElement('button');
     addSetBtn.type = 'button';
@@ -1823,15 +1823,15 @@ class ActiveWorkoutController {
     row.append(
       addSetBtn,
       addWarmupBtn,
-      swapBtn,
-      editBtn,
-      noteBtn,
-      gymBtn,
-      prBtn,
       historyBtn,
+      prBtn,
+      noteBtn,
+      editBtn,
+      swapBtn,
+      removeBtn,
+      gymBtn,
       moveLeftBtn,
-      moveRightBtn,
-      removeBtn
+      moveRightBtn
     );
     return row;
   }
