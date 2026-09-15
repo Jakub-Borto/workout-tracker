@@ -225,6 +225,11 @@ const CHANGELOG = [
       'Reorganized the active workout exercise buttons into a clearer layout: Add Set/Add Warmup/History/PR, then Note/Edit/Swap/Remove, then Gym and move left/right',
     ],
   },
+  {
+    version: 'workout-tracker-v73',
+    date: '2026-09-15',
+    changes: ['Added a "Full Body" muscle group'],
+  },
 ];
 
 /**

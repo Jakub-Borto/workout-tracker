@@ -115,6 +115,7 @@ const TRANSLATIONS = {
   'muscleGroup.calves': { en: 'Calves', pl: 'Łydki' },
   'muscleGroup.cardio': { en: 'Cardio', pl: 'Cardio' },
   'muscleGroup.rehab': { en: 'Rehab', pl: 'Rehabilitacja' },
+  'muscleGroup.full_body': { en: 'Full Body', pl: 'Całe ciało' },
 
   'common.yes': { en: 'Yes', pl: 'Tak' },
   'common.no': { en: 'No', pl: 'Nie' },

@@ -67,6 +67,7 @@ const MUSCLE_GROUPS = [
   'calves',
   'cardio',
   'rehab',
+  'full_body',
 ];
 
 /** Exclusive effort-tracking mode for an Exercise: never both RIR and RPE. */

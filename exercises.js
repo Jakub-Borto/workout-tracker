@@ -48,7 +48,7 @@ const MUSCLE_GROUP_ROWS = [
   ['bicep', 'tricep'],
   ['abs_core', 'neck', 'forearm'],
   ['quads', 'hamstring', 'glutes', 'abductor', 'adductor', 'calves'],
-  ['cardio', 'rehab', 'none'],
+  ['cardio', 'rehab', 'full_body', 'none'],
 ];
 
 function renderChipGrid(container, ids, selectedSet, exclusiveNone, onToggle) {
