@@ -251,6 +251,14 @@ const CHANGELOG = [
       'Fixed "Add Base Exercises" failing to load the real exercise library file (it only accepted a plain list of exercises, not the exported-backup format the file actually used)',
     ],
   },
+  {
+    version: 'workout-tracker-v77',
+    date: '2026-09-18',
+    changes: [
+      'Fixed the active workout tab strip showing "…" for an exercise after editing it (Save or Cancel)',
+      'The active workout\'s exercise picker now has a "+" button to create a new exercise on the spot, a favorite star per exercise (favorites sort first), and a muscle group filter — same as the Exercises tab',
+    ],
+  },
 ];
 
 /**

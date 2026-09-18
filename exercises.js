@@ -213,12 +213,18 @@ class ExerciseEditorController {
     this.overlay.hidden = false;
   }
 
-  close() {
+  /** `result` distinguishes why the editor closed for a one-off caller
+   * that needs to react differently to a save than a plain cancel — e.g.
+   * the active-workout exercise picker's "create new exercise" flow, which
+   * auto-picks a freshly created exercise but just returns to the picker
+   * unchanged on cancel. Undefined for a plain cancel; `{ saved }` from
+   * save() or `{ deletedId }` from delete(). */
+  close(result) {
     this.overlay.hidden = true;
     if (this.onCloseOnce) {
       const cb = this.onCloseOnce;
       this.onCloseOnce = null;
-      cb();
+      cb(result);
     }
   }
 
@@ -279,7 +285,7 @@ class ExerciseEditorController {
       ? await window.WorkoutRepo.updateExercise(data)
       : await window.WorkoutRepo.createExercise(data);
 
-    this.close();
+    this.close({ saved });
     this.onSaved(saved);
   }
 
@@ -287,7 +293,7 @@ class ExerciseEditorController {
     if (!this.editingId) return;
     const id = this.editingId;
     await window.WorkoutRepo.deleteExercise(id);
-    this.close();
+    this.close({ deletedId: id });
     this.onDeleted(id);
   }
 
@@ -703,6 +709,14 @@ function initExercisesFeature() {
 // to, since favoriting an exercise from the active workout screen updates a
 // separately-fetched copy of the data and wouldn't otherwise be reflected
 // here until the next full list.refresh() (e.g. after an edit/delete).
-window.WorkoutExercisesFeature = { init: initExercisesFeature, editor: null, list: null };
+window.WorkoutExercisesFeature = {
+  init: initExercisesFeature,
+  editor: null,
+  list: null,
+  // Exposed so other feature modules (the active-workout exercise picker)
+  // can point a second instance at their own filter-sheet markup instead
+  // of duplicating this chip-grid filtering logic.
+  MuscleFilterSheetController,
+};
 
 })();

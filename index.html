@@ -640,14 +640,35 @@
     <header class="overlay-header">
       <button class="btn-text" id="picker-cancel-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
       <h2 id="picker-title" data-i18n="workout.pickExerciseTitleAdd">Add Exercise</h2>
-      <span class="overlay-header-spacer"></span>
+      <button class="btn-icon" id="picker-add-exercise-btn" type="button" aria-label="Create new exercise">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </header>
     <div class="overlay-content">
-      <div class="search-input-wrap">
-        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <input type="search" id="picker-search-input" data-i18n-placeholder="exercises.searchPlaceholder" placeholder="Search exercises" />
+      <div class="exercise-search-row">
+        <div class="search-input-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="search" id="picker-search-input" data-i18n-placeholder="exercises.searchPlaceholder" placeholder="Search exercises" />
+        </div>
+        <button class="btn-icon filter-btn" id="picker-filter-open-btn" type="button" aria-label="Filter">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 6h16M7 12h10M10 18h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="filter-badge" id="picker-filter-badge" hidden>0</span>
+        </button>
       </div>
       <div id="picker-list" class="exercise-list"></div>
+    </div>
+  </div>
+
+  <!-- Muscle group filter sheet for the active-workout exercise picker -->
+  <div id="picker-muscle-filter-sheet" class="overlay" hidden>
+    <header class="overlay-header">
+      <button class="btn-text" id="picker-filter-cancel-btn" type="button" data-i18n="exercise.editor.cancel">Cancel</button>
+      <h2 data-i18n="exercises.filterButton">Filter</h2>
+      <button class="btn-text btn-text-accent" id="picker-filter-apply-btn" type="button" data-i18n="exercise.editor.save">Save</button>
+    </header>
+    <div class="overlay-content">
+      <div class="chip-grid" id="picker-filter-muscle-groups"></div>
+      <button class="btn-secondary" id="picker-filter-clear-btn" type="button" data-i18n="exercises.clearFilters">Clear filters</button>
     </div>
   </div>
 

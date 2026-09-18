@@ -351,13 +351,64 @@ class ExercisePickerController {
     this.searchInput = document.getElementById('picker-search-input');
     this.listEl = document.getElementById('picker-list');
     this.cancelBtn = document.getElementById('picker-cancel-btn');
+    this.addExerciseBtn = document.getElementById('picker-add-exercise-btn');
+    this.filterOpenBtn = document.getElementById('picker-filter-open-btn');
+    this.filterBadge = document.getElementById('picker-filter-badge');
 
     this.exercises = [];
     this.excludeIds = new Set();
+    this.selectedFilterGroups = new Set();
     this.onPick = null;
+
+    this.filterSheet = new window.WorkoutExercisesFeature.MuscleFilterSheetController({
+      onApply: (set) => {
+        this.selectedFilterGroups = set;
+        this.updateFilterBadge();
+        this.render();
+      },
+      ids: {
+        overlayId: 'picker-muscle-filter-sheet',
+        containerId: 'picker-filter-muscle-groups',
+        cancelBtnId: 'picker-filter-cancel-btn',
+        applyBtnId: 'picker-filter-apply-btn',
+        clearBtnId: 'picker-filter-clear-btn',
+      },
+    });
 
     this.searchInput.addEventListener('input', () => this.render());
     this.cancelBtn.addEventListener('click', () => this.close());
+    this.addExerciseBtn.addEventListener('click', () => this.handleCreateExercise());
+    this.filterOpenBtn.addEventListener('click', () => this.filterSheet.open(this.selectedFilterGroups));
+  }
+
+  updateFilterBadge() {
+    const n = this.selectedFilterGroups.size;
+    this.filterBadge.hidden = n === 0;
+    this.filterBadge.textContent = String(n);
+  }
+
+  /** Opens the same shared Create/Edit Exercise screen used from the
+   * Exercises tab, so a new exercise can be created without leaving the
+   * picker flow. Saving it auto-picks the new exercise (the whole reason
+   * for being in this picker), same as tapping it in the list would;
+   * cancelling just returns to the picker, refreshed in case anything
+   * else changed underneath it. */
+  handleCreateExercise() {
+    const editor = window.WorkoutExercisesFeature.editor;
+    if (!editor) return;
+
+    this.overlay.hidden = true;
+    editor.open(null, {
+      onClose: async (result) => {
+        if (result && result.saved) {
+          if (this.onPick) this.onPick(result.saved.id);
+          return;
+        }
+        this.exercises = await window.WorkoutRepo.getAllExercises();
+        this.render();
+        this.overlay.hidden = false;
+      },
+    });
   }
 
   async open({ excludeIds = [], titleKey = 'workout.pickExerciseTitleAdd', onPick }) {
@@ -380,10 +431,36 @@ class ExercisePickerController {
     const filtered = this.exercises
       .filter((ex) => !this.excludeIds.has(ex.id))
       .filter((ex) => !query || ex.name.toLowerCase().includes(query))
-      .sort((a, b) => a.name.localeCompare(b.name));
+      .filter(
+        (ex) => this.selectedFilterGroups.size === 0 || ex.muscleGroups.some((g) => this.selectedFilterGroups.has(g))
+      )
+      // Favorites always lead, same as the Exercises tab — filters still
+      // narrow the list first, favorites just sort first within that.
+      .sort((a, b) => {
+        if (!!a.isFavorite !== !!b.isFavorite) return a.isFavorite ? -1 : 1;
+        return a.name.localeCompare(b.name);
+      });
 
     this.listEl.innerHTML = '';
     filtered.forEach((ex) => {
+      const row = document.createElement('div');
+      row.className = 'exercise-list-row';
+
+      const favBtn = document.createElement('button');
+      favBtn.type = 'button';
+      favBtn.className = 'exercise-favorite-btn';
+      favBtn.classList.toggle('is-favorite', !!ex.isFavorite);
+      favBtn.setAttribute('aria-pressed', String(!!ex.isFavorite));
+      favBtn.setAttribute('aria-label', t('exercise.favoriteToggle'));
+      favBtn.innerHTML = window.WorkoutIcons.starIconSvg(!!ex.isFavorite);
+      favBtn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const updated = await window.WorkoutRepo.toggleExerciseFavorite(ex.id);
+        if (!updated) return;
+        ex.isFavorite = updated.isFavorite;
+        this.render();
+      });
+
       const item = document.createElement('button');
       item.type = 'button';
       item.className = 'exercise-list-item';
@@ -395,7 +472,9 @@ class ExercisePickerController {
         this.close();
         if (this.onPick) this.onPick(ex.id);
       });
-      this.listEl.appendChild(item);
+
+      row.append(favBtn, item);
+      this.listEl.appendChild(row);
     });
   }
 }
@@ -1866,6 +1945,12 @@ class ActiveWorkoutController {
     editor.open(exercise, {
       onClose: async () => {
         this.exerciseCache.delete(exerciseId);
+        // renderExerciseRow() reads names synchronously out of
+        // exerciseCache (no fetch of its own) — call it before this
+        // reloads the just-deleted entry and it has nothing to show but
+        // the '…' placeholder, which then never gets corrected since
+        // nothing else re-renders the tab strip afterward. Reload first.
+        await this.loadExercise(exerciseId);
         this.renderExerciseRow();
         await this.renderMain();
       },
