@@ -224,19 +224,18 @@ class DevToolsController {
     });
     if (!confirmed) return;
 
-    const { db, STORES, GENERAL_GYM_ID } = window.WorkoutDB;
+    const { db, STORES, GENERAL_GYM_ID, withProtectedSettings } = window.WorkoutDB;
 
     // Deleting the settings store specifically would otherwise silently
-    // wipe lastKnownAppVersion (install/device state, not user data) —
-    // same reasoning as restoreAll/handleWipeAll. Every other store is
-    // untouched by this.
-    const preservedAppVersion =
-      storeName === STORES.settings ? (await db.get(STORES.settings, 'app'))?.lastKnownAppVersion ?? null : null;
+    // wipe PROTECTED_SETTINGS_FIELDS (device/install state and the language
+    // preference — see db.js) — same reasoning as restoreAll/handleWipeAll.
+    // Every other store is untouched by this.
+    const previousSettings = storeName === STORES.settings ? await db.get(STORES.settings, 'app') : null;
 
     await db.clear(storeName);
 
-    if (preservedAppVersion != null) {
-      await db.put(STORES.settings, { key: 'app', schemaVersion: window.WorkoutDB.CURRENT_SCHEMA_VERSION, lastKnownAppVersion: preservedAppVersion });
+    if (previousSettings) {
+      await db.put(STORES.settings, withProtectedSettings(previousSettings, null));
     }
 
     // Same sentinel issue as settings: deleting the Gyms store wipes the
@@ -358,29 +357,19 @@ class DevToolsController {
 
     const { db, STORES, GENERAL_GYM_ID } = window.WorkoutDB;
 
-    // Two stores carry install/device-local state that isn't really "user
-    // data" and has no reason to live in an arbitrary export file — losing
-    // either silently breaks something else rather than just losing a
-    // record the user meant to keep, so both are captured before the clear
-    // and restored if the incoming file doesn't already carry its own
-    // value. Settings: lastKnownAppVersion (see restoreAll/handleWipeAll —
-    // losing it makes the next real update look like a fresh install, so
-    // the "what's new" popup silently never fires). Gyms: the always-present
-    // "General" gym (id fixed as a sentinel elsewhere, e.g. WorkoutSet.gym_id
-    // falls back to it) — an export taken before Gyms existed, or just a
-    // partial file, could easily omit it.
-    let preservedAppVersion = null;
-    if (target.storeName === STORES.settings) {
-      preservedAppVersion = (await db.get(STORES.settings, 'app'))?.lastKnownAppVersion ?? null;
-    }
-
+    // Deliberately NO protection for PROTECTED_SETTINGS_FIELDS here, even
+    // though every other way to touch the settings store (restoreAll, Wipe
+    // All Data, per-store Delete) refuses to let them change — see db.js.
+    // An explicit per-store Import aimed directly at the settings store is
+    // the one deliberate escape hatch for actually changing
+    // lastKnownAppVersion/lastUpdateDebug/language/etc, e.g. restoring a
+    // hand-edited or device-to-device settings export. The Gyms store still
+    // gets its structural "General" gym sentinel re-seeded below if a
+    // partial/pre-Gyms export left it out — that's not a settings field.
     await db.clear(target.storeName);
 
     for (const record of records) {
       const migrated = window.WorkoutDB.migrateRecord(record);
-      if (target.storeName === STORES.settings && migrated.key === 'app' && migrated.lastKnownAppVersion == null && preservedAppVersion != null) {
-        migrated.lastKnownAppVersion = preservedAppVersion;
-      }
       await db.put(target.storeName, migrated);
     }
 
@@ -398,26 +387,20 @@ class DevToolsController {
     });
     if (!confirmed) return;
 
-    const { db, STORES } = window.WorkoutDB;
+    const { db, STORES, withProtectedSettings } = window.WorkoutDB;
 
-    // Preserve lastKnownAppVersion across the wipe, same reasoning as
-    // restoreAll in db.js: it's install/device state (what version this
-    // browser is actually running), not user data, so losing it makes the
-    // next real update look like a fresh install with nothing to compare
-    // against — silently breaking the "what's new" popup for that update.
+    // Preserve PROTECTED_SETTINGS_FIELDS across the wipe — device/install
+    // state (e.g. lastKnownAppVersion, without which the next real update
+    // silently loses its "what's new" popup) and the language preference,
+    // neither of which is "your data" the way workouts/exercises are.
     const previousSettings = await db.get(STORES.settings, 'app');
-    const preservedAppVersion = previousSettings?.lastKnownAppVersion ?? null;
 
     for (const storeName of Object.values(STORES)) {
       await db.clear(storeName);
     }
 
-    if (preservedAppVersion != null) {
-      await db.put(STORES.settings, {
-        key: 'app',
-        schemaVersion: window.WorkoutDB.CURRENT_SCHEMA_VERSION,
-        lastKnownAppVersion: preservedAppVersion,
-      });
+    if (previousSettings) {
+      await db.put(STORES.settings, withProtectedSettings(previousSettings, null));
     }
 
     // Reload rather than just re-rendering — same as Load Sample Data and

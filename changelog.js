@@ -259,6 +259,21 @@ const CHANGELOG = [
       'The active workout\'s exercise picker now has a "+" button to create a new exercise on the spot, a favorite star per exercise (favorites sort first), and a muscle group filter — same as the Exercises tab',
     ],
   },
+  {
+    version: 'workout-tracker-v78',
+    date: '2026-09-18',
+    changes: [
+      'A session left open for more than a day now checks for updates on its own every 20 minutes, instead of only ever checking when the app is first opened',
+      'Data wiping, restoring a backup, and per-store delete/import in Dev Tools now leave your language and a few device-only settings alone, unless you explicitly import a file into the Settings store itself',
+    ],
+  },
+  {
+    version: 'workout-tracker-v79',
+    date: '2026-09-18',
+    changes: [
+      'If an update arrives while you\'re mid-workout, it now installs the moment you finish or discard the workout, instead of waiting for the next scheduled check (previously up to ~20 minutes)',
+    ],
+  },
 ];
 
 /**

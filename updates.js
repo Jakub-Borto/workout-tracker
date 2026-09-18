@@ -34,6 +34,7 @@ async function putSettings(settings) {
 
 let registration = null;
 let statusHideTimer = null;
+let isCheckingForUpdate = false;
 
 // -- Small non-blocking status indicator -----------------------------------
 
@@ -57,8 +58,13 @@ function hideStatusSoon(delay = STATUS_HIDE_DELAY_MS) {
 /** If a new worker is sitting there waiting and no draft is currently
  * active, tell it it's safe to take over now. A no-op if there's nothing
  * waiting or a workout is in progress — in which case it just stays
- * waiting until the next time this is called (next app load, or the next
- * manual/automatic update check) finds no draft active. */
+ * waiting until the next time this is called (next app load, the next
+ * manual/automatic update check, or — see window.WorkoutUpdates export
+ * below — the moment a workout is finished or discarded) finds no draft
+ * active. Exported so workout.js can call it the instant a draft clears,
+ * rather than leaving a worker that's ready to go stuck waiting for up to
+ * PERIODIC_CHECK_INTERVAL_MS until the next scheduled tick happens to
+ * notice. */
 async function maybeActivateWaiting() {
   if (!registration) return;
   const waitingWorker = registration.waiting;
@@ -88,10 +94,26 @@ function watchInstallingWorker(worker) {
 
 const UPDATE_CHECK_TIMEOUT_MS = 10000;
 
-/** Shared by the automatic on-load check and the manual "Check for
- * Updates" button — exactly the same code path either way. */
+/** How often the periodic re-check (see maybeCheckIfStale below) wakes up
+ * to look at the clock. Deliberately much shorter than the 24h staleness
+ * threshold it's checking for — mobile browsers aggressively throttle or
+ * suspend timers in backgrounded/inactive tabs, so a single long-duration
+ * timer aimed directly at 24h is unreliable and may simply never fire.
+ * Waking up this often and re-checking elapsed time each tick means even
+ * if some ticks get delayed or skipped while backgrounded, the next one
+ * that does run still correctly notices 24h+ has passed. */
+const PERIODIC_CHECK_INTERVAL_MS = 20 * 60 * 1000; // 20 minutes
+const UPDATE_CHECK_STALE_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+/** Shared by the on-load check, the manual "Check for Updates" button, and
+ * the periodic staleness re-check — exactly the same code path every
+ * time. isCheckingForUpdate is just a re-entrancy guard (e.g. the 20-minute
+ * timer landing at the same moment as a manual tap) — it changes nothing
+ * about *when* a check is allowed to start, only prevents two from running
+ * concurrently and fighting over the status indicator. */
 async function checkForUpdate() {
-  if (!registration) return;
+  if (!registration || isCheckingForUpdate) return;
+  isCheckingForUpdate = true;
   showStatus(t('updates.checking'));
 
   try {
@@ -109,6 +131,13 @@ async function checkForUpdate() {
     console.error('Update check failed', err);
   }
 
+  // Recorded regardless of outcome (found something / found nothing /
+  // errored/timed out) — this is "a check actually ran just now", which is
+  // exactly what the periodic re-check needs to know to decide whether
+  // it's due. Every trigger source (load, manual button, periodic) shares
+  // this one recording point since they all funnel through this function.
+  await recordUpdateCheckTime();
+
   // If a new version was found, the 'updatefound' listener (set up once at
   // registration time) already picked it up and is showing "Downloading
   // update…" itself. If not, there's nothing installing — just fade the
@@ -116,6 +145,33 @@ async function checkForUpdate() {
   if (!registration.installing) hideStatusSoon();
 
   await maybeActivateWaiting();
+  isCheckingForUpdate = false;
+}
+
+async function recordUpdateCheckTime() {
+  const settings = await getSettings();
+  settings.lastUpdateCheckAt = new Date().toISOString();
+  await putSettings(settings);
+}
+
+/** Ticks every PERIODIC_CHECK_INTERVAL_MS for as long as this tab/app
+ * instance stays open — the whole point of this segment: a session that's
+ * never closed/reloaded would otherwise never run the load-time check
+ * again and could sit on a stale version indefinitely. Does nothing on
+ * most ticks; only actually calls checkForUpdate() once lastUpdateCheckAt
+ * is 24h+ old (or has never been set at all, e.g. a service worker that
+ * only just finished registering). */
+async function maybeCheckIfStale() {
+  const settings = await getSettings();
+  const lastCheckAt = settings.lastUpdateCheckAt ? new Date(settings.lastUpdateCheckAt).getTime() : null;
+  if (lastCheckAt != null && Date.now() - lastCheckAt < UPDATE_CHECK_STALE_MS) return;
+  await checkForUpdate();
+}
+
+function startPeriodicUpdateCheck() {
+  setInterval(() => {
+    maybeCheckIfStale();
+  }, PERIODIC_CHECK_INTERVAL_MS);
 }
 
 /** Persists what the most recent activation actually computed, directly
@@ -301,6 +357,7 @@ function registerServiceWorker() {
       // with a draft still active — safe to retry now.
       maybeActivateWaiting();
       checkForUpdate();
+      startPeriodicUpdateCheck();
     })
     .catch((err) => {
       console.error('Service worker registration failed', err);
@@ -342,6 +399,6 @@ function init() {
   if (releaseNotesBtn) releaseNotesBtn.addEventListener('click', () => showChangesScreen(window.Changelog.entries));
 }
 
-window.WorkoutUpdates = { init, checkForUpdate };
+window.WorkoutUpdates = { init, checkForUpdate, maybeActivateWaiting };
 
 })();

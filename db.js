@@ -41,6 +41,32 @@ const STORES = {
 
 const GENERAL_GYM_ID = 'general';
 
+/**
+ * settings.app fields that are device/install-local state or a UI
+ * preference — not "your data" the way exercises/workouts/sets are — so no
+ * destructive data operation (restoreAll, Wipe All Data, per-store Delete
+ * on the settings store) is allowed to touch them, no matter what the
+ * incoming data does or doesn't contain. The one deliberate way to change
+ * one of these is an explicit per-store Import directly into the settings
+ * store in Dev Tools (devtools.js's handleImportFileSelected) — uploading
+ * a settings file there is a conscious "apply this" action, not a
+ * survivable side effect of wiping/restoring something else.
+ */
+const PROTECTED_SETTINGS_FIELDS = ['key', 'schemaVersion', 'lastKnownAppVersion', 'lastUpdateDebug', 'language'];
+
+/** Returns a copy of `settings` with every PROTECTED_SETTINGS_FIELDS value
+ * forced back to whatever it was in `previousSettings` (only for fields
+ * `previousSettings` actually had — e.g. a brand new install has no prior
+ * settings record at all, so there's nothing to protect). */
+function withProtectedSettings(previousSettings, settings) {
+  const result = { ...(settings ?? { key: 'app', schemaVersion: CURRENT_SCHEMA_VERSION }) };
+  if (!previousSettings) return result;
+  for (const field of PROTECTED_SETTINGS_FIELDS) {
+    if (previousSettings[field] !== undefined) result[field] = previousSettings[field];
+  }
+  return result;
+}
+
 class Database {
   constructor() {
     this._db = null;
@@ -209,30 +235,23 @@ class Database {
    * in `data` untouched), this makes the database an exact match for the
    * backup — anything created/changed since the backup was taken is gone.
    *
-   * Exception: `settings.lastKnownAppVersion` is preserved across the
-   * restore if the incoming backup doesn't have one of its own (e.g. an
-   * older backup taken before that field existed). It's install/device
-   * state, not really "your data" — losing it silently breaks the "what's
-   * new" update popup (it looks like a fresh install with nothing to
-   * compare against, so the next update has nothing to announce even
-   * though several versions' worth of changes were never shown). If the
-   * backup *does* carry its own value, that's respected instead — this
-   * only fills a gap, never overwrites real backed-up state. */
+   * Exception: PROTECTED_SETTINGS_FIELDS (device/install state and the
+   * language preference — see its own comment) always survive a restore
+   * unchanged, regardless of what the incoming backup does or doesn't
+   * contain for them. This isn't a gap-fill — even a backup that *does*
+   * carry its own value for one of these is overridden back to whatever
+   * was true on this device before the restore ran. */
   async restoreAll(data) {
     const previousSettings = await this.get(STORES.settings, 'app');
-    const preservedAppVersion = previousSettings?.lastKnownAppVersion ?? null;
 
     for (const storeName of Object.values(STORES)) {
       await this.clear(storeName);
     }
     await this.importAll(data);
 
-    if (preservedAppVersion != null) {
-      const restoredSettings = (await this.get(STORES.settings, 'app')) ?? { key: 'app', schemaVersion: CURRENT_SCHEMA_VERSION };
-      if (restoredSettings.lastKnownAppVersion == null) {
-        restoredSettings.lastKnownAppVersion = preservedAppVersion;
-        await this.put(STORES.settings, restoredSettings);
-      }
+    if (previousSettings) {
+      const restoredSettings = await this.get(STORES.settings, 'app');
+      await this.put(STORES.settings, withProtectedSettings(previousSettings, restoredSettings));
     }
   }
 }
@@ -298,6 +317,8 @@ window.WorkoutDB = {
   runMigrations,
   generateId,
   GENERAL_GYM_ID,
+  PROTECTED_SETTINGS_FIELDS,
+  withProtectedSettings,
 };
 
 })();

@@ -2279,6 +2279,15 @@ class ActiveWorkoutController {
     this.draft = null;
     this.closeScreen();
     if (this.onFinished) this.onFinished();
+
+    // A service worker update that arrived (periodic re-check or otherwise)
+    // while this workout was active gets held back — see sw.js/updates.js's
+    // maybeActivateWaiting — deliberately so it never interrupts an
+    // in-progress workout. Now that the draft is gone, nudge it immediately
+    // rather than leaving it stuck waiting for the next scheduled check
+    // (up to ~20 minutes later) to happen to notice. No-op if nothing's
+    // actually waiting.
+    window.WorkoutUpdates.maybeActivateWaiting();
   }
 
   async handleDiscardWorkout() {
@@ -2293,6 +2302,9 @@ class ActiveWorkoutController {
     this.draft = null;
     this.closeScreen();
     if (this.onFinished) this.onFinished();
+
+    // Same reasoning as handleFinishWorkout above.
+    window.WorkoutUpdates.maybeActivateWaiting();
   }
 
   // -- 24h expiry check ------------------------------------------------------
@@ -2326,6 +2338,9 @@ class ActiveWorkoutController {
     } else {
       await window.WorkoutRepo.deleteDraft();
       this.refreshResumeBar();
+      // Same reasoning as handleFinishWorkout/handleDiscardWorkout — this
+      // is just another path that clears the draft.
+      window.WorkoutUpdates.maybeActivateWaiting();
     }
   }
 
