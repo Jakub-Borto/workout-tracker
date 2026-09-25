@@ -1765,6 +1765,11 @@ class ActiveWorkoutController {
   handleSetGym(exerciseId) {
     this.gymPicker.open(this.getExerciseGym(exerciseId), async (gymId) => {
       this.draft.gymByExercise[exerciseId] = gymId;
+      // Every set of this exercise moves to the new gym, not just ones
+      // added afterwards — same as the past-workout editor.
+      this.draft.sets.filter((s) => s.exercise_id === exerciseId).forEach((s) => {
+        s.gym_id = gymId;
+      });
       await this.persistDraft();
       await this.renderMain();
     });

@@ -303,6 +303,11 @@ const CHANGELOG = [
       'Deleting a set or removing an exercise that has nothing logged yet no longer asks for confirmation',
     ],
   },
+  {
+    version: 'workout-tracker-v83',
+    date: '2026-09-25',
+    changes: ['Changing the gym for an exercise in an active workout now moves all of its sets to that gym, not just ones added afterwards'],
+  },
 ];
 
 /**
