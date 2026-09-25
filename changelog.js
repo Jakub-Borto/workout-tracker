@@ -279,6 +279,30 @@ const CHANGELOG = [
     date: '2026-09-25',
     changes: ['Muscle group stats (total sets, average, frequency) no longer count warm-up sets'],
   },
+  {
+    version: 'workout-tracker-v81',
+    date: '2026-09-25',
+    changes: [
+      'You can now name a workout when you finish it, not just pick its date',
+      'Starting a workout from a plan template or with "Start the Same Workout" now keeps its name, so it\'s already filled in when you finish',
+    ],
+  },
+  {
+    version: 'workout-tracker-v82',
+    date: '2026-09-25',
+    changes: [
+      'Deleting an exercise now asks first, and explains what goes with it (its logged sets, PRs and notes) — and it no longer leaves broken, blank tabs behind in past workouts',
+      'Past workouts that still contain an exercise deleted earlier now show it as "Deleted exercise" with a Remove button, instead of a blank tab',
+      'Typing a decimal in a reps or seconds field (e.g. 8.5) now keeps the whole number (8) instead of turning it into 85',
+      'Closing a past workout you edited without saving now asks before throwing your changes away',
+      'Tapping a calendar day with more than one workout now lets you pick which one to open',
+      'Finishing a workout with no completed sets now offers to discard it, instead of saving an empty workout',
+      'A set can no longer be ticked done while its values are empty',
+      'The "Finish Workout" button now switches language along with the rest of the workout screen',
+      'Creating a plan with a blank name now tells you a name is needed',
+      'Deleting a set or removing an exercise that has nothing logged yet no longer asks for confirmation',
+    ],
+  },
 ];
 
 /**

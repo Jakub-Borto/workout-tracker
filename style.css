@@ -1196,6 +1196,29 @@ body {
   appearance: none;
 }
 
+.deleted-exercise-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.deleted-exercise-panel .workout-action-btn {
+  padding: 10px 18px;
+}
+
+/* Flashed on an empty required field when ticking a set done is refused. */
+.set-input-error {
+  border-color: var(--danger);
+  animation: set-input-shake 0.35s ease;
+}
+
+@keyframes set-input-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
 .set-done-checkbox {
   width: 24px;
   height: 24px;

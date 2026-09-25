@@ -167,9 +167,7 @@ class HomeController {
 
   async handleDayTap(dateKey, hasWorkout) {
     if (!hasWorkout) return;
-    const workouts = await window.WorkoutRepo.getAllWorkouts();
-    const match = workouts.find((w) => w.date === dateKey);
-    if (match) await window.WorkoutDotChoice.open(match.id);
+    await window.WorkoutDotChoice.openDay(dateKey);
   }
 
   async render() {

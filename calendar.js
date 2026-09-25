@@ -121,7 +121,9 @@ async function startSameWorkout(workout) {
   }
 
   const draft = {
-    name: t('workout.defaultName'),
+    // Repeating a workout keeps its name, so it's already filled in when
+    // the Finish dialog asks for one.
+    name: workout.name || t('workout.defaultName'),
     date: todayDateKey(),
     startedAt: new Date().toISOString(),
     exercises,
@@ -287,6 +289,52 @@ async function open(workoutId) {
   }
 }
 
-window.WorkoutDotChoice = { open };
+/** Chooser shown when a calendar day has more than one workout. Resolves
+ * with the picked workout's id, or null on Cancel. */
+function showDayWorkoutsPicker(workouts, dateKey) {
+  const backdrop = document.getElementById('day-workouts-dialog');
+  const titleEl = document.getElementById('day-workouts-title');
+  const listEl = document.getElementById('day-workouts-list');
+  const cancelBtn = document.getElementById('day-workouts-cancel-btn');
+
+  titleEl.textContent = formatWorkoutDate(dateKey);
+  listEl.innerHTML = '';
+  backdrop.hidden = false;
+
+  return new Promise((resolve) => {
+    function cleanup(result) {
+      backdrop.hidden = true;
+      cancelBtn.removeEventListener('click', onCancel);
+      resolve(result);
+    }
+    function onCancel() {
+      cleanup(null);
+    }
+    cancelBtn.addEventListener('click', onCancel);
+
+    workouts.forEach((workout) => {
+      const item = document.createElement('button');
+      item.type = 'button';
+      item.className = 'exercise-list-item';
+      const name = document.createElement('span');
+      name.className = 'exercise-list-item-name';
+      name.textContent = workout.name || t('workout.defaultName');
+      item.appendChild(name);
+      item.addEventListener('click', () => cleanup(workout.id));
+      listEl.appendChild(item);
+    });
+  });
+}
+
+/** Tapping a calendar day: one workout goes straight to its options; more
+ * than one asks which first, so none of them is unreachable. */
+async function openDay(dateKey) {
+  const workouts = (await window.WorkoutRepo.getAllWorkouts()).filter((w) => w.date === dateKey);
+  if (workouts.length === 0) return;
+  const workoutId = workouts.length === 1 ? workouts[0].id : await showDayWorkoutsPicker(workouts, dateKey);
+  if (workoutId) await open(workoutId);
+}
+
+window.WorkoutDotChoice = { open, openDay };
 
 })();

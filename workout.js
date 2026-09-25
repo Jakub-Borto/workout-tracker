@@ -133,7 +133,9 @@ const INPUT_FORMAT_BY_UNIT = {
 function sanitizeInputValue(raw, format) {
   if (raw == null) return '';
   if (format === 'natural') {
-    return raw.replace(/[^0-9]/g, '');
+    // Whole numbers only. Anything after a decimal separator is dropped
+    // rather than merged in — "8.5" is 8, not 85.
+    return raw.split(/[.,]/)[0].replace(/[^0-9]/g, '');
   }
   if (format === 'rational') {
     // Some keyboards (notably iOS with certain regional/number-pad
@@ -151,6 +153,59 @@ function sanitizeInputValue(raw, format) {
     return `${digits.slice(0, digits.length - 2)}:${digits.slice(-2)}`;
   }
   return raw;
+}
+
+/** Drops an exercise and everything logged for it from a draft object, in
+ * place, keeping the active tab pointed at something that still exists. */
+function removeExerciseFromDraft(draft, exerciseId) {
+  draft.exercises = draft.exercises.filter((id) => id !== exerciseId);
+  draft.sets = draft.sets.filter((s) => s.exercise_id !== exerciseId);
+  if (draft.exerciseNotes) delete draft.exerciseNotes[exerciseId];
+  if (draft.gymByExercise) delete draft.gymByExercise[exerciseId];
+  if (draft.activeExerciseId === exerciseId) draft.activeExerciseId = draft.exercises[0] ?? null;
+}
+
+/** Shown in place of an exercise that no longer exists — e.g. deleted
+ * before exercise deletion started cleaning up its history — so its tab
+ * isn't a dead blank page and it can still be removed. */
+function buildDeletedExercisePanel(onRemove) {
+  const panel = document.createElement('div');
+  panel.className = 'deleted-exercise-panel';
+
+  const heading = document.createElement('h2');
+  heading.className = 'workout-exercise-name';
+  heading.textContent = t('workout.deletedExercise');
+
+  const message = document.createElement('p');
+  message.className = 'empty-state-subtitle';
+  message.textContent = t('workout.deletedExerciseMessage');
+
+  const removeBtn = document.createElement('button');
+  removeBtn.type = 'button';
+  removeBtn.className = 'workout-action-btn workout-action-btn-danger';
+  removeBtn.textContent = t('workout.remove');
+  removeBtn.addEventListener('click', onRemove);
+
+  panel.append(heading, message, removeBtn);
+  return panel;
+}
+
+function isBlankValue(value) {
+  return value == null || value === '';
+}
+
+/** Whether a set has the values it needs to count as logged: its main
+ * value (either side, for per-side metrics) and, when the metric has a unit
+ * (e.g. kg), that too. Shared by the active workout's "done" checkbox and
+ * the past-workout editor's Save, so both use the same rule. */
+function setHasRequiredValues(exercise, set) {
+  const metric = exercise?.metric;
+  const mainMissing =
+    metric?.type === 'reps_per_side'
+      ? isBlankValue(set.input_1) && isBlankValue(set.input_1_right)
+      : isBlankValue(set.input_1);
+  const needsInput2 = !!metric?.unit && metric.unit !== 'none';
+  return !mainMissing && !(needsInput2 && isBlankValue(set.input_2));
 }
 
 // RIR is picked from a fixed 0-6+ scale (not free-typed) via a color-coded
@@ -275,14 +330,18 @@ function showConfirm({ title, message, confirmText, cancelText }) {
 
 /** Resolves with the trimmed text on OK (empty string if blank — caller
  * decides whether that's acceptable), or null on Cancel. */
-function showTextPrompt({ title, initialValue = '', confirmText, cancelText }) {
+/** `emptyError`, when given, makes a blank value invalid: it's shown under
+ * the field and the prompt stays open instead of resolving with ''. */
+function showTextPrompt({ title, initialValue = '', confirmText, cancelText, emptyError }) {
   const backdrop = document.getElementById('text-prompt-dialog');
   const titleEl = document.getElementById('text-prompt-title');
   const input = document.getElementById('text-prompt-input');
+  const errorEl = document.getElementById('text-prompt-error');
   const confirmBtn = document.getElementById('text-prompt-confirm-btn');
   const cancelBtn = document.getElementById('text-prompt-cancel-btn');
 
   titleEl.textContent = title;
+  errorEl.hidden = true;
   input.value = initialValue;
   confirmBtn.textContent = confirmText ?? t('common.ok');
   cancelBtn.textContent = cancelText ?? t('common.cancel');
@@ -299,7 +358,14 @@ function showTextPrompt({ title, initialValue = '', confirmText, cancelText }) {
       resolve(result);
     }
     function onConfirm() {
-      cleanup(input.value.trim());
+      const value = input.value.trim();
+      if (!value && emptyError) {
+        errorEl.textContent = emptyError;
+        errorEl.hidden = false;
+        input.focus();
+        return;
+      }
+      cleanup(value);
     }
     function onCancel() {
       cleanup(null);
@@ -313,14 +379,22 @@ function showTextPrompt({ title, initialValue = '', confirmText, cancelText }) {
   });
 }
 
-// -- Finish Workout date dialog ------------------------------------------
+// -- Finish Workout name + date dialog -----------------------------------
 
-function showFinishDialog(defaultDate) {
+/** Resolves with `{ name, date }`, or null on Cancel. A draft still carrying
+ * the generic default name ("Workout") opens with the field empty — the
+ * default shows as the placeholder instead — so naming it means just
+ * typing, not deleting "Workout" first. Left blank, it falls back to that
+ * same default. */
+function showFinishDialog({ defaultName, defaultDate }) {
   const backdrop = document.getElementById('finish-workout-dialog');
+  const nameInput = document.getElementById('finish-name-input');
   const dateInput = document.getElementById('finish-date-input');
   const confirmBtn = document.getElementById('finish-dialog-confirm-btn');
   const cancelBtn = document.getElementById('finish-dialog-cancel-btn');
 
+  const genericName = t('workout.defaultName');
+  nameInput.value = defaultName && defaultName !== genericName ? defaultName : '';
   dateInput.value = defaultDate;
   backdrop.hidden = false;
 
@@ -332,7 +406,10 @@ function showFinishDialog(defaultDate) {
       resolve(result);
     }
     function onConfirm() {
-      cleanup(dateInput.value || defaultDate);
+      cleanup({
+        name: nameInput.value.trim() || genericName,
+        date: dateInput.value || defaultDate,
+      });
     }
     function onCancel() {
       cleanup(null);
@@ -1390,9 +1467,15 @@ class ActiveWorkoutController {
     this.resumeBar.addEventListener('click', () => this.openExisting());
 
     window.addEventListener('app:languagechange', () => {
-      if (this.isOpen()) this.renderMain();
+      if (this.isOpen()) {
+        // The tab strip holds the "Finish Workout" button, so it needs
+        // redrawing too, not just the main area.
+        this.renderExerciseRow();
+        this.renderMain();
+      }
       this.refreshResumeBar();
     });
+    window.addEventListener('app:exercisedeleted', (e) => this.handleExerciseDeleted(e.detail.exerciseId));
   }
 
   // -- Draft lifecycle ----------------------------------------------------
@@ -1563,7 +1646,13 @@ class ActiveWorkoutController {
       btn.type = 'button';
       btn.className = 'exercise-row-item';
       if (exerciseId === this.draft.activeExerciseId) btn.classList.add('is-active');
-      btn.textContent = exercise ? exercise.name : '…';
+      // A cached null means "looked up, doesn't exist" (deleted) — distinct
+      // from "not loaded yet", which is the only case '…' is meant for.
+      btn.textContent = exercise
+        ? exercise.name
+        : this.exerciseCache.has(exerciseId)
+          ? t('workout.deletedExercise')
+          : '…';
       btn.addEventListener('click', () => this.setActiveExercise(exerciseId));
       this.exerciseRowEl.appendChild(btn);
     });
@@ -1709,7 +1798,10 @@ class ActiveWorkoutController {
     }
 
     const exercise = await this.loadExercise(exerciseId);
-    if (!exercise) return;
+    if (!exercise) {
+      this.mainEl.appendChild(buildDeletedExercisePanel(() => this.handleRemoveExercise(exerciseId)));
+      return;
+    }
 
     const gymId = this.getExerciseGym(exerciseId);
     const previousSets = await this.loadPreviousSets(exerciseId, gymId);
@@ -1989,23 +2081,41 @@ class ActiveWorkoutController {
   }
 
   async handleRemoveExercise(exerciseId) {
-    const confirmed = await showConfirm({
-      title: t('workout.confirmRemoveTitle'),
-      message: t('workout.confirmRemoveMessage'),
-      confirmText: t('workout.remove'),
-    });
-    if (!confirmed) return;
-
-    const idx = this.draft.exercises.indexOf(exerciseId);
-    if (idx !== -1) this.draft.exercises.splice(idx, 1);
-    this.draft.sets = this.draft.sets.filter((s) => s.exercise_id !== exerciseId);
-    delete this.draft.exerciseNotes[exerciseId];
-    if (this.draft.activeExerciseId === exerciseId) {
-      this.draft.activeExerciseId = this.draft.exercises[0] ?? null;
+    // Only ask when there's something to lose: a set ticked done, or a note.
+    const hasLogged =
+      this.draft.sets.some((s) => s.exercise_id === exerciseId && s.done) ||
+      !!(this.draft.exerciseNotes[exerciseId] ?? '').trim();
+    if (hasLogged) {
+      const confirmed = await showConfirm({
+        title: t('workout.confirmRemoveTitle'),
+        message: t('workout.confirmRemoveMessage'),
+        confirmText: t('workout.remove'),
+      });
+      if (!confirmed) return;
     }
 
+    removeExerciseFromDraft(this.draft, exerciseId);
     await this.persistDraft();
     await this.render();
+  }
+
+  /** The exercise was deleted from the library (Exercises tab, or Edit →
+   * Delete inside this workout). The repository already cleaned up stored
+   * history; this drops it from the draft, which may only exist on disk if
+   * the workout hasn't been opened since the app loaded. */
+  async handleExerciseDeleted(exerciseId) {
+    this.exerciseCache.delete(exerciseId);
+    if (this.draft) {
+      if (!this.draft.exercises.includes(exerciseId)) return;
+      removeExerciseFromDraft(this.draft, exerciseId);
+      await this.persistDraft();
+      if (this.isOpen()) await this.render();
+      return;
+    }
+    const draft = await window.WorkoutRepo.getDraft();
+    if (!draft || !(draft.exercises ?? []).includes(exerciseId)) return;
+    removeExerciseFromDraft(draft, exerciseId);
+    await window.WorkoutRepo.saveDraft(draft);
   }
 
   async addSet(exerciseId, isWarmup) {
@@ -2040,12 +2150,16 @@ class ActiveWorkoutController {
     const removed = this.draft.sets.find((s) => s.draft_set_id === draftSetId);
     if (!removed) return;
 
-    const confirmed = await showConfirm({
-      title: t('workout.confirmDeleteSetTitle'),
-      message: t('workout.confirmDeleteSetMessage'),
-      confirmText: t('workout.deleteSet'),
-    });
-    if (!confirmed) return;
+    // Only a set ticked done counts as logged; an untouched or
+    // auto-filled row goes without asking.
+    if (removed.done) {
+      const confirmed = await showConfirm({
+        title: t('workout.confirmDeleteSetTitle'),
+        message: t('workout.confirmDeleteSetMessage'),
+        confirmText: t('workout.deleteSet'),
+      });
+      if (!confirmed) return;
+    }
 
     this.draft.sets = this.draft.sets.filter((s) => s.draft_set_id !== draftSetId);
 
@@ -2155,6 +2269,18 @@ class ActiveWorkoutController {
       checkbox.className = 'set-done-checkbox';
       checkbox.checked = !!set.done;
       checkbox.addEventListener('change', async () => {
+        // A set can't be logged with nothing in it — it would be saved as a
+        // real set, counted in stats, and used as "last time" for auto-fill.
+        if (checkbox.checked && !setHasRequiredValues(exercise, set)) {
+          checkbox.checked = false;
+          tr.querySelectorAll('input.set-input').forEach((input) => {
+            if (input.value.trim() !== '') return;
+            input.classList.remove('set-input-error');
+            void input.offsetWidth; // restart the animation on repeat taps
+            input.classList.add('set-input-error');
+          });
+          return;
+        }
         set.done = checkbox.checked;
         await this.persistDraft();
         await this.renderMain();
@@ -2262,8 +2388,25 @@ class ActiveWorkoutController {
   // -- Finish workout flow --------------------------------------------------
 
   async handleFinishWorkout() {
-    const chosenDate = await showFinishDialog(this.draft.date || todayDateKey());
-    if (!chosenDate) return;
+    // Only sets ticked done are saved, so with none there'd be nothing but
+    // an empty workout (and a calendar dot) to show for it. Offer to discard
+    // instead of asking for a name and date first.
+    if (!this.draft.sets.some((s) => s.done)) {
+      const discard = await showConfirm({
+        title: t('workout.nothingToSaveTitle'),
+        message: t('workout.nothingToSaveMessage'),
+        confirmText: t('workout.discardButton'),
+        cancelText: t('workout.keepEditing'),
+      });
+      if (discard) await this.discardDraft();
+      return;
+    }
+
+    const choice = await showFinishDialog({
+      defaultName: this.draft.name,
+      defaultDate: this.draft.date || todayDateKey(),
+    });
+    if (!choice) return;
 
     const hasIncomplete = this.draft.sets.some((s) => !s.done);
     if (hasIncomplete) {
@@ -2274,7 +2417,8 @@ class ActiveWorkoutController {
       if (!proceed) return;
     }
 
-    this.draft.date = chosenDate;
+    this.draft.name = choice.name;
+    this.draft.date = choice.date;
     await window.WorkoutRepo.finishDraftWorkout(this.draft);
     this.draft = null;
     this.closeScreen();
@@ -2297,7 +2441,10 @@ class ActiveWorkoutController {
       confirmText: t('workout.discardButton'),
     });
     if (!confirmed) return;
+    await this.discardDraft();
+  }
 
+  async discardDraft() {
     await window.WorkoutRepo.deleteDraft();
     this.draft = null;
     this.closeScreen();
@@ -2459,7 +2606,7 @@ class WorkoutDetailController {
   }
 
   wireEvents() {
-    this.closeBtn.addEventListener('click', () => this.close());
+    this.closeBtn.addEventListener('click', () => this.requestClose());
     this.saveBtn.addEventListener('click', () => this.handleSave());
     this.deleteBtn.addEventListener('click', () => this.handleDeleteWorkout());
 
@@ -2536,8 +2683,41 @@ class WorkoutDetailController {
     }
     await this.loadGyms();
 
+    this.initialSnapshot = this.snapshotState();
     this.overlay.hidden = false;
     await this.render();
+  }
+
+  /** Everything Save would write, serialized, so closing can tell whether
+   * anything was actually changed. */
+  snapshotState() {
+    return JSON.stringify({
+      name: this.name,
+      date: this.date,
+      exerciseIds: this.exerciseIds,
+      sets: this.sets.map(({ _localId, ...rest }) => rest),
+      notes: [...this.exerciseNotes.entries()].sort(([a], [b]) => a.localeCompare(b)),
+      gyms: [...this.gymByExercise.entries()].sort(([a], [b]) => a.localeCompare(b)),
+    });
+  }
+
+  /** The X button. Save and Delete close directly; this path is the only
+   * one that could silently throw edits away, so it asks first. */
+  async requestClose() {
+    // A field still focused when X is tapped may not have fired 'change'.
+    this.name = this.nameInput.value.trim();
+    if (this.dateInput.value) this.date = this.dateInput.value;
+
+    if (this.snapshotState() !== this.initialSnapshot) {
+      const discard = await showConfirm({
+        title: t('workout.discardChangesTitle'),
+        message: t('workout.discardChangesMessage'),
+        confirmText: t('workout.discardButton'),
+        cancelText: t('workout.keepEditing'),
+      });
+      if (!discard) return;
+    }
+    this.close();
   }
 
   async loadGyms() {
@@ -2600,7 +2780,13 @@ class WorkoutDetailController {
       btn.type = 'button';
       btn.className = 'exercise-row-item';
       if (exerciseId === this.activeExerciseId) btn.classList.add('is-active');
-      btn.textContent = exercise ? exercise.name : '…';
+      // A cached null means "looked up, doesn't exist" (deleted) — distinct
+      // from "not loaded yet", which is the only case '…' is meant for.
+      btn.textContent = exercise
+        ? exercise.name
+        : this.exerciseCache.has(exerciseId)
+          ? t('workout.deletedExercise')
+          : '…';
       btn.addEventListener('click', () => this.setActiveExercise(exerciseId));
       this.exerciseRowEl.appendChild(btn);
     });
@@ -2754,7 +2940,10 @@ class WorkoutDetailController {
     this.activeExerciseId = exerciseId;
 
     const exercise = await this.loadExercise(exerciseId);
-    if (!exercise) return;
+    if (!exercise) {
+      this.mainEl.appendChild(buildDeletedExercisePanel(() => this.handleRemoveExercise(exerciseId)));
+      return;
+    }
 
     const mySets = this.sets.filter((s) => s.exercise_id === exerciseId);
     const gymId = this.getExerciseGym(exerciseId);
@@ -3101,12 +3290,7 @@ class WorkoutDetailController {
     const incomplete = [];
     for (const set of this.sets) {
       const exercise = await this.loadExercise(set.exercise_id);
-      const needsInput2 = !!exercise?.metric?.unit && exercise.metric.unit !== 'none';
-      const missing =
-        set.input_1 == null ||
-        set.input_1 === '' ||
-        (needsInput2 && (set.input_2 == null || set.input_2 === ''));
-      if (missing) incomplete.push(set);
+      if (!setHasRequiredValues(exercise, set)) incomplete.push(set);
     }
 
     if (incomplete.length > 0) {

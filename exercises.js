@@ -292,7 +292,29 @@ class ExerciseEditorController {
   async delete() {
     if (!this.editingId) return;
     const id = this.editingId;
-    await window.WorkoutRepo.deleteExercise(id);
+    const lang = getLang();
+    const name = this.nameInput.value.trim() || window.I18n.t('workout.defaultName', lang);
+
+    const { setCount, workoutCount } = await window.WorkoutRepo.getExerciseUsage(id);
+    const draft = await window.WorkoutRepo.getDraft();
+    const inCurrentWorkout = !!draft && (draft.exercises ?? []).includes(id);
+
+    let message = setCount > 0
+      ? window.I18n.t('exercise.editor.confirmDeleteWithHistory', lang, { name, sets: setCount, workouts: workoutCount })
+      : window.I18n.t('exercise.editor.confirmDeleteNoHistory', lang, { name });
+    if (inCurrentWorkout) message += ` ${window.I18n.t('exercise.editor.confirmDeleteInWorkout', lang)}`;
+
+    const confirmed = await window.WorkoutDialogs.showConfirm({
+      title: window.I18n.t('exercise.editor.confirmDeleteTitle', lang),
+      message,
+      confirmText: window.I18n.t('exercise.editor.delete', lang),
+    });
+    if (!confirmed) return;
+
+    await window.WorkoutRepo.deleteExerciseCascade(id);
+    // The active workout keeps its own in-memory draft, so it's told
+    // directly rather than having the repository edit the draft underneath it.
+    window.dispatchEvent(new CustomEvent('app:exercisedeleted', { detail: { exerciseId: id } }));
     this.close({ deletedId: id });
     this.onDeleted(id);
   }

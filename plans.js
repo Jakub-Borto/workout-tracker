@@ -122,7 +122,9 @@ async function startWorkoutFromTemplate(template) {
   }
 
   const draft = {
-    name: t('workout.defaultName'),
+    // Named after the template it came from, so it's already filled in
+    // when the Finish dialog asks for one.
+    name: template.name || t('workout.defaultName'),
     date: todayDateKey(),
     startedAt: new Date().toISOString(),
     exercises,
@@ -158,6 +160,7 @@ class PlansHomeSection {
     const name = await window.WorkoutDialogs.showTextPrompt({
       title: t('plans.createPromptTitle'),
       confirmText: t('plans.createPromptConfirm'),
+      emptyError: t('plans.errorNameRequired'),
     });
     if (!name) return;
     await window.WorkoutRepo.createPlan({ name });

@@ -693,10 +693,12 @@
     </div>
   </div>
 
-  <!-- Finish Workout date dialog -->
+  <!-- Finish Workout name + date dialog -->
   <div id="finish-workout-dialog" class="modal-backdrop" hidden>
     <div class="modal-card">
       <p class="modal-title" data-i18n="workout.finishDialogTitle">Finish Workout</p>
+      <label class="field-label" for="finish-name-input" data-i18n="workout.finishDialogNameLabel">Name</label>
+      <input type="text" class="text-input" id="finish-name-input" data-i18n-placeholder="workout.defaultName" placeholder="Workout" />
       <label class="field-label" for="finish-date-input" data-i18n="workout.finishDialogDateLabel">Date</label>
       <input type="date" class="text-input" id="finish-date-input" />
       <div class="modal-actions" style="margin-top: 18px;">
@@ -711,6 +713,7 @@
     <div class="modal-card">
       <p class="modal-title" id="text-prompt-title"></p>
       <input type="text" class="text-input" id="text-prompt-input" />
+      <p class="field-error" id="text-prompt-error" hidden style="margin:10px 0 0;"></p>
       <div class="modal-actions" style="margin-top: 18px;">
         <button type="button" class="btn-secondary" id="text-prompt-cancel-btn" data-i18n="common.cancel">Cancel</button>
         <button type="button" class="btn-primary modal-btn-primary" id="text-prompt-confirm-btn" data-i18n="common.ok">OK</button>
@@ -818,6 +821,15 @@
       <div class="gym-picker-list" id="plan-picker-list"></div>
       <p class="empty-state-subtitle" id="plan-picker-empty" hidden data-i18n="calendar.noPlansYet">You don't have any workout plans yet. Create one from the Home tab first.</p>
       <button type="button" class="btn-secondary" id="plan-picker-cancel-btn" data-i18n="common.cancel" style="margin-top:12px;width:100%;">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Picker for a calendar day with more than one workout -->
+  <div id="day-workouts-dialog" class="modal-backdrop" hidden>
+    <div class="modal-card">
+      <p class="modal-title" id="day-workouts-title"></p>
+      <div class="gym-picker-list" id="day-workouts-list"></div>
+      <button type="button" class="btn-secondary" id="day-workouts-cancel-btn" data-i18n="common.cancel" style="margin-top:12px;width:100%;">Cancel</button>
     </div>
   </div>
 

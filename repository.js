@@ -44,6 +44,59 @@ async function deleteExercise(id) {
   return repoDb.delete(REPO_STORES.exercises, id);
 }
 
+/** How much logged history an exercise has, for the delete warning. */
+async function getExerciseUsage(exerciseId) {
+  const sets = await getSetsForExercise(exerciseId);
+  return { setCount: sets.length, workoutCount: new Set(sets.map((s) => s.workout_id)).size };
+}
+
+/**
+ * Deletes an exercise together with everything that points at it, so no
+ * screen is ever left holding a reference to a missing exercise: its logged
+ * sets, PRs and per-workout notes, its entries in workout templates, its
+ * slot in finished workouts' exerciseOrder, and any finished workout that
+ * ends up with no sets at all once its sets are gone. The active draft is
+ * deliberately not touched here — ActiveWorkoutController owns the live
+ * in-memory copy and cleans it up itself (handleExerciseDeleted).
+ */
+async function deleteExerciseCascade(exerciseId) {
+  const sets = await getSetsForExercise(exerciseId);
+  const affectedWorkoutIds = new Set(sets.map((s) => s.workout_id));
+  for (const s of sets) await deleteWorkoutSet(s.set_id);
+
+  const prs = await repoDb.getAll(REPO_STORES.personalRecords);
+  for (const pr of prs) {
+    if (pr.exercise_id === exerciseId) await repoDb.delete(REPO_STORES.personalRecords, pr.id);
+  }
+
+  const notes = await getExerciseNotesForExercise(exerciseId);
+  for (const n of notes) await repoDb.delete(REPO_STORES.exerciseNotes, n.id);
+
+  const templates = await repoDb.getAll(REPO_STORES.workoutTemplates);
+  for (const record of templates) {
+    const entries = record.exercises ?? [];
+    if (!entries.some((e) => e.exercise_id === exerciseId)) continue;
+    await repoDb.put(REPO_STORES.workoutTemplates, {
+      ...record,
+      exercises: entries.filter((e) => e.exercise_id !== exerciseId),
+    });
+  }
+
+  const workouts = await getAllWorkouts();
+  for (const w of workouts) {
+    if (affectedWorkoutIds.has(w.id) && (await getSetsForWorkout(w.id)).length === 0) {
+      await deleteWorkout(w.id);
+      continue;
+    }
+    if (w.exerciseOrder.includes(exerciseId)) {
+      w.exerciseOrder = w.exerciseOrder.filter((id) => id !== exerciseId);
+      await updateWorkout(w);
+    }
+  }
+
+  await deleteExercise(exerciseId);
+}
+
 async function toggleExerciseFavorite(id) {
   const exercise = await getExercise(id);
   if (!exercise) return null;
@@ -665,6 +718,8 @@ window.WorkoutRepo = {
   getAllExercises,
   updateExercise,
   deleteExercise,
+  getExerciseUsage,
+  deleteExerciseCascade,
   toggleExerciseFavorite,
   createWorkoutSet,
   getWorkoutSet,

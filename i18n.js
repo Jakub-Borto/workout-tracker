@@ -62,6 +62,19 @@ const TRANSLATIONS = {
   'exercise.editor.cancel': { en: 'Cancel', pl: 'Anuluj' },
   'exercise.editor.save': { en: 'Save', pl: 'Zapisz' },
   'exercise.editor.delete': { en: 'Delete Exercise', pl: 'Usuń ćwiczenie' },
+  'exercise.editor.confirmDeleteTitle': { en: 'Delete exercise?', pl: 'Usunąć ćwiczenie?' },
+  'exercise.editor.confirmDeleteNoHistory': {
+    en: '"{name}" will be permanently deleted. It hasn\'t been logged in any workout yet.',
+    pl: '„{name}” zostanie trwale usunięte. Nie zostało jeszcze zapisane w żadnym treningu.',
+  },
+  'exercise.editor.confirmDeleteWithHistory': {
+    en: '"{name}" has {sets} logged set(s) across {workouts} workout(s). Deleting it also permanently deletes those sets, its PRs and notes, and removes it from your workout templates. Past workouts left with nothing in them are deleted too. This cannot be undone.',
+    pl: '„{name}” ma {sets} zapisanych serii w {workouts} treningach. Usunięcie go trwale usunie też te serie, jego rekordy i notatki oraz usunie je z szablonów treningów. Treningi, w których nic nie zostanie, również zostaną usunięte. Tej operacji nie można cofnąć.',
+  },
+  'exercise.editor.confirmDeleteInWorkout': {
+    en: 'It will also be removed from your current workout.',
+    pl: 'Zostanie też usunięte z bieżącego treningu.',
+  },
   'exercise.editor.errorName': { en: 'Name is required.', pl: 'Nazwa jest wymagana.' },
   'exercise.editor.errorMetric': {
     en: 'The metric needs both a type and a unit.',
@@ -187,6 +200,7 @@ const TRANSLATIONS = {
     pl: 'Cele RPE (na serię roboczą)',
   },
   'plans.templateEditor.errorNameRequired': { en: 'Name is required.', pl: 'Nazwa jest wymagana.' },
+  'plans.errorNameRequired': { en: 'Give the plan a name.', pl: 'Nadaj planowi nazwę.' },
   'plans.templateEditor.errorNoExercises': {
     en: 'Add at least one exercise.',
     pl: 'Dodaj co najmniej jedno ćwiczenie.',
@@ -249,6 +263,22 @@ const TRANSLATIONS = {
   'workout.swap': { en: 'Swap', pl: 'Zamień' },
   'workout.editExercise': { en: 'Edit', pl: 'Edytuj' },
   'workout.remove': { en: 'Remove', pl: 'Usuń' },
+  'workout.deletedExercise': { en: 'Deleted exercise', pl: 'Usunięte ćwiczenie' },
+  'workout.deletedExerciseMessage': {
+    en: 'This exercise no longer exists, so its sets can\'t be shown. Remove it from this workout.',
+    pl: 'To ćwiczenie już nie istnieje, więc jego serii nie da się wyświetlić. Usuń je z tego treningu.',
+  },
+  'workout.nothingToSaveTitle': { en: 'Nothing to save', pl: 'Nie ma czego zapisać' },
+  'workout.nothingToSaveMessage': {
+    en: 'You haven\'t completed any sets, so there\'s nothing to save. Discard this workout?',
+    pl: 'Nie ukończyłeś żadnej serii, więc nie ma czego zapisać. Odrzucić ten trening?',
+  },
+  'workout.keepEditing': { en: 'Keep editing', pl: 'Edytuj dalej' },
+  'workout.discardChangesTitle': { en: 'Discard changes?', pl: 'Odrzucić zmiany?' },
+  'workout.discardChangesMessage': {
+    en: 'You have unsaved changes to this workout. Close without saving?',
+    pl: 'Masz niezapisane zmiany w tym treningu. Zamknąć bez zapisywania?',
+  },
   'workout.deleteSet': { en: 'Delete set', pl: 'Usuń serię' },
   'workout.confirmDeleteSetTitle': { en: 'Delete this set?', pl: 'Usunąć tę serię?' },
   'workout.confirmDeleteSetMessage': {
@@ -511,6 +541,7 @@ const TRANSLATIONS = {
   'devtools.store.personalRecords': { en: 'Personal Records', pl: 'Rekordy życiowe' },
 
   'workout.finishDialogTitle': { en: 'Finish Workout', pl: 'Zakończ trening' },
+  'workout.finishDialogNameLabel': { en: 'Name', pl: 'Nazwa' },
   'workout.finishDialogDateLabel': { en: 'Date', pl: 'Data' },
   'workout.finishButton': { en: 'Finish', pl: 'Zakończ' },
 
