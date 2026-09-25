@@ -274,6 +274,11 @@ const CHANGELOG = [
       'If an update arrives while you\'re mid-workout, it now installs the moment you finish or discard the workout, instead of waiting for the next scheduled check (previously up to ~20 minutes)',
     ],
   },
+  {
+    version: 'workout-tracker-v80',
+    date: '2026-09-25',
+    changes: ['Muscle group stats (total sets, average, frequency) no longer count warm-up sets'],
+  },
 ];
 
 /**

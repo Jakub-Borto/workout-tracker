@@ -73,6 +73,10 @@ async function computeMuscleGroupStats(startDate, endDate) {
   const perWorkoutByGroup = {};
 
   for (const s of sets) {
+    // Warm-ups aren't training volume — counting them would inflate every
+    // group's totals, and let a workout with only warm-ups for a muscle
+    // count as having "trained" it for the average/frequency screens.
+    if (s.is_warmup_set) continue;
     const ex = exerciseById.get(s.exercise_id);
     if (!ex) continue;
     for (const g of ex.muscleGroups) {
