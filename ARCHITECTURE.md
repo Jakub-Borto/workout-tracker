@@ -242,7 +242,9 @@ delete-template path has to remember to touch the order array itself.
 **Template editor** (`TemplateEditorController`, `#template-editor-screen`):
 name field, per-exercise cards (warm-up count / working count / one
 RIR-or-RPE target button per working set, only shown when the exercise's
-`effortTracking` isn't `'none'`). "Add Exercise" reuses the shared
+`effortTracking` isn't `'none'`), each with move-up/move-down/remove icon
+buttons in its header — reordering swaps entries in the local
+`this.exercises` working copy, persisted only on Save like every other edit. "Add Exercise" reuses the shared
 `ExercisePickerController` instance directly — `sharedExercisePicker`,
 `sharedRirPicker`, `sharedRpePicker` (plus their `RIR_COLORS`/`RPE_COLORS`
 maps) are exposed cross-file via `window.WorkoutSharedPickers` specifically
