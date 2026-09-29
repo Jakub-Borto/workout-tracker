@@ -475,6 +475,16 @@ class TemplateEditorController {
     });
   }
 
+  /** Local-only, like every other edit here — persisted on Save. */
+  moveExercise(exerciseId, direction) {
+    const idx = this.exercises.findIndex((e) => e.exercise_id === exerciseId);
+    if (idx === -1) return;
+    const newIdx = idx + direction;
+    if (newIdx < 0 || newIdx >= this.exercises.length) return;
+    [this.exercises[idx], this.exercises[newIdx]] = [this.exercises[newIdx], this.exercises[idx]];
+    this.render();
+  }
+
   handleRemoveExercise(exerciseId) {
     this.exercises = this.exercises.filter((e) => e.exercise_id !== exerciseId);
     this.render();
@@ -535,10 +545,12 @@ class TemplateEditorController {
 
   render() {
     this.exerciseListEl.innerHTML = '';
-    this.exercises.forEach((entry) => this.exerciseListEl.appendChild(this.buildExerciseCard(entry)));
+    this.exercises.forEach((entry, idx) =>
+      this.exerciseListEl.appendChild(this.buildExerciseCard(entry, idx, this.exercises.length))
+    );
   }
 
-  buildExerciseCard(entry) {
+  buildExerciseCard(entry, idx, total) {
     const card = document.createElement('div');
     card.className = 'template-exercise-card';
 
@@ -559,7 +571,29 @@ class TemplateEditorController {
       '<svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
     removeBtn.addEventListener('click', () => this.handleRemoveExercise(entry.exercise_id));
 
-    header.append(name, removeBtn);
+    const upBtn = document.createElement('button');
+    upBtn.type = 'button';
+    upBtn.className = 'icon-btn-faint';
+    upBtn.disabled = idx === 0;
+    upBtn.setAttribute('aria-label', t('plans.moveUp'));
+    upBtn.innerHTML =
+      '<svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    upBtn.addEventListener('click', () => this.moveExercise(entry.exercise_id, -1));
+
+    const downBtn = document.createElement('button');
+    downBtn.type = 'button';
+    downBtn.className = 'icon-btn-faint';
+    downBtn.disabled = idx === total - 1;
+    downBtn.setAttribute('aria-label', t('plans.moveDown'));
+    downBtn.innerHTML =
+      '<svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    downBtn.addEventListener('click', () => this.moveExercise(entry.exercise_id, 1));
+
+    const actions = document.createElement('div');
+    actions.className = 'template-exercise-card-actions';
+    actions.append(upBtn, downBtn, removeBtn);
+
+    header.append(name, actions);
     card.appendChild(header);
 
     const countsRow = document.createElement('div');

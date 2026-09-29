@@ -1987,6 +1987,13 @@ tr.is-done .set-input {
   margin-bottom: 10px;
 }
 
+.template-exercise-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
 .template-exercise-card-name {
   font-size: 14.5px;
   font-weight: 700;

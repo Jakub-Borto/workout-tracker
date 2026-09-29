@@ -308,6 +308,11 @@ const CHANGELOG = [
     date: '2026-09-25',
     changes: ['Changing the gym for an exercise in an active workout now moves all of its sets to that gym, not just ones added afterwards'],
   },
+  {
+    version: 'workout-tracker-v84',
+    date: '2026-09-29',
+    changes: ['Added up/down arrows to reorder exercises when creating or editing a workout template'],
+  },
 ];
 
 /**
